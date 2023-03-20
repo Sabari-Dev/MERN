@@ -1,0 +1,42 @@
+.bike_img {
+  height: 300px;
+  width: 380px;
+  margin: 0px 30px;
+}
+.biketag {
+  text-decoration: none;
+  margin: 0px 125px;
+  color: red;
+  font-size: 20px;
+}
+.biketag:hover {
+  color: rgb(84, 84, 236);
+}
+ul {
+  margin: 0;
+  padding: 30px 0px;
+}
+li {
+  list-style: none;
+  display: inline-block;
+}
+.nav_bar {
+  text-decoration: none;
+  color: white;
+  background-color: rgb(34, 34, 233);
+  padding: 10px 70px;
+  margin: 0px 5px;
+  font-size: 20px;
+}
+.nav_bar:hover {
+  color: black;
+  background-color: cadetblue;
+  text-shadow: 2px 2px 1px rgb(75, 110, 226);
+}
+.content {
+  font-size: 20px;
+  text-indent: 50px;
+}
+#footer {
+  text-align: center;
+}

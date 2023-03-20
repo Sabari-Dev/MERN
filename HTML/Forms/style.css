@@ -1,0 +1,21 @@
+/* body */
+body{
+  background-color: rgb(238,215,255);
+}
+/* section */
+section{
+  margin: 50px 22%;
+  background-color: white;
+  border-radius: 3px;
+  box-shadow: 1px 1px 3px rgb(173, 173, 173);
+}
+ul{
+  margin: 0;
+  padding: 0;
+}
+li{
+  list-style: none;
+}
+#legend{
+  display: inline;
+}

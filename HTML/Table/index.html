@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="Description" content="Table-content" />
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Webpage using table</title>
+  </head>
+  <body>
+    <header>
+      <table>
+        <tr>
+          <td><img src="./Bajaj-Logo.png" alt="logo" id="logo" /></td>
+          <td>
+            <nav>
+              <ul>
+                <li><a class="nav_link" href="#">Home</a></li>
+                <li><a class="nav_link" href="#pop_bikes">Bikes</a></li>
+                <li><a class="nav_link" href="#About"> About</a></li>
+                <li><a class="nav_link" href="#contact"> Contact</a></li>
+              </ul>
+            </nav>
+          </td>
+        </tr>
+      </table>
+    </header>
+    <br />
+    <section>
+      <img
+        src="../Links/images/product-listing-herobanner.webp"
+        alt="banner"
+        class="web_banner"
+      />
+    </section>
+    <br />
+    <section id="pop_bikes" width="100%">
+      <table cellspacing="10px">
+        <tr>
+          <td>
+            <h2>RS-200</h2>
+            <img
+              src="../Links/images/rs200.png"
+              alt="rs-200"
+              class="bike_image"
+            />
+          </td>
+          <td>
+            <h2>NS-200</h2>
+            <img
+              src="../Links/images/ns200.png"
+              alt="ns200"
+              class="bike_image"
+            />
+          </td>
+          <td>
+            <h2>F-250</h2>
+            <img src="./f250.png" alt="f-250" class="bike_image" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a
+              class="biketag"
+              href="https://www.bajajauto.com/bikes/pulsar/pulsar-rs200"
+              target="_blank"
+              >More About RS-200...</a
+            >
+          </td>
+          <td>
+            <a
+              class="biketag"
+              href="https://www.bajajauto.com/bikes/pulsar/pulsar-ns200"
+              target="_blank"
+              >More About NS-200...</a
+            >
+          </td>
+          <td>
+            <a
+              class="biketag"
+              href="https://www.bajajauto.com/bikes/pulsar/pulsar-250-dual-channel-abs"
+              target="_blank"
+              >More About F-250...</a
+            >
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" id="About">
+            <h2><u>About us</u></h2>
+            <p class="about_para">
+              The Bajaj Pulsar is an iconic Indian motorcycle. Since its
+              inception, the Pulsar created a new segment called ‘Sports Biking’
+              in Indian motorcycling and redefined motorcycle riding for the
+              Indian youth. Presently, the cutting-edge Bajaj Pulsar
+              specifications are 125-250 cc engines, front and rear disc brakes,
+              nitrox-mono-shock suspension, tubeless tyres, among others. Today,
+              the Pulsar motorcycle is a perfect combination of style and
+              performance. The Bajaj Pulsar features projector headlamps, ABS,
+              fuel-injection systems, and a DTS-i engine. Pulsar 250 & Pulsar
+              N160 are the latest addition to the Pulsar range.
+            </p>
+          </td>
+          <td>
+            <video controls>
+              <source src="./WhatsApp-status-Pulsar-200-NS.mp4" />
+            </video>
+          </td>
+        </tr>
+      </table>
+    </section>
+    <br />
+    <footer id="contact">
+      <table width="100%">
+        <tr>
+          <td>
+            <ul>
+              <li><a class="foot_tag" href="#">Home</a></li>
+              <li><a class="foot_tag" href="#pop_bikes">Bikes</a></li>
+              <li><a class="foot_tag" href="#About"> About</a></li>
+              <li><a class="foot_tag" href="#contact"> Contact</a></li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p id="foot">Contact as</p>
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-square-twitter"></i>
+          </td>
+          <td>
+            <p id="copy">copyrights&#169;bajajauto.All rights reserved.</p>
+          </td>
+        </tr>
+      </table>
+    </footer>
+  </body>
+</html>

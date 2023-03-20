@@ -1,0 +1,96 @@
+body {
+  font-family: "Merriweather", serif;
+}
+header {
+  background-color: white;
+  padding-top: 10px;
+}
+.web_banner {
+  width: 1340px;
+}
+.bike_image {
+  width: 350px;
+  height: 300px;
+  align-items: center;
+  padding: 0px 20px;
+}
+.biketag {
+  text-decoration: none;
+  padding: 0px 70px;
+  text-align: center;
+  font-size: 14px;
+  color: red;
+  font-weight: bold;
+}
+.nav_link {
+  text-decoration: none;
+  margin: 0px 2px;
+  font-weight: 800;
+  font-size: 20px;
+  color: white;
+  background-color: rgb(8, 88, 207);
+  padding: 10px 70px;
+  border-radius: 5px;
+}
+.nav_link:hover {
+  background-color: rgb(72, 121, 194);
+  color: chartreuse;
+  text-shadow: 2px 2px 3px grey;
+}
+video {
+  height: 400px;
+  width: 500px;
+}
+#logo {
+  height: 60px;
+  width: 100px;
+}
+ul {
+  list-style: none;
+}
+li {
+  display: inline-block;
+}
+h2 {
+  text-align: center;
+  color: blue;
+}
+.about_para {
+  font-weight: 800;
+  word-spacing: 5px;
+}
+#contact {
+  background-color: rgb(63, 63, 63);
+  height: 130px;
+}
+#foot {
+  font-size: 20px;
+  margin: 0;
+  color: white;
+  text-decoration: underline;
+}
+.foot_tag {
+  font-size: 18px;
+  color: white;
+  text-decoration: none;
+  font-weight: 400;
+  margin: 0px 30px;
+}
+.foot_tag:hover {
+  color: rgb(69, 115, 216);
+}
+i {
+  font-size: 25px;
+  padding-top: 10px;
+  padding-right: 10px;
+  color: white;
+}
+i:hover {
+  color: rgb(69, 115, 216);
+}
+#copy {
+  text-align: right;
+  color: white;
+  font-size: 12px;
+  padding-top: 20px;
+}
