@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //   let name = "jack";
+      //   //   let age = 20;
+      //   let admin;
+      //   console.log(name);
+      //   console.log(admin);
+      //   console.log(age);
+      //   let num1 = 30;
+      //   let num2 = 123456789987654321n;
+      //   let sum = num1 + num2;
+      //   console.log(typeof "num2");
+      //   console.log(typeof "num2");
+      //   console.log(typeof 20);
+      //   console.log(typeof true);
+      //   console.log(typeof null);
+      //   //   let name = prompt("ENter");
+      //   console.log(name);
+      //   confirm("are sure");
+      //   console.log(typeof num2);
+      //   console.log("jao");
+      //   console.log("niij");
+      //   console.log(`sum:${num1}`);
+      //   let a = Number(prompt("1"));
+      //   let b = +prompt("2");
+      //   let c = a + b;
+      //   console.log(String(c));
+      // console.log(Boolean("0"));
+      //   console.log(String(c));
+      //   console.log(String(c));
+      let fruits = new Map([
+        ["apple", 35],
+        ["mango", 25],
+        ["orange", 40],
+      ]);
+      console.log(fruits);
+      // console.log(fruits.keys());
+      // for (const fruitKey of fruits.keys()) {
+      //   console.log(fruitKey);
+      // }
+      // console.log(fruits.entries());
+      // for (const [key, value] of fruits) {
+      //   console.log(`Key => ${key} and Value => ${value}`);
+      // console.log(fruit);
+
+      let fruitsObj = {
+        apple: 20,
+        mango: 30,
+        orange: 40,
+      };
+
+      let newFruitsObj = Object.entries(fruitsObj);
+      console.log(newFruitsObj);
+      let newValue = newFruitsObj.map((fruit) => {
+        return [fruit[0], fruit[1] * 2];
+      });
+      let newObject = Object.fromEntries(newValue);
+      console.log(newObject);
+    </script>
+  </body>
+</html>

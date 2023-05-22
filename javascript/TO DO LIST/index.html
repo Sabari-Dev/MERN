@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="Description" content="To-Do list-Basic" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+    <style></style>
+  </head>
+  <body>
+    <h1>TO-DO LIST</h1>
+    <header>
+      <h3>Create a new Task...</h3>
+      <input
+        type="text"
+        name="Add_new"
+        id="Add_new"
+        placeholder="Create a new task..."
+      />
+      <button id="Add_btn">Add</button>
+    </header>
+    <h3 class="tasks">To-Do tasks...</h3>
+    <ul id="task_area">
+      <!-- <li class="task_items">
+        <label> Sample Task</label><button class="complete_btn">Complete</button
+        ><button class="delete_btn">Delete</button>
+      </li> -->
+    </ul>
+    <h3 class="tasks">Completed tasks...</h3>
+    <ul id="completed_area">
+      <!-- <li class="task_items">
+        <label> complete Task</label
+        ><button class="complete_btn">Complete</button
+        ><button class="delete_btn">Delete</button>
+      </li> -->
+    </ul>
+    <script>
+      //get the element from html
+      let addTask = document.getElementById("Add_new");
+      let addBtn = document.getElementById("Add_btn");
+      // let completeBtn = document.querySelector(".complete_btn");
+      // let deleteBtn = document.getElementsByClassName("delete_btn");
+      let taskArea = document.querySelector("#task_area");
+      let currentTasks = document.querySelectorAll(".task_items");
+      let completedTask = document.querySelector("#completed_area");
+      //Function for adding an task
+      function addingTask(tasks) {
+        //declaring an elements
+        let li = document.createElement("li");
+        let completeBtn = document.createElement("button");
+        let deleteBtn = document.createElement("button");
+        let labelTxt = document.createElement("label");
+
+        //adding the class/id name & text value
+        li.className = "task_items";
+        labelTxt.textContent = tasks.value;
+        tasks.value = "";
+
+        completeBtn.textContent = "Complete";
+        completeBtn.className = "complete_btn";
+
+        deleteBtn.textContent = "Delete";
+        deleteBtn.className = "delete_btn";
+
+        //append the elements into li
+        li.appendChild(labelTxt);
+        li.appendChild(completeBtn);
+        li.appendChild(deleteBtn);
+        taskArea.appendChild(li);
+
+        //Function for complete button
+        function completeButton() {
+          labelTxt.style.textDecoration = " line-through";
+          completedTask.appendChild(li);
+        }
+
+        completeBtn.addEventListener("click", () => {
+          completeButton();
+        });
+
+        //function for delete
+
+        deleteBtn.addEventListener("click", () => {
+          const parent = deleteBtn.parentNode;
+          // const parentOne = parent.parentNode;
+          taskArea.remove(parent);
+          completedTask.remove(parent);
+        });
+      }
+      //adding the value from input using btn
+      addBtn.addEventListener("click", () => {
+        addingTask(addTask);
+      });
+    </script>
+  </body>
+</html>

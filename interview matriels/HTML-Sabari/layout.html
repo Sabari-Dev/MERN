@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>question-7</title>
+    <style>
+      body {
+        background: url("./images/plant.jpg");
+        background-position: 100%;
+        color: white;
+        padding: 0 20px;
+      }
+      span {
+        color: rgb(11, 199, 11);
+      }
+      header,
+      .content {
+        display: flex;
+      }
+      .head1,
+      .head2 {
+        width: 50vw;
+      }
+      .head2 {
+        text-align: right;
+        margin-top: 10px;
+      }
+      .menu {
+        display: inline-block;
+        color: rgb(11, 199, 11);
+        letter-spacing: 4px;
+      }
+      .text {
+        font-size: 40px;
+        font-weight: bold;
+      }
+      a {
+        text-decoration: none;
+        color: white;
+        border: 1px solid white;
+        font-size: 12px;
+        padding: 10px 30px;
+        margin: 0 20px;
+      }
+      .content {
+        display: grid;
+        grid-template-areas: "a a a b" "a a a b" "a a a b";
+      }
+      .content1 {
+        grid-area: a;
+        width: 60vw;
+        margin: 0 50px;
+      }
+      .icons {
+        grid-area: b;
+        margin: 0;
+        text-align: right;
+      }
+      .icons i {
+        border: 1px solid white;
+        border-radius: 50%;
+        padding: 10px;
+        display: block;
+        text-align: center;
+        width: 30px;
+        margin: 20px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="head1">
+        <h2>Glint<span>.</span></h2>
+      </div>
+      <div class="head2">
+        <p class="menu">MENU</p>
+
+        <i class="fa-solid fa-bars"></i>
+      </div>
+    </header>
+    <section class="content">
+      <div class="content1">
+        <p>WELCOME TO GLINT</p>
+        <p class="text">
+          We are a creative group of people who design influential brands and
+          digital experience.
+        </p>
+        <a href="#"> START A PRODUCT</a>
+        <a href="#">MORE ABOUT US</a>
+      </div>
+      <div class="icons">
+        <i class="fa-brands fa-facebook-f"></i>
+        <i class="fa-brands fa-twitter"></i>
+        <i class="fa-brands fa-instagram"></i>
+        <i class="fa-brands fa-behance"></i>
+      </div>
+    </section>
+  </body>
+</html>

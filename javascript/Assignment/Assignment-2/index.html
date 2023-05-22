@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment-2</title>
+  </head>
+  <body>
+    <script>
+      // 1. Write a function ‘dice’ that returns like a dice a random number between 1 and 6.
+      function dice() {
+        let diceRoll = Math.ceil(Math.random() * 6);
+        console.log(`          ------------
+                     |            |
+                     |            |
+                     |     ${diceRoll}      |
+                     |            |
+                     |            |
+                      ------------`);
+      }
+      //   dice();
+      function qesTwo() {
+        //   2. Write a function ‘add’ that takes a string with a summation task and returns its result as a
+        // number. Two natural numbers should be added. The summation task is a string of the form
+        // '102+17'.
+        // Example: add('102+17') should return 119.
+        function add(a) {
+          let [num1, num2] = a.split("+");
+          sum = Number(num1) + Number(num2);
+          //   let sum = Number(num1 + num2);
+          console.log(sum);
+        }
+        add("");
+      }
+      //   qesTwo();
+      function qesThree() {
+        // Write a function ‘nand’ that takes two Boolean values. If both values are ‘true’, the result
+        // should be ‘false’. In the other cases the return should be ‘true’.
+        // I.e.: The call nand(true, true) should return ‘false’. The
+        // calls nand(true, false), nand(false, true) and nand(false, false) should return ‘true’.
+        function nand(a, b) {
+          a && b === true ? console.log(false) : console.log(true);
+        }
+        nand(true, true);
+      }
+      //   qesThree();
+      function qesFour() {
+        // 4. Write a function ‘isEven’ that checks if a passed number is even. If the given number is
+        // even, ‘true’ should be returned, otherwise ‘false’.
+        // Example: isEven(2) should return ‘true’ and isEven(3) should return ‘false’.
+        function isEven(num) {
+          num % 2 === 0 ? console.log(true) : console.log(false);
+        }
+        isEven(2);
+      }
+      //   qesFour();
+      function qesFive() {
+        // 5. Write a function ‘unequal’ that checks 3 values for strict inequality. The function should
+        // return ‘true’ if all three parameters are strict unequal. Otherwise ‘false’.
+        // Example: unequal(1, 2, 3) should return ‘true’ and unequal(1, 1, 2) should return ‘false’.
+        function unequal(a, b, c) {
+          a, b, c !== a && b && c ? console.log(true) : console.log(false);
+        }
+        unequal(3, 2, 1);
+      }
+      //   qesFive();
+      function qesSix() {
+        //6. Write a function ‘isThreeDigit’ that checks if a number is greater than or equal to 100 and
+        // less than 1000.
+        // Example: isThreeDigit(500) should return ‘true’ and isThreeDigit(50) should return ‘false’.
+        function isThreeDigit(num) {
+          num >= 100 && num <= 1000 ? console.log(true) : console.log(false);
+        }
+        isThreeDigit(354);
+      }
+      //   qesSix();
+      function qesSeven() {
+        //7. Write a function ‘equals’ that checks two values for strict equality. If the two values are
+        // equal, the string 'EQUAL' should be returned. If they are unequal, you should
+        // get 'UNEQUAL'
+        // Example: equals(1, 1) should return 'EQUAL' and equals(1, 2) should return 'UNEQUAL'.
+        function equal(num1, num2) {
+          num1 === num2 ? console.log("EQUAL") : console.log("UNEQUAL");
+        }
+        equal(12, 12);
+      }
+      //   qesSeven();
+      function qesEight() {
+        //8. Write a function ‘repdigit’ that determines whether a two-digit decimal is a ‘repdigit’ or not.
+        // If the decimal is a repdigit, 'Repdigit!' should be returned, otherwise 'No Repdigit!'.
+        // Example: repdigit(22) should return 'Repdigit!' and repdigit(23) should return 'No Repdigit!'.
+        function repdigit(num) {
+          let valuesNum = String(num).split("");
+          // console.log(valuesNum);
+          valuesNum[0] === valuesNum[1]
+            ? console.log("Repdigit")
+            : console.log("Not Repdigit");
+        }
+        repdigit(35);
+      }
+      qesEight();
+      function qesNine() {
+        //  9. Write a function ‘addWithSurcharge’ that adds two amounts with surcharge. For each
+        // amount less than or equal to 10, the surcharge is 1. For each amount greater than 10, the
+        // surcharge is 2.
+        // Example: addWithSurcharge(5, 15) should return 23.
+        function addWithSurcharge(num1, num2) {
+          if (num1 <= 10 && num2 > 10) {
+            console.log(num1 + 1 + (num2 + 2));
+          } else if (num1 > 10 && num2 <= 10) {
+            console.log(num1 + 2 + (num2 + 1));
+          } else if (num1 <= 10 && num2 <= 10) {
+            console.log(num1 + 1 + (num2 + 1));
+          } else {
+            console.log(num1 + 2 + (num2 + 2));
+          }
+        }
+        addWithSurcharge(2, 11);
+      }
+      // qesNine();
+      function qesTen() {
+        // 10.Write a function ‘sumMultiples’ taking a natural number n and returning the sum of all
+        // multiples of 3 and of 5 that are truly less than n.
+        // Example: All multiples of 3 and 5 less than 20 are 3, 5, 6, 9, 10, 12, 15 and 18. Their sum is
+        // 78. sumMultiples(20) should return 78
+        sum = 0;
+        function sumMultiples(value) {
+          for (let i = 1; i < value; i++) {
+            if (i % 3 === 0 || i % 5 === 0) {
+              // console.log(i);
+              sum += i;
+            }
+          }
+          console.log(sum);
+        }
+        sumMultiples(20);
+      }
+      // qesTen();
+    </script>
+  </body>
+</html>

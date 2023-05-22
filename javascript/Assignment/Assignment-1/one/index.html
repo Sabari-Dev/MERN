@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment-1</title>
+  </head>
+  <body>
+    <script>
+      function qesOne() {
+        // 1. Display a message as ‘Welcome to JavaScript’ using alert(), console.log() and document.write().
+        alert("Welcome to JavaScript");
+        console.log("Welcome to JavaScript");
+        document.write(`Welcome to JavaScript`);
+      }
+      // qesOne();
+      function qesThree() {
+        // 3. Declare the following variables userId, firstName, lastName, password, email, gender, age
+        // (as variable constant), accountCreated (as variable constant) and assign the values and
+        // display the same as alert, in console and in html document.
+        //   Assign variables
+        let userId = 1001;
+        let firstName = "Sabari";
+        let lastName = "Nathan";
+        let password = "Sabari@1234";
+        let email = "sabari@gmail.com";
+        let gender = "Male";
+        const age = 23;
+        const accountCreated = true;
+        //   display using alert
+        alert(`userId : ${userId}`);
+        alert(`firstName : ${firstName}`);
+        alert(`LastName : ${lastName}`);
+        alert(`Password : ${password}`);
+        alert(`Email : ${email}`);
+        alert(`Gender : ${gender}`);
+        alert(`age : ${age}`);
+        alert(`AccountCreated : ${accountCreated}`);
+        //   display in console
+        console.log(`userId : ${userId}`);
+        console.log(`firstName : ${firstName}`);
+        console.log(`LastName : ${lastName}`);
+        console.log(`Password : ${password}`);
+        console.log(`Email : ${email}`);
+        console.log(`Gender : ${gender}`);
+        console.log(`age : ${age}`);
+        console.log(`AccountCreated : ${accountCreated}`);
+        //   display in document
+        document.write(`userId : ${userId}`);
+        document.write(`firstName : ${firstName}`);
+        document.write(`LastName : ${lastName}`);
+        document.write(`Password : ${password}`);
+        document.write(`Email : ${email}`);
+        document.write(`Gender : ${gender}`);
+        document.write(`age : ${age}`);
+        document.write(`AccountCreated : ${accountCreated}`);
+      }
+      // qesThree();
+      function qesFour() {
+        // 4. Create the variables for storing the product details with appropriate variable
+        //    names and display the result in html document.
+        let productId = 001;
+        let productName = "HeadPhone";
+        let type = "electronics";
+        let price = 200;
+        let rating = 4;
+        let description =
+          "The headPhone with noise cancelling option and clear audio and mic";
+        // display document
+        document.write(productId);
+        document.write(productName);
+        document.write(type);
+        document.write(price);
+        document.write(rating);
+        document.write(description);
+      }
+      // qesFour();
+      function qesFive() {
+        // 5. Create a function named user() with properties userId, firstName, lastName, password, email,
+        // gender, age, accountCreated. Call the function user() by passing the value for userId,
+        // firstName, lastName, password, email, gender, age, accountCreated as arguments and display
+        // the assigned value in console.
+        function user(
+          userId,
+          firstName,
+          lastName,
+          password,
+          email,
+          gender,
+          age,
+          accountCreated
+        ) {
+          console.log(`          userId:${userId},
+                firstName:${firstName},
+                lastName:${lastName},
+                password:${password},
+                email:${email},
+                gender:${gender},
+                age:${age},
+                accountCreated:${accountCreated}`);
+        }
+        user(
+          1001,
+          "Sabari",
+          "nathan",
+          "Sabari@1234",
+          "sabari@gmail.com",
+          "male",
+          23,
+          true
+        );
+      }
+      // qesFive();
+      // 6. Repeat the task mentioned in Question No. 5 using function expression.
+      function qesSix() {
+        let userDetails = function (
+          userId,
+          firstName,
+          lastName,
+          password,
+          email,
+          gender,
+          age,
+          accountCreated
+        ) {
+          console.log(`          userId:${userId},
+                firstName:${firstName},
+                lastName:${lastName},
+                password:${password},
+                email:${email},
+                gender:${gender},
+                age:${age},
+                accountCreated:${accountCreated}`);
+        };
+        userDetails(
+          1001,
+          "Sabari",
+          "nathan",
+          "Sabari@1234",
+          "sabari@gmail.com",
+          "male",
+          23,
+          true
+        );
+      }
+      // qesSix();
+      // 7. Repeat the task mentioned in Question No. 5 using arrow function.
+      function qesSeven() {
+        let userDetails = (
+          userId,
+          firstName,
+          lastName,
+          password,
+          email,
+          gender,
+          age,
+          accountCreated
+        ) => {
+          console.log(`          userId:${userId},
+                firstName:${firstName},
+                lastName:${lastName},
+                password:${password},
+                email:${email},
+                gender:${gender},
+                age:${age},
+                accountCreated:${accountCreated}`);
+        };
+        userDetails(
+          1001,
+          "Sabari",
+          "nathan",
+          "Sabari@1234",
+          "sabari@gmail.com",
+          "male",
+          23,
+          true
+        );
+      }
+      // qesSeven();
+      function qesEight() {
+        //  8. Create an object named ‘user’ and do the following operations.
+        // a. Add the properties userId, firstName, lastName, password, country, continent and
+        // display all the property’s value.
+        // b. Delete the properties country, continent and display all the property’s value present in
+        // ‘user’ object.
+        // c. Display all the values present in ‘user’ object using for loop.
+        let user = {
+          userId: 1001,
+          firstName: "Sabari",
+          lastName: "Nathan",
+          password: "Sabari@1234",
+          country: "India",
+          continent: "Asia",
+        };
+        console.log("before deleting properties");
+        console.log(user);
+        // after deleting
+        console.log("after deleting properties");
+        delete user.country;
+        delete user.continent;
+        console.log(user);
+
+        // looping
+        console.log("Looping the statement");
+        for (const key in user) {
+          console.log(`${key}:${user[key]}`);
+        }
+      }
+      // qesEight();
+      function qesNine() {
+        //9. Add the methods such as displayAge() and displayAccountCreated() to the ‘user’ object
+        // created in Question No. 8 and alert the ‘age’ and ‘accountCreated’ property value.
+        let user = {
+          userId: 1001,
+          firstName: "Sabari",
+          lastName: "Nathan",
+          password: "Sabari@1234",
+          country: "India",
+          continent: "Asia",
+          displayAge() {
+            user.age = 23;
+            alert(`Added new properties Age:${user.age}`);
+          },
+          displayAccountCreated() {
+            user.accountCreated = true;
+            console.log(user);
+            alert(`Added new properties AccountCreated:${user.accountCreated}`);
+          },
+        };
+
+        user.displayAge();
+        user.displayAccountCreated();
+      }
+      // qesNine();
+      function qesTen() {
+        //   Alert the ‘age’ and ‘accountCreated’ property value from ‘user’ object created in Question
+        // No.8 using ‘this’ from displayAge() and displayAccountCreated().
+        let user = {
+          userId: 1001,
+          firstName: "Sabari",
+          lastName: "Nathan",
+          password: "Sabari@1234",
+          country: "India",
+          continent: "Asia",
+          displayAge() {
+            this.age = 23;
+            alert(`Age:${this.age}`);
+          },
+          displayAccountCreated() {
+            this.accountCreated = true;
+            console.log(user);
+            alert(` AccountCreated:${this.accountCreated}`);
+          },
+        };
+        user.displayAge();
+        user.displayAccountCreated();
+      }
+      // qesTen();
+      function qesEleven() {
+        // 11.Create a constructor function named User() and assign the value for the following property’s
+        // at run time: userId, firstName, lastName, password, email, gender, age, accountCreated,
+        // displayAge(), displayAccountCreated() and display the value of age and accountCreated
+        // properties using displayAge() and displayAccountCreated() method. Create object’s for 5
+        // users at run time using ‘new’ operator and call the constructor function User().
+        function User(
+          userId,
+          firstName,
+          lastName,
+          password,
+          email,
+          gender,
+          age,
+          accountCreated
+        ) {
+          return {
+            firstName,
+            lastName,
+            password,
+            email,
+            gender,
+            displayAge(age) {
+              console.log(`age: ${age}`);
+            },
+            displayAccountCreated(accountCreated) {
+              console.log(`AccountCreated:${accountCreated}`);
+            },
+          };
+        }
+        let john = new User(
+          1,
+          "john",
+          "paul",
+          "John123",
+          "john@gmail.com",
+          "male",
+          23,
+          true
+        );
+        john.displayAccountCreated();
+        john.displayAge();
+        console.log(john);
+        let jack = new User(
+          1,
+          "jack",
+          "paul",
+          "jack123",
+          "jack@gmail.com",
+          "male",
+          25,
+          false
+        );
+        jack.displayAccountCreated();
+        jack.displayAge();
+        console.log(jack);
+      }
+      qesEleven();
+    </script>
+  </body>
+</html>

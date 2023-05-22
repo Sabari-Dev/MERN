@@ -1,0 +1,50 @@
+body {
+  /* align-items: center;
+  justify-content: center; */
+  height: 100vh;
+  margin: 10vh 30%;
+  width: 40vw;
+  padding: 20px;
+  border: 2px solid black;
+}
+header {
+  height: 20vh;
+  padding: 0 30px;
+  border: 2px solid black;
+}
+h3 {
+  margin: 0;
+}
+.tasks {
+  margin: 10px;
+}
+#Add_new {
+  padding: 10px 70px;
+  margin: 10px;
+  padding-left: 0;
+  margin-right: 30px;
+  margin-left: 0;
+}
+label {
+  padding: 10px 30px;
+  width: 30px;
+}
+li {
+  list-style: decimal;
+}
+button {
+  border: 0;
+  background-color: white;
+  font-size: 15px;
+  margin: 0 20px;
+}
+button:hover {
+  color: blue;
+  cursor: pointer;
+}
+.complete_task {
+  margin-left: 50px;
+}
+#completed_task li {
+  text-decoration: line-through;
+}

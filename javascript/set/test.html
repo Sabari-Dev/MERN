@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>set - exercise</title>
+  </head>
+  <body>
+    <script>
+      let fruitSet = new Set(["Apple", "Orange", "Mango", "Banana"]);
+      let output = new Set();
+      fruitSet.forEach((fruit) => {
+        let firstLetter = fruit.slice(0, 1);
+        let lastLetter = fruit.slice(-1);
+        let combinedLetter = firstLetter + lastLetter;
+        output.add(combinedLetter);
+      });
+      console.log(output);
+    </script>
+  </body>
+</html>

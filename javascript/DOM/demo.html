@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM-demo-get elements</title>
+  </head>
+  <body>
+    <h1 id="head">DOM</h1>
+    <p class="para">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos dolorum,
+      adipisci voluptate dolores aliquid tenetur, corporis laudantium deserunt
+      nemo, aperiam quasi? Enim vitae labore pariatur optio, atque culpa maxime
+      assumenda?
+    </p>
+    <p class="para">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus sequi
+      laboriosam ratione et eius mollitia veniam, quo corporis distinctio
+      voluptates omnis totam nostrum similique dolorum ducimus earum veritatis
+      error qui?
+    </p>
+    <ul id="unorder">
+      <li class="items">one</li>
+      <li class="items">two</li>
+      <li class="items">three</li>
+      <li class="items">four</li>
+    </ul>
+    <script>
+      //DOM
+      //Selectors
+      //1.document.getElementById
+      //   let useId = document.getElementById("head");
+      //   console.log(useId.textContent);
+      // -------------------------------------------------------------------------------
+      //   2.document.getElementsByClassName("class Name")
+      //   let para = document.getElementsByClassName("para");
+      //   console.log(para);
+      //   for (const iterator of para) {
+      //     console.log(iterator.textContent);
+      //   }
+      // -------------------------------------------------------------------------------
+
+      //   3.document.getElementByTagName()
+      //   let tagName = document.getElementsByTagName("li");
+      //   for (const iterator of tagName) {
+      //     console.log(iterator.textContent);
+      //   }
+      //   let changeArr = Array.from(tagName);
+      //   let ArrValue = changeArr.map((values) => console.log(values));
+      // -------------------------------------------------------------------------------
+    </script>
+  </body>
+</html>
