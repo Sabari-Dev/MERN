@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>login-page</title>
+    <meta name="Description" content="Login Page" />
+    <title>Login Page</title>
   </head>
   <body>
     <h2>Login Page</h2>
@@ -37,9 +38,15 @@
       let signinBtn = document.querySelector("#signin");
       signinBtn.addEventListener("click", (e) => {
         e.preventDefault();
-        
+        let allUsers = Object.entries(localStorage);
+        console.log(allUsers);
+        let user = allUsers.find((u) => JSON.parse(u[1]).email === email.value);
+        console.log(user);
+        let userObj = JSON.parse(user[1]);
+        console.log(userObj);
+        sessionStorage.setItem(user[0], user[1]);
+        window.location.href = `./profile.html?id=${userObj.id}`;
       });
-
     </script>
   </body>
 </html>
