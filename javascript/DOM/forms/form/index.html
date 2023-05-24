@@ -12,68 +12,130 @@
       integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
       crossorigin="anonymous"
     />
+    <style>
+      body {
+        background-image: linear-gradient(135deg, #fccf31 10%, #f55555 100%);
+      }
+    </style>
   </head>
   <body>
     <div class="formPage">
       <form action="#" id="forms">
-        <h1>Register Form</h1>
+        <h1>Register</h1>
         <div class="form-check">
           <label for="username">User Name : </label><br />
           <input
             type="text"
             name="user Name"
-            class="form-control"
+            class="form-control one"
             id="username"
           />
+          <p></p>
         </div>
         <div class="form-check">
           <label for="email">Email : </label><br />
-          <input type="email" name="Email" class="form-control" id="email" />
+          <input
+            type="email"
+            name="Email"
+            class="form-control one"
+            id="email"
+          />
+          <p></p>
         </div>
         <div class="form-check">
           <label for="password">Password : </label><br />
           <input
             type="password"
             name="Password"
-            class="form-control"
+            class="form-control one"
             id="password"
           />
+          <p></p>
         </div>
         <div class="form-check">
           <label for="Confirmpassword">Confirm Password : </label><br />
           <input
             type="password"
             name="Confirm Password"
-            class="form-control"
+            class="form-control one"
             id="Confirmpassword"
           />
+          <p></p>
         </div>
-        <div class="form-check radio ms-3">
-          <h5>Gender</h5>
-          <label for="gender"
+        <div class="form-check radio">
+          <label for="genderVerify">Gender</label>
+          <div class="row ms-3">
+            <label for="gender" class="col-3"
+              ><input
+                type="radio"
+                name="gender"
+                id="male"
+                class="genValue form-check-input"
+                value="Male"
+              />Male</label
+            >
+            <label for="gender" class="col-3">
+              <input
+                type="radio"
+                name="gender"
+                id="female"
+                class="genValue form-check-input"
+                value="Female"
+              />Female</label
+            ><br />
+            <label for="gender" class="col-3"
+              ><input
+                type="radio"
+                name="gender"
+                id="Others"
+                class="genValue form-check-input"
+                value="others"
+              />Others</label
+            >
+          </div>
+          <p id="result"></p>
+        </div>
+        <div class="form-check">
+          <label for="city">City:</label><br />
+          <select name="city" id="city" class="form-control">
+            <option value="none" selected>Choose city..</option>
+            <option value="tamilNadu">Tamil Nadu</option>
+            <option value="karnataka">Karnataka</option>
+            <option value="kerala">Kerala</option>
+            <option value="telugana">telugana</option>
+          </select>
+          <p id="cityResult"></p>
+        </div>
+        <div class="form-check ms-3">
+          <label for="checking"
             ><input
-              type="radio"
-              name="Male"
-              id="gender"
+              type="checkbox"
+              name="checking"
+              id="checkbox"
               class="form-check-input"
-            />Male</label
-          ><br />
-          <label for="gender"
-            ><input
-              type="radio"
-              name="Female"
-              id="gender"
-              class="form-check-input"
-            />Female</label
-          >
-          <br /><label for="gender"
-            ><input
-              type="radio"
-              name="others"
-              id="gender"
-              class="form-check-input"
-            />Others</label
-          >
+            />Agree and continue.</label
+          ><small></small>
+        </div>
+        <div class="form-check">
+          <p>
+            If already have account
+            <a href="./login.html">click here to signIn page</a>
+          </p>
+        </div>
+        <div class="form-check">
+          <input
+            type="submit"
+            value="Register"
+            id="regBtn"
+            class="btn btn-primary"
+            disabled
+          />
+          <input
+            type="reset"
+            value="Clear"
+            id="clrBtn"
+            class="btn btn-outline-danger"
+          />
         </div>
       </form>
     </div>
