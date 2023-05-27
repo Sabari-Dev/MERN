@@ -16,6 +16,8 @@
     <p id="displayname"></p>
     <p id="email"></p>
     <p id="password"></p>
+    <p id="gender"></p>
+    <p id="city"></p>
 
     <script>
       // Profile page
@@ -25,7 +27,9 @@
       let displayname = document.querySelector("#displayname");
       let email = document.querySelector("#email");
       let password = document.querySelector("#password");
-      let key = sessionStorage.key(1);
+      let gender = document.querySelector("#gender");
+      let city = document.querySelector("#city");
+      let key = sessionStorage.key(email.value);
       console.log(key);
       let details = JSON.parse(sessionStorage.getItem(key));
       console.log(details);
@@ -33,6 +37,8 @@
       displayname.textContent = details.username;
       email.textContent = details.email;
       password.textContent = details.password;
+      gender.textContent = details.gender;
+      city.textContent = details.city;
       let logout = document.querySelector("#logout");
 
       logout.addEventListener("click", () => {

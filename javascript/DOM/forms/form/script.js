@@ -11,6 +11,14 @@ let clear = document.querySelector("#clrBtn");
 let inputs = document.querySelectorAll(".one");
 let selectedOption;
 let selectedValue;
+// let detailsArr = [
+//   userName,
+//   email,
+//   password,
+//   confirmPassword,
+//   selectedOption,
+//   selectedValue,
+// ];
 //checkBox
 checkBox.addEventListener("change", () => {
   if (checkBox.checked) {
@@ -56,9 +64,10 @@ form.addEventListener("submit", (e) => {
   //city
   let optionsEle = document.querySelector("#city");
   //   console.log(optionsEle.options);
-
-  if (optionsEle.selected) {
-    selectedValue = optionsEle.value;
+  for (const sele of optionsEle) {
+    if (sele.selected) {
+      selectedValue = sele.value;
+    }
   }
 
   //   console.log(selectedValue);
@@ -85,3 +94,4 @@ form.addEventListener("submit", (e) => {
   window.location.href = "./login.html";
   selectedValue = "";
 });
+// localStorage.clear();

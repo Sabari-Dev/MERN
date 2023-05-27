@@ -5,43 +5,59 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="Description" content="To-Do list-Basic" />
-    <title>Document</title>
+    <title>To Do List</title>
+    <link rel="shortcut icon" href="./images/icon.png" type="image/x-icon" />
     <link rel="stylesheet" href="./style.css" />
-    <style></style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Headland+One&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background: url("./images/pexels-polina-kovaleva-5717411.jpg") no-repeat;
+        background-size: cover;
+      }
+    </style>
   </head>
   <body>
-    <h1>TO-DO LIST</h1>
-    <header>
-      <h3>Create a new Task...</h3>
-      <input
-        type="text"
-        name="Add_new"
-        id="Add_new"
-        placeholder="Create a new task..."
-      />
-      <button id="Add_btn">Add</button>
-    </header>
-    <h3 class="tasks">To-Do tasks...</h3>
-    <ul id="task_area">
-      <!-- <li class="task_items">
-        <label> Sample Task</label><button class="complete_btn">Complete</button
-        ><button class="delete_btn">Delete</button>
-      </li> -->
-    </ul>
-    <h3 class="tasks">Completed tasks...</h3>
-    <ul id="completed_area">
-      <!-- <li class="task_items">
-        <label> complete Task</label
-        ><button class="complete_btn">Complete</button
-        ><button class="delete_btn">Delete</button>
-      </li> -->
-    </ul>
+    <div class="content">
+      <h1>TO-DO LIST</h1>
+      <header class="row">
+        <input
+          type="text"
+          name="Add_new"
+          id="Add_new"
+          class="form-control w-50 ms-4"
+          placeholder="Create a new task..."
+        />
+        <button id="Add_btn" class="w-25">
+          <i class="fa-solid fa-plus"></i> Add
+        </button>
+      </header>
+      <h3 class="tasks">To-Do Tasks</h3>
+      <ul id="task_area"></ul>
+      <h3 class="tasks">Completed Tasks</h3>
+      <ul id="completed_area"></ul>
+    </div>
     <script>
       //get the element from html
       let addTask = document.getElementById("Add_new");
       let addBtn = document.getElementById("Add_btn");
-      // let completeBtn = document.querySelector(".complete_btn");
-      // let deleteBtn = document.getElementsByClassName("delete_btn");
       let taskArea = document.querySelector("#task_area");
       let currentTasks = document.querySelectorAll(".task_items");
       let completedTask = document.querySelector("#completed_area");
@@ -49,48 +65,55 @@
       function addingTask(tasks) {
         //declaring an elements
         let li = document.createElement("li");
-        let completeBtn = document.createElement("button");
+        let checkBox = document.createElement("input");
+        let editBtn = document.createElement("button");
         let deleteBtn = document.createElement("button");
         let labelTxt = document.createElement("label");
-
         //adding the class/id name & text value
         li.className = "task_items";
         labelTxt.textContent = tasks.value;
         tasks.value = "";
-
-        completeBtn.textContent = "Complete";
-        completeBtn.className = "complete_btn";
-
+        checkBox.type = "checkbox";
+        editBtn.textContent = "Edit";
         deleteBtn.textContent = "Delete";
-        deleteBtn.className = "delete_btn";
-
+        deleteBtn.className = "deleteBtn";
         //append the elements into li
+        li.appendChild(checkBox);
         li.appendChild(labelTxt);
-        li.appendChild(completeBtn);
         li.appendChild(deleteBtn);
+        li.appendChild(editBtn);
         taskArea.appendChild(li);
-
-        //Function for complete button
-        function completeButton() {
-          labelTxt.style.textDecoration = " line-through";
-          completedTask.appendChild(li);
-        }
-
-        completeBtn.addEventListener("click", () => {
-          completeButton();
+        //complete option using Checkbox
+        checkBox.addEventListener("change", () => {
+          if (checkBox.checked) {
+            labelTxt.style.textDecoration = " line-through";
+            completedTask.appendChild(li);
+          } else {
+            labelTxt.style.textDecoration = "none";
+            taskArea.appendChild(li);
+          }
         });
-
-        //function for delete
-
+        // delete button
         deleteBtn.addEventListener("click", () => {
-          const parent = deleteBtn.parentNode;
-          // const parentOne = parent.parentNode;
-          taskArea.remove(parent);
-          completedTask.remove(parent);
+          let liParent = labelTxt.parentNode;
+          liParent.remove();
+          alert("Task deleted successfully");
+        });
+        //edit button
+        editBtn.addEventListener("click", (e) => {
+          e.preventDefault;
+          let editInput = prompt("Enter the Task");
+          if (editInput != "") {
+            alert("Task changed successfully");
+            labelTxt.textContent = editInput;
+          } else {
+            alert("You edit nothing");
+          }
         });
       }
       //adding the value from input using btn
-      addBtn.addEventListener("click", () => {
+      addBtn.addEventListener("click", (e) => {
+        e.preventDefault();
         addingTask(addTask);
       });
     </script>
