@@ -47,7 +47,7 @@
         <div class="form-check">
           <p>
             If your don't Have account
-            <a href="./index.html">Click here to Register.</a>
+            <a href="./index.html" class="page">Click here</a> and Register
           </p>
         </div>
         <div class="form-check">
@@ -68,20 +68,25 @@
     </div>
     <script>
       let form = document.querySelector("#formLog");
-      let email = form.elements[0];
-      let password = form.elements[1];
+      let email = document.querySelector("#email");
+      let password = document.querySelector("#password");
 
-      let signinBtn = document.querySelector("#signBtn");
-      signinBtn.addEventListener("click", (e) => {
+      let signInBtn = document.querySelector("#signBtn");
+      signInBtn.addEventListener("click", (e) => {
         e.preventDefault();
         let allUsers = Object.entries(localStorage);
-        console.log(allUsers);
-        let user = allUsers.find((u) => JSON.parse(u[1]).email === email.value);
-        console.log(user);
-        let userObj = JSON.parse(user[1]);
-        console.log(userObj);
-        sessionStorage.setItem(user[0], user[1]);
-        window.location.href = `./products.html?id=${userObj.id}`;
+        let user = allUsers.find(
+          (u) =>
+            JSON.parse(u[1]).email === email.value &&
+            JSON.parse(u[1]).password === password.value
+        );
+        if (user) {
+          let userObj = JSON.parse(user[1]);
+          sessionStorage.setItem(user[0], user[1]);
+          window.location.href = `./products.html?id=${userObj.id}`;
+        } else {
+          alert("Enter Valid Email-Id or Password");
+        }
       });
     </script>
   </body>

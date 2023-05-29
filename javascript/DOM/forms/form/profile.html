@@ -29,8 +29,7 @@
       let password = document.querySelector("#password");
       let gender = document.querySelector("#gender");
       let city = document.querySelector("#city");
-      let key = sessionStorage.key(email.value);
-      console.log(key);
+      let key = sessionStorage.key(1);
       let details = JSON.parse(sessionStorage.getItem(key));
       console.log(details);
       username.textContent = details.username;
@@ -47,7 +46,7 @@
         const [id] = idUrl.values();
         console.log(id);
         sessionStorage.removeItem(id);
-        alert("User loggedout successfully");
+        alert("User logged-out successfully");
         window.location.href = "./login.html";
       });
     </script>

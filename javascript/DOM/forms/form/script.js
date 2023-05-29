@@ -9,6 +9,9 @@ let checkBox = document.querySelector("#checkbox");
 let submit = document.querySelector("#regBtn");
 let clear = document.querySelector("#clrBtn");
 let inputs = document.querySelectorAll(".one");
+let paragraph = document.querySelectorAll("p");
+let passwordVer = document.querySelector("#passwordVer");
+let cPasswordVer = document.querySelector("#cpassword");
 let selectedOption;
 let selectedValue;
 // let detailsArr = [
@@ -45,13 +48,25 @@ form.addEventListener("submit", (e) => {
       }
     }
   }
+  //password validation
+
+  if (password.value.length < 6) {
+    passwordVer.className = "error";
+    passwordVer.textContent = "enter password more than 6 character";
+    let passMessage = passwordVer.nextElementSibling;
+    passMessage.textContent = "";
+  } else if (password.value !== confirmPassword.value) {
+    cPasswordVer.className = "error";
+    cPasswordVer.textContent = "Confirm password and Password is not same";
+    let passMessage = cPasswordVer.previousElementSibling;
+    passMessage.textContent = "";
+  }
   //gender
   let radioBtn = document.querySelectorAll(".genValue");
   //   console.log(radioBtn);
   let paraGen = document.querySelector("#result");
 
   for (const gen of radioBtn) {
-    console.log(gen);
     if (gen.checked) {
       selectedOption = gen.value;
       //   console.log(selectedOption);
@@ -74,16 +89,17 @@ form.addEventListener("submit", (e) => {
 
   let valueCity = document.querySelector("#cityResult");
 
-  valueCity.className = selectedValue != "" ? "success" : "error";
+  valueCity.className =
+    selectedValue != "city not selected" ? "success" : "error";
   valueCity.textContent =
-    selectedValue != ""
+    selectedValue != "city not selected"
       ? `User selected options: ${selectedValue}`
       : "User not selected any option";
 
   //sent to local storage
   let userObj = {
     id: email.value,
-    username: username.value,
+    username: userName.value,
     email: email.value,
     password: password.value,
     gender: selectedOption,
@@ -94,4 +110,5 @@ form.addEventListener("submit", (e) => {
   window.location.href = "./login.html";
   selectedValue = "";
 });
+
 // localStorage.clear();

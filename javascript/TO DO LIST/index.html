@@ -78,6 +78,7 @@
         deleteBtn.textContent = "Delete";
         deleteBtn.className = "deleteBtn";
         //append the elements into li
+
         li.appendChild(checkBox);
         li.appendChild(labelTxt);
         li.appendChild(deleteBtn);
@@ -114,7 +115,7 @@
       //adding the value from input using btn
       addBtn.addEventListener("click", (e) => {
         e.preventDefault();
-        addingTask(addTask);
+        addTask.value ? addingTask(addTask) : alert("Enter any task!");
       });
     </script>
   </body>
