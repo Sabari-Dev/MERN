@@ -30,6 +30,113 @@
       <button id="delete">Delete</button>
     </p>
 
-    <script type="module"></script>
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+      import {
+        getAuth,
+        updateProfile,
+        deleteUser,
+      } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
+      import {
+        getDatabase,
+        ref,
+        onValue,
+        update,
+      } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
+      // import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyBeBLYcCjw0uLpoBFs0GtYo0p7YvRi3xMI",
+        authDomain: "class-skillsafari.firebaseapp.com",
+        projectId: "class-skillsafari",
+        storageBucket: "class-skillsafari.appspot.com",
+        messagingSenderId: "38062426968",
+        appId: "1:38062426968:web:1557d5c95d80062f7e732d",
+        measurementId: "G-HSWFJ782FC",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+
+      let auth = getAuth();
+
+      let submit = document.querySelector("#submit-btn");
+
+      let edit = document.querySelector("#edit");
+      let deleteBtn = document.querySelector("#delete");
+      let logout = document.querySelector("#logout");
+
+      let urlQuery = new URLSearchParams(location.search);
+      let [id] = urlQuery.values();
+      let createAt = null;
+
+      let db = getDatabase();
+      let userRef = ref(db, "userDetails/" + id);
+      onValue(userRef, (snapshot) => {
+        let data = snapshot.val();
+        console.log(data);
+        let username = document.querySelector("#username");
+        let email = document.querySelector("#email");
+        let displayName = document.querySelector("#displayName");
+        displayName.textContent = data?.username;
+        username.value = data?.username;
+        email.value = data?.email;
+        sessionStorage.setItem(id, id);
+        createAt = data?.createAt;
+      });
+
+      edit.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (confirm("Are you sure to edit the user details?")) {
+          let username = document.querySelector("#username").value;
+          let email = document.querySelector("#email").value;
+          let newData = {
+            id: id,
+            username: username,
+            email: email,
+            createAt: createAt,
+          };
+
+          let updates = {};
+          updates["/userDetails/" + id] = newData;
+          update(ref(db), updates);
+          alert("User details updated successfully");
+        }
+      });
+
+      logout.addEventListener("click", () => {
+        sessionStorage.removeItem(id);
+        alert("User logged out successfully");
+        setTimeout(() => {
+          window.location.href = "./signin.html";
+        });
+      });
+
+      deleteBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (confirm("Are you sure to delete the account")) {
+          const user = auth.currentUser;
+          deleteUser(user)
+            .then(() => {
+              console.log("User deleted");
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+          let updates = {};
+          updates["/userDetails/" + id] = null;
+          update(ref(db), updates);
+          alert("User details deleted successfully");
+          setTimeout(() => {
+            window.location.href = "./register.html";
+          }, 2000);
+        }
+      });
+    </script>
   </body>
 </html>

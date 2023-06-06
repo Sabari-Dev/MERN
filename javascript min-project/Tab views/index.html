@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Himalayan Tab view</title>
+  </head>
+  <body>
+    <section>
+      <header>
+        <h1>Royal Enfield - Himalayan</h1>
+        <p>Born In the Himalayas.</p>
+      </header>
+      <div class="hero">
+        <article>
+          <img src="./himalayan.jpg" width="500px" height="350px" alt="" />
+        </article>
+        <article>
+          <div class="buttons">
+            <button class="btn active" data-id="history">History</button>
+            <button class="btn" data-id="specs">Specifications</button>
+            <button class="btn" data-id="reviews">Reviews</button>
+          </div>
+
+          <div class="content active" id="history">
+            <p>
+              An early prototype was made in mid-2014, followed by a more
+              complete version in 2015.[2] The vehicle was released in India in
+              early 2016, followed by a release in international markets such as
+              Philippines, Australia and the United Kingdom later that year.
+              Both domestic and export model now gets Electronic Fuel Injection
+              and ABS as standard.Upon its introduction, the Himalayan was
+              praised for its good suspension and off-road ability, while some
+              criticism was directed to the relatively low power output of the
+              engine.[4] The motorcycle also has longer intervals between
+              servicing and oil changes
+            </p>
+          </div>
+          <div class="content" id="specs">
+            <table>
+              <tr>
+                <td><b>Manufacturer</b></td>
+                <td>Royal Enfield</td>
+              </tr>
+              <tr>
+                <td><b>Production</b></td>
+                <td>2016 - present</td>
+              </tr>
+              <tr>
+                <td><b>Engine</b></td>
+                <td>
+                  LS410, Air-cooled single-cylinder 4-stroke, SOHC, Fuel
+                  Injection, 411 cc (25.1 cu in)
+                </td>
+              </tr>
+              <tr>
+                <td><b>Transmission</b></td>
+                <td>5 speed, manual</td>
+              </tr>
+              <tr>
+                <td><b>Fuel capacity</b></td>
+                <td>~15L</td>
+              </tr>
+              <tr>
+                <td><b>Brakes</b></td>
+                <td>
+                  Front - 300 mm disc with 2-piston floating caliper, Back - 240
+                  mm disc with single piston caliper With ABS as standard
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="content" id="reviews">
+            <p>
+              In a short span of 5years,the royal enfield himalayan has opened
+              up a new category within global adventure touring,has successfully
+              established itself as a truly global motorcycle,and has been among
+              the sought after motorcycle for royal enfield across several
+              geographies
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </body>
+  <script>
+    let btn = document.querySelectorAll(".btn");
+    let about = document.querySelector(".hero");
+    let articles = document.querySelectorAll(".content");
+
+    about.addEventListener("click", (e) => {
+      let id = e.target.dataset.id;
+      if (id) {
+        btn.forEach((btn) => {
+          btn.classList.remove("active");
+          e.target.classList.add("active");
+        });
+        articles.forEach((article) => {
+          article.classList.remove("active");
+        });
+        const ele = document.getElementById(id);
+        ele.classList.add("active");
+      }
+    });
+  </script>
+</html>
