@@ -4,7 +4,46 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./style.css" />
     <title>responsive sidebar</title>
   </head>
-  <body></body>
+  <body>
+    <button class="sidebar-btn">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    <aside class="sidebar-menu">
+      <div class="side-head">
+        <img src="./logo.png" alt="logo" width="150px" height="50px" />
+        <button class="close-btn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <ul class="nav-head">
+        <li class="nav-item"><a href="#" class="nav-link">Accounts</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Cards</a></li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">Loans</a>
+        </li>
+        <li class="nav-item"><a href="#" class="nav-link">Statement</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Service</a></li>
+      </ul>
+    </aside>
+    <script>
+      let sidebar = document.querySelector(".sidebar-menu");
+      let menuBtn = document.querySelector(".sidebar-btn");
+      let closeBtn = document.querySelector(".close-btn");
+
+      menuBtn.addEventListener("click", () =>
+        sidebar.classList.toggle("show-bar")
+      );
+      closeBtn.addEventListener("click", () =>
+        sidebar.classList.remove("show-bar")
+      );
+    </script>
+  </body>
 </html>

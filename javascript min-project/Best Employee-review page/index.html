@@ -18,7 +18,7 @@
       href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
-    <title>Document</title>
+    <title>Employee details</title>
   </head>
   <body>
     <div class="slider-page">
@@ -34,6 +34,7 @@
         </button>
       </div>
     </div>
+    <button class="random">click me</button>
   </body>
   <script>
     let Employee = [
@@ -95,7 +96,8 @@
     let leftBtn = document.querySelector(".btn-left");
     let rightBtn = document.querySelector(".btn-right");
     let empPage = document.querySelector(".emp-page");
-    let item = 1;
+    let item = 0;
+    let randomBtn = document.querySelector(".random");
     window.addEventListener("DOMContentLoaded", () => {
       showEmpDetails();
     });
@@ -127,6 +129,10 @@
       if (item < 0) {
         item = Employee.length - 1;
       }
+      showEmpDetails();
+    });
+    randomBtn.addEventListener("click", () => {
+      item = Math.floor(Math.random() * Employee.length);
       showEmpDetails();
     });
   </script>
