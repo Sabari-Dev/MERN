@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <title>modal-page</title>
+  </head>
+  <body>
+    <!-- main -->
+    <header class="hero">
+      <div class="banner">
+        <h1>E-commerce Project</h1>
+        <button class="btn modal">Open Description</button>
+      </div>
+    </header>
+    <!-- description -->
+    <div class="modal-overlay">
+      <div class="container">
+        <h3>Project Description</h3>
+        <p>
+          In this project based in e-commerce website like Flipkart , Amazon. I
+          create website to view the product details and add into a cart. And
+          then add to favorite items. There are two sites.Admin and User. Admin
+          can do all work like insert, delete, modify the products, categories
+          and users. User can Register account,login,view the category and
+          choose the product. And add to their cart and favorite item. Without
+          login the page can't do any selection like add to cart and favorite
+          items<br />
+          Front-end: HTML5, CSS, JAVASCRIPT, BOOTSTRAP 5.
+          <br />
+          Back-end: PYTHON, MYSQL, DJANGO
+        </p>
+      </div>
+      <button class="close-btn">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <script>
+      let modalBtn = document.querySelector(".modal");
+      let modal = document.querySelector(".modal-overlay");
+      let closeBtn = document.querySelector(".close-btn");
+
+      modalBtn.addEventListener("click", () => {
+        modal.classList.add("open-modal");
+      });
+      closeBtn.addEventListener("click", () => {
+        modal.classList.remove("open-modal");
+      });
+    </script>
+  </body>
+</html>

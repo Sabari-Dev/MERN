@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <title>toggle-bar</title>
+  </head>
+  <body>
+    <section class="questions">
+      <div class="head">
+        <h2>toggle-question</h2>
+      </div>
+      <div class="section">
+        <article class="question">
+          <div class="qes-title">
+            <p>This is question 1 ?</p>
+
+            <button class="btns">
+              <span class="plus-btn"
+                ><i class="fa-regular fa-square-plus"></i
+              ></span>
+              <span class="minus-btn">
+                <i class="fa-regular fa-square-minus"></i>
+              </span>
+            </button>
+          </div>
+          <div class="qes-text">
+            <p>
+              Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor sit amet
+              consectetur, adipisicing elit. Aspernatur ea sint error
+              perspiciatis explicabo ullam totam praesentium impedit eos? Rem.
+              adipisicing elit. Officiis culpa ipsum dolore aliquid
+              reprehenderit ullam nihil, hic error alias dolores?
+            </p>
+          </div>
+        </article>
+        <article class="question">
+          <div class="qes-title">
+            <p>This is question 2 ?</p>
+
+            <button class="btns">
+              <span class="plus-btn"
+                ><i class="fa-regular fa-square-plus"></i
+              ></span>
+              <span class="minus-btn">
+                <i class="fa-regular fa-square-minus"></i>
+              </span>
+            </button>
+          </div>
+          <div class="qes-text">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
+              culpa ipsum dolore aliquid reprehenderit ullam nihil, hic error
+              alias dolores?Lorem ipsum dolor sit amet consectetur Lorem ipsum
+              dolor sit amet consectetur, adipisicing elit. Aspernatur ea sint
+              error perspiciatis explicabo ullam totam praesentium impedit eos?
+              Rem. adipisicing elit. Officiis culpa ipsum dolore aliquid
+              reprehenderit ullam nihil, hic error alias dolores?
+            </p>
+          </div>
+        </article>
+        <article class="question">
+          <div class="qes-title">
+            <p>This is question 3 ?</p>
+
+            <button class="btns">
+              <span class="plus-btn"
+                ><i class="fa-regular fa-square-plus"></i
+              ></span>
+              <span class="minus-btn">
+                <i class="fa-regular fa-square-minus"></i>
+              </span>
+            </button>
+          </div>
+          <div class="qes-text">
+            <p>
+              Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor sit amet
+              consectetur, adipisicing elit. Aspernatur ea sint error
+              perspiciatis explicabo ullam totam praesentium impedit eos? Rem.
+              adipisicing elit. Officiis culpa ipsum dolore aliquid
+              reprehenderit ullam nihil, hic error alias dolores?
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+    <script>
+      let btns = document.querySelectorAll(".btns");
+      btns.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          let activeBtn = e.currentTarget.parentElement.parentElement;
+          activeBtn.classList.toggle("show-text");
+        });
+      });
+    </script>
+  </body>
+</html>
