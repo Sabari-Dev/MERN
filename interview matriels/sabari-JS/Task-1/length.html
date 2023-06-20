@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Length finder</title>
+  </head>
+  <body>
+    <form action="#">
+      <label for="addText"
+        >Enter any text :
+        <input
+          type="text"
+          name="Add-text"
+          id="addText"
+          placeholder="Write any text"
+      /></label>
+      <br />
+      <label for="answer"
+        >The Length of the text : <input type="text" name="answer" id="answer"
+      /></label>
+      <br />
+      <button id="submit">Generate value</button>
+    </form>
+    <script>
+      let inputVal = document.querySelector("#addText");
+      let answer = document.querySelector("#answer");
+      let submit = document.querySelector("#submit");
+      console.log(inputVal.value);
+      submit.addEventListener("click", (e) => {
+        e.preventDefault();
+        let textLen = inputVal.value.length;
+        answer.value = textLen;
+      });
+    </script>
+  </body>
+</html>

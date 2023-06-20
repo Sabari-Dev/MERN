@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>count array value</title>
+  </head>
+  <h3>count the number of occurrences of each element in an array.</h3>
+  <body>
+    <script>
+      let array = [1, 2, 2, 3, 3, 3, 3];
+      let value = {};
+      for (const ele of array) {
+        if (value[ele]) {
+          value[ele]++;
+        } else {
+          value[ele] = 1;
+        }
+      }
+      console.log(value);
+      document.write(
+        `given array is [${array}] the repeated value count is :<br/>`
+      );
+      for (const key in value) {
+        document.write(`${key} : ${value[key]} <br/>`);
+      }
+    </script>
+  </body>
+</html>

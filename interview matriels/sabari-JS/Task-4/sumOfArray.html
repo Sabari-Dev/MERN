@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Average sum array</title>
+  </head>
+  <body>
+    <div class="content">
+      <h3>the average of an array of numbers</h3>
+      <span>given array is [1, 2, 3, 4, 5, 6, 7, 8, 9]</span>
+      <p></p>
+    </div>
+    <script>
+      let para = document.querySelector("p");
+      let array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+      let sumArr = array.reduce((arr, acc) => {
+        return acc + arr;
+      }, 0);
+      let answer = Math.floor(sumArr / array.length);
+      console.log(answer);
+      para.textContent = ` average of array is :${answer}`;
+    </script>
+  </body>
+</html>

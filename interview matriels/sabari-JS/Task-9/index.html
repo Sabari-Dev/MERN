@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>binary search</title>
+  </head>
+  <body>
+    <h3>binary search algorithm on a sorted array.</h3>
+    <script>
+      let arrVal = [4, 6, 7, 3, 2, 9, 8, 5];
+      function binarySearch(array, value) {
+        let min = 0;
+        let max = array.length - 1;
+        while (max <= min) {
+          let mid = Math.floor((min + max) / 2);
+          if (array[mid] === value) {
+            return mid;
+          } else if (array[mid] < value) {
+            low = mid + 1;
+          } else {
+            high = mid - 1;
+          }
+        }
+      }
+      let target = 2;
+      console.log(binarySearch(arrVal, target));
+      document.write(
+        `The given array is [${arrVal}] the target value is ${target} index value of th target is ${binarySearch(
+          arrVal,
+          target
+        )}`
+      );
+    </script>
+  </body>
+</html>

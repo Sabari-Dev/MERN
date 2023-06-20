@@ -1,19 +1,16 @@
-import logo from "./logo.svg";
 import "./App.css";
-import Header from "./Header";
-import About from "./About";
-import Service from "./Service";
-import Projects from "./Projects";
-import Footer from "./Footer";
+import Products from "./Components/Products";
+import UseReducer from "./Components/State/UseReducer";
+import UseState from "./Components/State/UseState";
+import Users from "./Components/Users";
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <About />
-      <Service />
-      <Projects />
-      <Footer />
+      {/* <UseState />
+      <UseReducer /> */}
+      {/* <Users /> */}
+      <Products />
     </div>
   );
 }

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>
+      find the index of the first occurrence of a given element in an array
+    </h3>
+    <script>
+      let array = [9, 7, 4, 3, 2, 1, 5];
+      function arrayIndex(arr, number) {
+        for (i = 0; i < arr.length; i++) {
+          if (arr[i] === number) {
+            return i;
+          }
+        }
+      }
+      let value = +prompt(
+        "Enter any value inside this array:[9, 7, 4, 3, 2, 1, 5]"
+      );
+      console.log(arrayIndex(array, value));
+      document.write(
+        `The array is [${array}] given number is ${value} index is ${arrayIndex(
+          array,
+          value
+        )}`
+      );
+    </script>
+  </body>
+</html>

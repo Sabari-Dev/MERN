@@ -1,0 +1,135 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: url("./images/background.jpg") no-repeat fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  position: relative;
+  font-family: "Ubuntu Mono", monospace;
+}
+section {
+  background-color: rgba(146, 143, 143, 0.753);
+  backdrop-filter: blur(5px);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgb(0, 0, 0);
+  min-width: 40vw;
+  min-height: 95vh;
+  text-align: center;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.845);
+}
+header h2 {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 44px;
+  padding: 20px;
+  color: rgb(255, 255, 255);
+  text-shadow: 0 0 10px rgba(232, 229, 229, 0.89);
+}
+h3 {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 25px;
+  padding-bottom: 20px;
+}
+/* pop-up msg */
+.intro-msg {
+  position: absolute;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.788);
+  border-radius: 5px;
+  box-shadow: 5px 5px 10px black;
+  text-align: center;
+  padding: 0 30px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  min-height: 30vh;
+  min-width: 30vw;
+  backdrop-filter: blur(5px);
+  transition: all 0.4s ease-in-out;
+}
+.hide-intro {
+  display: none;
+}
+.close-btn,
+.submit {
+  padding: 5px 30px;
+  font-family: "Ubuntu Mono", monospace;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: 0.3s;
+}
+.close-btn:hover,
+.submit:hover {
+  background-color: rgb(180, 178, 178);
+  font-size: 17px;
+}
+/* front page */
+.input-page {
+  margin-top: 50px;
+}
+#userValue {
+  padding: 30px 50px;
+  font-size: 25px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-family: "Chakra Petch", sans-serif;
+}
+.stop {
+  pointer-events: none;
+}
+.submit {
+  font-size: 20px;
+  padding: 10px 40px;
+}
+.submit:hover {
+  font-size: 21px;
+}
+.counts {
+  padding: 30px 0;
+  font-size: 25px;
+}
+.value-div {
+  padding: 10px 0;
+}
+.suggestion,
+.game {
+  font-size: 28px;
+  margin: 5px 0;
+  background-color: white;
+  padding: 10px 0;
+  visibility: hidden;
+}
+.show-gameSug {
+  visibility: visible;
+}
+.guess-values,
+.attempts {
+  color: white;
+}
+@media screen and (max-width: 676px) {
+  section {
+    width: 90vw;
+  }
+  header h2 {
+    padding: 10px;
+  }
+  #userValue {
+    padding: 20px 30px;
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+  .intro-msg {
+    padding: 10px;
+    font-size: 14px;
+    padding-left: 25px;
+  }
+  .input-page {
+    margin-top: 20px;
+  }
+}

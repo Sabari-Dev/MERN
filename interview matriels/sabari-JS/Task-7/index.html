@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>check if a given string is a valid email address</title>
+  </head>
+  <body>
+    <h3>check if a given string is a valid email address</h3>
+    <input type="text" placeholder="Enter email-id" id="email" />
+    <p class="answer"></p>
+    <button class="submit">validate</button>
+    <script>
+      let email = document.querySelector("#email");
+      let answer = document.querySelector(".answer");
+      let btn = document.querySelector(".submit");
+
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (
+          (email.value.includes("@") && email.value.includes(".com")) ||
+          email.value.includes(".in")
+        ) {
+          alert(" Given Email is valid");
+        } else {
+          alert(" Given email is invalid");
+        }
+      });
+    </script>
+  </body>
+</html>

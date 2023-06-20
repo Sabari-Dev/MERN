@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>large and small value</title>
+  </head>
+  <body>
+    <div class="content">
+      <h3>the largest and smallest elements in an array</h3>
+      <span>Given array is [12, 10, 3, 45, 14]</span>
+      <p></p>
+    </div>
+    <script>
+      let para = document.querySelector("p");
+      let array = [12, 10, 3, 45, 14];
+      let answer = [Math.max(...array), Math.min(...array)];
+      console.log(answer);
+      para.textContent = ` the largest and the smallest numbers are [${answer}]`;
+    </script>
+  </body>
+</html>

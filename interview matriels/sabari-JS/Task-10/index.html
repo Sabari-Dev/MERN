@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>find the intersection of two arrays (common elements)</h3>
+    <script>
+      let array1 = [1, 2, 3];
+      let array2 = [2, 3, 4];
+      let ansArr = [];
+      for (const ele of array1) {
+        if (array2.includes(ele)) {
+          ansArr.push(ele);
+        }
+      }
+      console.log(ansArr);
+      document.write(
+        `Array-1:[${array1}] <br/>Array-2:[${array2}] <br/> common array value :[${ansArr}]`
+      );
+    </script>
+  </body>
+</html>

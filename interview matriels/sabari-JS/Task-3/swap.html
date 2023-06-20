@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Swap two variable</title>
+  </head>
+  <body>
+    <div class="content">
+      <h2>Swap to values</h2>
+    </div>
+    <script>
+      let val1 = prompt("Enter value 1:");
+      let val2 = prompt("Enter value 2:");
+      let temp = 0;
+      console.log(`before swap val-1:${val1} , val-2:${val2}`);
+      document.write(`before swap val-1:${val1} , val-2:${val2}`);
+      temp = val1;
+      val1 = val2;
+      val2 = temp;
+      console.log(`after swap val-1:${val1} , val-2:${val2}<br/>`);
+      document.write(`<br/>after swap val-1:${val1} , val-2:${val2}`);
+    </script>
+  </body>
+</html>

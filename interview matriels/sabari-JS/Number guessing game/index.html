@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;800&family=Ubuntu+Mono:wght@700&family=Chakra+Petch:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Number Guessing Game</title>
+  </head>
+  <body>
+    <section>
+      <header>
+        <h2>Number Guessing Game</h2>
+      </header>
+      <div class="input-page">
+        <form action="#">
+          <input
+            type="text"
+            name="userValue"
+            id="userValue"
+            placeholder="Enter Value you Guess.."
+          />
+          <br />
+          <button class="submit">Check if it's correct</button>
+        </form>
+        <div class="counts">
+          <p class="value-div">
+            Your guessing Values: <br />
+            <span class="guess-values">[]</span>
+          </p>
+          <p class="attempt-div">
+            Remaining attempts : <span class="attempts">10</span>
+          </p>
+        </div>
+        <div class="message">
+          <p class="suggestion">Too high!Try again!</p>
+          <p class="game">Start Game</p>
+        </div>
+      </div>
+    </section>
+    <div class="intro-msg">
+      <h3>Rules & Regulation</h3>
+      <ol>
+        <li>You guess the value between 1 to 100.</li>
+        <li>Must guess the correct value within 10 attempts</li>
+      </ol>
+      <br />
+      <button class="close-btn">Start Game !</button>
+    </div>
+    <script src="./game.js"></script>
+  </body>
+</html>
