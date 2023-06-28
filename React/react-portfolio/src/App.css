@@ -21,8 +21,6 @@ header {
   border-bottom: 1px solid gray;
   min-height: 10vh;
   background-color: rgba(128, 128, 128, 0.489);
-  position: fixed;
-  top: 0.5px;
   width: 100vw;
 }
 #head h3 {
