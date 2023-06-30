@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  justify-content: center;
+}
+.container {
+  width: 40vw;
+  height: 50vh;
+  border: 1px solid black;
+  text-align: center;
+  padding: 30px;
+  margin-top: 50px;
+}
+h1 {
+  font-size: 35px;
+}
+h3 {
+  font-size: 100px;
+}
+.btn {
+  padding: 5px 15px;
+  cursor: pointer;
+}
+.green {
+  color: rgb(26, 205, 26);
+}
+.red {
+  color: rgb(255, 4, 4);
+}
+.black {
+  color: black;
+}
