@@ -1,0 +1,53 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.container {
+  width: 80vw;
+}
+h1 {
+  background-color: gray;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+#board {
+  background-color: gray;
+}
+form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+[class^="notes"] {
+  margin: 10px;
+  background-color: aquamarine;
+  padding: 10px;
+  height: 250px;
+  width: 250px;
+}
+input,
+textarea {
+  background-color: transparent;
+  border: 1px solid transparent;
+  &:focus {
+    outline: none;
+    border-color: transparent;
+  }
+}
+input {
+  font-size: 25px;
+  font-weight: bold;
+}
+textarea {
+  font-size: 18px;
+}
