@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>check is pangram</title>
+  </head>
+  <body>
+    <h3>
+      2. Write a function isPangram(str) that takes a string as input and
+      returns true if the string is a pangram (contains every letter of the
+      alphabet at least once), and false otherwise. Example: isPangram("Hello
+      world"); // false
+    </h3>
+    <script>
+      function isPangram(str) {
+        let alphabet = ["abcdefghijklmnopqrstuvwxyz"];
+        let changeLower = str.toLowerCase();
+        for (const value of alphabet) {
+          !changeLower.includes(value) ? console.log(false) : console.log(true);
+        }
+      }
+      isPangram("Hello World");
+    </script>
+  </body>
+</html>

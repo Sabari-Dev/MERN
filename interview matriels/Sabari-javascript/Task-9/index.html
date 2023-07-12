@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>add option</title>
+  </head>
+  <body>
+    <h2>
+      Create a function that dynamically adds a new option to a select dropdown
+      menu in the DOM, using user input.
+    </h2>
+    <form action="#">
+      <input type="text" name="addOption" id="addOption" />
+      <button type="submit">Add option</button>
+      <select name="option" id="option">
+        <option value="">choose ..</option>
+        <option value="home">Home</option>
+        <option value="about">about</option>
+        <option value="service">service</option>
+      </select>
+    </form>
+  </body>
+  <script>
+    const inputBox = document.querySelector("#addOption");
+    const btn = document.querySelector("button");
+    const selectArea = document.querySelector("select");
+
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (!inputBox.value == "") {
+        let newOption = document.createElement("option");
+        newOption.value = inputBox.value;
+        newOption.textContent = inputBox.value;
+        selectArea.appendChild(newOption);
+        alert("option add successfully !!!");
+        inputBox.value = "";
+      } else {
+        alert("Please insert value");
+      }
+    });
+  </script>
+</html>

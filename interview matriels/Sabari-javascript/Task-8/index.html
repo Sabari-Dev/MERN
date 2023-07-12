@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dynamic css</title>
+    <style>
+      div {
+        display: grid;
+        place-items: center;
+        height: 100px;
+        width: 100px;
+        border: 1px solid black;
+      }
+      .bgColor {
+        background-color: rgb(36, 154, 114);
+      }
+    </style>
+  </head>
+  <body>
+    <h2>
+      Write JavaScript code that dynamically adds a CSS class to an HTML element
+      when it is clicked and removes the class when another element is clicked.
+    </h2>
+    <div class="box1">box - 1</div>
+    <div class="box2">box - 2</div>
+    <div class="box3">box - 3</div>
+  </body>
+  <script>
+    const divBox = document.querySelectorAll("div");
+    divBox.forEach((box) => {
+      box.addEventListener("click", () => {
+        divBox.forEach((boxes) => {
+          boxes.classList.remove("bgColor");
+        });
+        box.classList.add("bgColor");
+      });
+    });
+  </script>
+</html>

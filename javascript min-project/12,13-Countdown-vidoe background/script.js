@@ -25,7 +25,7 @@ let birthDay = document.querySelector(".my-day");
 let deadLine = document.querySelector(".deadline");
 let boxes = document.querySelectorAll(".format h3");
 
-let date = new Date(2024, 0, 21, 8, 30, 00);
+let date = new Date(2024, 0, 21, 8, 30, 0);
 
 birthDay.textContent = `My birthday is on ${
   weeks[date.getDay()]

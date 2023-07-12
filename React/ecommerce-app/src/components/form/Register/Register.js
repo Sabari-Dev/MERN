@@ -6,7 +6,9 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import "./register.css";
 import { Link } from "react-router-dom";
-import firebase from "../../Config";
+import { db } from "../../../Config/Config";
+import { addDoc, collection } from "firebase/firestore";
+
 // import FileBase64 from "react-file-base64";
 
 const Register = () => {
@@ -22,29 +24,132 @@ const Register = () => {
     state: "",
     zipcode: "",
   });
-
+  const [errors, setErrors] = useState({});
+  const allStates = [
+    "Choose...",
+    "Andhra Pradesh",
+    "Arunachal Pradesh",
+    "Assam",
+    "Bihar",
+    "Chhattisgarh",
+    "Goa",
+    "Gujarat",
+    "Haryana",
+    "Himachal Pradesh",
+    "Jharkhand",
+    "Karnataka",
+    "Kerala",
+    "Madhya Pradesh",
+    "Maharashtra",
+    "Manipur",
+    "Meghalaya",
+    "Mizoram",
+    "Nagaland",
+    "Odisha",
+    "Punjab",
+    "Rajasthan",
+    "Sikkim",
+    "Tamil Nadu",
+    "Telangana",
+    "Tripura",
+    "Uttar Pradesh",
+    "Uttarakhand",
+    "West Bengal",
+    "Andaman and Nicobar Islands",
+    "Chandigarh",
+    "Dadra and Nagar Haveli",
+    "Daman and Diu",
+    "Lakshadweep",
+    "Delhi",
+    "Puducherry",
+  ];
+  const [selectedState, setSelectedState] = useState(formFields.state);
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     setFormFields((prev) => {
       return {
         ...prev,
         [name]: value,
       };
     });
+
     // console.log(formFields);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    firebase.database().ref("fromFields").push(formFields);
-    console.log(formFields);
-    window.location.href = "/signIn";
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      const validationErrors = validateForm();
+
+      if (Object.keys(validationErrors).length === 0) {
+        console.log("Form submitted:", formFields);
+        await addDoc(collection(db, "Users"), { ...formFields });
+        alert("user creator successfully");
+        window.location.href = "/signIn";
+        setErrors({});
+      } else {
+        setErrors(validationErrors);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
+  const validateForm = () => {
+    let validationErrors = {};
+    // validation
+    if (!formFields.firstName) {
+      validationErrors.firstName = `first Name required *`;
+    }
+    if (!formFields.lastName) {
+      validationErrors.lastName = `last Name required *`;
+    }
+    if (!formFields.email) {
+      validationErrors.email = `email required *`;
+    } else if (
+      !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(formFields.email)
+    ) {
+      validationErrors.email = `Email is invalid *`;
+    }
+    if (!formFields.password) {
+      validationErrors.password = `Enter password`;
+    } else if (
+      !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(formFields.password)
+    ) {
+      validationErrors.password = `At least 8 characters long,
+Contains at least one uppercase letter,
+Contains at least one lowercase letter,
+Contains at least one digit,
+Allows special characters`;
+    }
+    if (!formFields.confirmPassword) {
+      validationErrors.confirmPassword = `Enter confirm password`;
+    } else if (formFields.password !== formFields.confirmPassword) {
+      validationErrors.confirmPassword = `Password and confirm Password not same `;
+    }
+    if (formFields.gender === "") {
+      validationErrors.gender = `select gender`;
+    }
+    if (!formFields.address) {
+      validationErrors.address = `Address required`;
+    }
+    if (!formFields.city) {
+      validationErrors.city = `city required`;
+    }
+    if (formFields.state === "") {
+      validationErrors.state = `State required`;
+    }
+    if (!formFields.zipcode) {
+      validationErrors.zipcode = `zipcode required `;
+    } else if (formFields.zipcode.trim().length !== 6) {
+      validationErrors.zipcode = `zipcode must 6 character only`;
+    }
+    return validationErrors;
+  };
+
   return (
     <div className="reg-form w-50">
       <Form onSubmit={handleSubmit}>
-        <h1 className="text-center">Register Form</h1>
+        <h1 className="text-center">SignUp</h1>
         <Row className="mb-3">
           <Col>
             <Form.Label>First Name</Form.Label>
@@ -54,7 +159,9 @@ const Register = () => {
               value={formFields.firstName}
               onChange={handleChange}
             />
-            <p className="message"></p>
+            {errors.firstName && (
+              <p className="message text-danger">{errors.firstName}</p>
+            )}
           </Col>
           <Col>
             <Form.Label>Last Name</Form.Label>
@@ -64,7 +171,9 @@ const Register = () => {
               value={formFields.lastName}
               onChange={handleChange}
             />
-            <p className="message"></p>
+            {errors.lastName && (
+              <p className="message text-danger">{errors.lastName}</p>
+            )}
           </Col>
         </Row>
 
@@ -77,7 +186,9 @@ const Register = () => {
             value={formFields.email}
             onChange={handleChange}
           />
-          <p className="message"></p>
+          {errors.email && (
+            <p className="message text-danger">{errors.email}</p>
+          )}
         </Form.Group>
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridPassword">
@@ -89,7 +200,9 @@ const Register = () => {
               value={formFields.password}
               onChange={handleChange}
             />
-            <p className="message"></p>
+            {errors.password && (
+              <p className="message text-danger">{errors.password}</p>
+            )}
           </Form.Group>
           <Form.Group as={Col} controlId="formGridCPassword">
             <Form.Label>Confirm Password</Form.Label>
@@ -100,7 +213,9 @@ const Register = () => {
               value={formFields.confirmPassword}
               onChange={handleChange}
             />
-            <p className="message"></p>
+            {errors.confirmPassword && (
+              <p className="message text-danger">{errors.confirmPassword}</p>
+            )}
           </Form.Group>
         </Row>
         <fieldset>
@@ -141,7 +256,9 @@ const Register = () => {
               />
             </Col>
           </Form.Group>
-          <p className="message"></p>
+          {errors.gender && (
+            <p className="message text-danger">{errors.gender}</p>
+          )}
         </fieldset>
 
         <Form.Group className="mb-3" controlId="formGridAddress1">
@@ -152,7 +269,9 @@ const Register = () => {
             value={formFields.address}
             onChange={handleChange}
           />
-          <p className="message"></p>
+          {errors.address && (
+            <p className="message text-danger">{errors.address}</p>
+          )}
         </Form.Group>
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridCity">
@@ -162,54 +281,27 @@ const Register = () => {
               value={formFields.city}
               onChange={handleChange}
             />
-            <p className="message"></p>
+            {errors.city && (
+              <p className="message text-danger">{errors.city}</p>
+            )}
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label>State</Form.Label>
-            <Form.Select defaultValue="Choose...">
-              <option>Choose...</option>
-              <option value="Andhra Pradesh">Andhra Pradesh</option>
-              <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-              <option value="Assam">Assam</option>
-              <option value="Bihar">Bihar</option>
-              <option value="Chhattisgarh">Chhattisgarh</option>
-              <option value="Goa">Goa</option>
-              <option value="Gujarat">Gujarat</option>
-              <option value="Haryana">Haryana</option>
-              <option value="Himachal Pradesh">Himachal Pradesh</option>
-              <option value="Jharkhand">Jharkhand</option>
-              <option value="Karnataka">Karnataka</option>
-              <option value="Kerala">Kerala</option>
-              <option value="Madhya Pradesh">Madhya Pradesh</option>
-              <option value="Maharashtra">Maharashtra</option>
-              <option value="Manipur">Manipur</option>
-              <option value="Meghalaya">Meghalaya</option>
-              <option value="Mizoram">Mizoram</option>
-              <option value="Nagaland">Nagaland</option>
-              <option value="Odisha">Odisha</option>
-              <option value="Punjab">Punjab</option>
-              <option value="Rajasthan">Rajasthan</option>
-              <option value="Sikkim">Sikkim</option>
-              <option value="Tamil Nadu">Tamil Nadu</option>
-              <option value="Telangana">Telangana</option>
-              <option value="Tripura">Tripura</option>
-              <option value="Uttar Pradesh">Uttar Pradesh</option>
-              <option value="Uttarakhand">Uttarakhand</option>
-              <option value="West Bengal">West Bengal</option>
-              <option value="Andaman and Nicobar Islands">
-                Andaman and Nicobar Islands
-              </option>
-              <option value="Chandigarh">Chandigarh</option>
-              <option value="Dadra and Nagar Haveli">
-                Dadra and Nagar Haveli
-              </option>
-              <option value="Daman and Diu">Daman and Diu</option>
-              <option value="Delhi">Delhi</option>
-              <option value="Lakshadweep">Lakshadweep</option>
-              <option value="Puducherry">Puducherry</option>{" "}
+            <Form.Select
+              defaultValue={formFields.state}
+              value={selectedState}
+              onChange={(e) => setSelectedState(e.target.value)}
+            >
+              {allStates.map((state) => (
+                <option key={state} value={state}>
+                  {state}
+                </option>
+              ))}
             </Form.Select>
-            <p className="message"></p>
+            {errors.state && (
+              <p className="message text-danger">{errors.state}</p>
+            )}
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridZip">
@@ -219,7 +311,9 @@ const Register = () => {
               value={formFields.zipcode}
               onChange={handleChange}
             />
-            <p className="message"></p>
+            {errors.zipcode && (
+              <p className="message text-danger">{errors.zipcode}</p>
+            )}
           </Form.Group>
         </Row>
 
@@ -228,8 +322,6 @@ const Register = () => {
             type="checkbox"
             label="Agree and continue."
             name="checkIn"
-            value={formFields.checkIn}
-            onChange={handleChange}
           />
         </Form.Group>
         <Form.Group>

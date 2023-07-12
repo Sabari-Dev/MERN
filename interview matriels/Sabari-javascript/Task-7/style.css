@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  position: relative;
+}
+nav {
+  position: fixed;
+  width: 100vw;
+  height: 10vh;
+  padding-top: 30px;
+  top: 0.5px;
+  background-color: burlywood;
+}
+section {
+  margin-top: 50px;
+  text-align: center;
+  height: 100vh;
+}
+section p {
+  font-size: 20px;
+  margin-top: 20px;
+  word-spacing: 20px;
+}
+section h2 {
+  padding: 50px;
+  color: red;
+}
+.nav-bar {
+  display: flex;
+}
+.nav-items {
+  list-style: none;
+}
+.nav-link {
+  text-decoration: none;
+  color: black;
+  margin: 10px 50px;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.nav-link:hover {
+  color: blue;
+}
+.active {
+  color: brown;
+}

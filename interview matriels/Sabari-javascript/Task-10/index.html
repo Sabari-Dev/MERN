@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #message {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="message"></div>
+
+    <script>
+      const messageElement = document.getElementById("message");
+
+      function handleResize() {
+        messageElement.textContent = `Window resized: ${window.innerWidth}px (width) x ${window.innerHeight}px (height)`;
+      }
+
+      window.addEventListener("resize", handleResize);
+
+      handleResize();
+    </script>
+  </body>
+</html>

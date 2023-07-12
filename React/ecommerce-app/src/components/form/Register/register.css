@@ -3,6 +3,6 @@
   margin: 10px auto;
   background-color: #f8c291;
   border-radius: 10px;
-  box-shadow: rgba(255, 155, 79, 0.1) 0px 4px 16px,
-    rgba(244, 119, 42, 0.1) 0px 8px 24px, rgba(255, 135, 37, 0.1) 0px 16px 56px;
+  box-shadow: rgba(255, 155, 79, 0.1) 0px 4px 16px, #f4772a1a 0px 8px 24px,
+    rgba(255, 135, 37, 0.1) 0px 16px 56px;
 }

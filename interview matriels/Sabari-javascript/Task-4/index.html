@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>find common value</title>
+  </head>
+  <body>
+    <h1>
+      . Write a function findCommonElements(arr1, arr2) that takes two arrays as
+      input and returns a new array containing the common elements that appear
+      in both arrays. Example: findCommonElements(["apple", "banana", "pear"],
+      ["banana", "orange"]); // ["banana"]
+    </h1>
+    <script>
+      let array1 = ["apple", "banana", "orange"];
+      let array2 = ["banana", "peach"];
+      function findCommonElements(array1, array2) {
+        return array1.filter((value) => array2.includes(value));
+      }
+      console.log(findCommonElements(array1, array2));
+    </script>
+  </body>
+</html>

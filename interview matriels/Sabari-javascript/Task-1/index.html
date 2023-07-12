@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Remove vowels</title>
+  </head>
+  <body>
+    <h3>
+      1. Write a function removeVowels(str) that takes a string as input and
+      returns a new string where all the vowels (a, e, i, o, u) are removed.
+      Example: removeVowels("javascript"); // "jvscrpt"
+    </h3>
+    <script>
+      let str = "javascript";
+      function removeVowels(str) {
+        let vowelArr = ["a", "e", "i", "o", "u"];
+        let afterRemove = "";
+        for (i = 0; i < str.length; i++) {
+          if (!vowelArr.includes(str[i])) {
+            afterRemove += str[i];
+          }
+        }
+        console.log(afterRemove);
+      }
+      removeVowels(str);
+    </script>
+  </body>
+</html>

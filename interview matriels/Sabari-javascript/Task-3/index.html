@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>check unique value</title>
+  </head>
+  <body>
+    <h3>
+      . Write a function getUniqueValues(arr) that takes an array as input and
+      returns a new array with only the unique values (removing any duplicates).
+      Example: getUniqueValues(["a", "b", "a", "c", "b"]); // ["a", "b", "c"]
+    </h3>
+    <script>
+      let arrValue = ["a", "b", "c", "a", "b"];
+      function getUniqueValues(arr) {
+        return arr.filter((value, index) => arr.indexOf(value) === index);
+      }
+      console.log(getUniqueValues(arrValue));
+    </script>
+  </body>
+</html>
