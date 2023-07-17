@@ -7,9 +7,12 @@ import Row from "react-bootstrap/esm/Row";
 
 const ProductView = () => {
   const {
-    state: { products },
+    state: { products, cart },
+    dispatch,
+    productsState,
+    productsDispatch,
   } = CartState();
-  console.log(products);
+  console.log(CartState());
 
   return (
     <Row>
@@ -27,7 +30,17 @@ const ProductView = () => {
                 <Card.Title>{product.name}</Card.Title>
                 <Card.Text>{`Price:₹${product.price.split(".")[0]}`}</Card.Text>
                 <Card.Text>Rating: {product.ratings}</Card.Text>
-                <Button variant="primary">Add to cart</Button>
+                <Button
+                  variant="primary"
+                  onClick={() =>
+                    dispatch({
+                      type: "ADD_TO_CART",
+                      payload: product,
+                    })
+                  }
+                >
+                  Add to cart
+                </Button>
               </Card.Body>
             </Card>
           </Col>

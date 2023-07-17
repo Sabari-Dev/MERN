@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { db, auth } from "../Config/Config";
 import { addDoc, collection } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const [newUser, setNewUser] = useState({
@@ -23,15 +24,17 @@ const SignUp = () => {
       };
     });
   };
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     await createUserWithEmailAndPassword(auth, newUser.email, newUser.password)
       .then((newUsers) => {
+        console.log(newUsers);
         addDoc(collection(db, "User"), {
           ...newUser,
         });
         alert("User added ");
-        window.location.reload();
+        navigate("/signIn");
       })
       .catch((error) => {
         console.log(error);
