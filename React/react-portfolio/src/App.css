@@ -5,10 +5,12 @@
 }
 body {
   background-color: white;
+  position: relative;
 }
 header {
-  background: url("./images/pexels-scott-webb-593158.jpg"),
-    no-repeat center/100% fixed;
+  background: url("./images/laptopBackground.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .App-logo {
   height: 40vmin;
@@ -20,7 +22,7 @@ header {
   justify-content: space-between;
   border-bottom: 1px solid gray;
   min-height: 10vh;
-  background-color: rgba(128, 128, 128, 0.489);
+  background-color: rgb(128, 128, 128);
   width: 100vw;
 }
 #head h3 {
@@ -46,7 +48,8 @@ header {
 }
 /* Banner */
 #banner {
-  min-height: 90vh;
+  height: 90vh;
+  background-repeat: no-repeat;
   display: flex;
   justify-content: space-evenly;
   padding-top: 80px;
