@@ -1,0 +1,73 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Demo</title>
+  </head>
+  <body>
+    <h1>Product Demo</h1>
+    <div id="productList"></div>
+    <form id="addProductForm">
+      <input type="text" placeholder="Product Name" id="productNameInput" />
+      <input
+        type="number"
+        step="0.01"
+        placeholder="Product Price"
+        id="productPriceInput"
+      />
+      <button type="submit">Add Product</button>
+    </form>
+
+    <script>
+      // Function to fetch and display all products
+      function fetchProducts() {
+        fetch("/api/products")
+          .then((response) => response.json())
+          .then((products) => {
+            const productListElement = document.getElementById("productList");
+            productListElement.innerHTML = "";
+            products.forEach((product) => {
+              const productElement = document.createElement("div");
+              productElement.textContent = `${product.name} - $${product.price}`;
+              productListElement.appendChild(productElement);
+            });
+          })
+          .catch((error) => console.error("Error fetching products:", error));
+      }
+
+      // Function to add a new product
+      function addProduct(event) {
+        event.preventDefault();
+        const productName = document.getElementById("productNameInput").value;
+        const productPrice = parseFloat(
+          document.getElementById("productPriceInput").value
+        );
+
+        fetch("/api/products", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name: productName, price: productPrice }),
+        })
+          .then((response) => response.json())
+          .then((newProduct) => {
+            console.log("New product added:", newProduct);
+            // Fetch and display all products again after adding a new product
+            fetchProducts();
+          })
+          .catch((error) => console.error("Error adding product:", error));
+      }
+
+      // Attach event listener to the add product form
+      document
+        .getElementById("addProductForm")
+        .addEventListener("submit", addProduct);
+
+      // Fetch and display all products when the page loads
+      fetchProducts();
+    </script>
+  </body>
+</html>
