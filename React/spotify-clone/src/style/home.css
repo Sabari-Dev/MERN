@@ -1,0 +1,277 @@
+.home-page {
+  color: aliceblue;
+  display: flex;
+}
+.left-side {
+  width: 200px;
+  height: 100vh;
+  background: rgba(148, 145, 145, 0.317);
+  backdrop-filter: blur(5px);
+  padding: 10px 5px;
+}
+.right-side {
+  width: 100px;
+  height: 100vh;
+}
+.middle-side {
+  color: aliceblue;
+  width: calc(100vw - 300px);
+  height: 100vh;
+}
+
+/* Left side */
+/* title */
+.left-container .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px 10px;
+}
+.left-container .title i {
+  font-size: 20px;
+  cursor: pointer;
+}
+.left-container .title .name {
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "Borel", cursive;
+}
+.title .logo i {
+  color: rgb(22, 222, 22);
+  font-size: 30px;
+}
+/* search bar */
+.search-bar {
+  margin-bottom: 20px;
+}
+.search-bar input {
+  border: 1px solid gray;
+  background: rgba(113, 111, 111, 0.288);
+  padding: 10px 5px;
+  padding-right: 20px;
+  border-radius: 10px;
+  color: aliceblue;
+}
+/* menu */
+.menus {
+  padding: 10px;
+}
+.menus .menu-title {
+  list-style: none;
+  padding-bottom: 15px;
+  font-family: "Josefin Sans", sans-serif;
+}
+.menus .menu-title {
+  letter-spacing: 2px;
+  font-weight: 500;
+  cursor: pointer;
+  color: rgb(154, 154, 154);
+}
+.menu-heading,
+.listHead {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-family: "Josefin Sans", sans-serif;
+}
+.menus .menu-title i {
+  font-size: 18px;
+  margin-right: 13px;
+}
+.menus .menu-title::before {
+  content: "";
+  height: 80%;
+  /* padding: 3px; */
+  margin-left: -15px;
+  margin-right: 10px;
+  border-radius: 10px;
+  background-color: rgb(23, 238, 23);
+}
+.menus .menu-title:hover::before,
+.menus .menu-title.active::before {
+  padding: 3px;
+  transition: 0.3s;
+}
+.menus .menu-title:hover,
+.menus .menu-title.active {
+  color: aliceblue;
+  font-weight: 700;
+  transition: 0.3s;
+}
+.listHead {
+  display: flex;
+  justify-content: space-between;
+}
+.listHead i {
+  font-size: 20px;
+  cursor: pointer;
+}
+.play-lists {
+  height: 150px;
+  overflow-y: scroll;
+  color: rgb(154, 154, 154);
+}
+.listName {
+  display: flex;
+  padding: 5px;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.listName i {
+  margin-right: 10px;
+}
+.listName:hover {
+  color: aliceblue;
+  transition: 0.3s;
+}
+.listName i:nth-of-type(1):hover {
+  color: rgb(255, 32, 32);
+  transition: 0.3s;
+}
+
+/* middle page */
+
+.middle-page {
+  border: 1px solid gray;
+  height: 100vh;
+  background: rgba(103, 103, 103, 0.34);
+  backdrop-filter: blur(5px);
+  transition: 1s cubic-bezier(0.01, 0.82, 0.33, 0.97);
+}
+
+/* Middle Page */
+
+/* banner */
+.banner {
+  border: 1px solid gray;
+  height: 300px;
+  background: rgb(239, 239, 239);
+  background: linear-gradient(
+    180deg,
+    rgba(239, 239, 239, 0.3479516806722689) 14%,
+    rgba(45, 25, 204, 1) 70%
+  );
+}
+.banner-buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+  margin-top: 20px;
+}
+.banner-buttons .arrow-btn i {
+  margin-right: 5px;
+  font-size: 30px;
+  color: rgb(154, 154, 154);
+  cursor: pointer;
+}
+.banner-buttons .arrow-btn i:hover {
+  color: aliceblue;
+  transition: 0.3s;
+}
+.banner-buttons .redirect-btn a,
+.banner-buttons .redirect-btn Link {
+  text-decoration: none;
+  margin: 10px;
+}
+.banner-buttons .redirect-btn .installApp {
+  background-color: aliceblue;
+  padding: 10px 30px;
+  font-family: "Josefin Sans", sans-serif;
+  color: rgb(75, 72, 72);
+  font-weight: bold;
+  border-radius: 10px;
+}
+.banner-buttons .redirect-btn .installApp i {
+  padding-left: 10px;
+}
+.banner-buttons .redirect-btn .installApp:hover {
+  box-shadow: 0px 0px 10px rgb(191, 189, 189);
+  transition: 0.3s;
+  padding: 12px 32px;
+}
+.banner-buttons .redirect-btn .profile {
+  color: rgb(154, 154, 154);
+  padding: 10px;
+  border-radius: 50%;
+  border: 1px solid rgb(154, 154, 154);
+}
+.banner-buttons .redirect-btn .profile:hover {
+  background-color: aliceblue;
+  border: 1px solid aliceblue;
+  box-shadow: 0px 0px 10px aliceblue;
+  transition: 0.3s;
+}
+.album-banner {
+  display: flex;
+  margin: auto 20px;
+  margin-top: 35px;
+  justify-content: space-between;
+}
+.album-banner .album-content {
+  margin-left: 10px;
+  margin-top: 40px;
+  font-family: "Kanit", sans-serif;
+}
+.album-content h4 {
+  margin-bottom: 20px;
+}
+.album-content .likeView {
+  font-size: 15px;
+  padding-top: 10px;
+  color: rgb(154, 154, 154);
+  word-spacing: 3px;
+}
+.album-content .likeView span {
+  margin: 0 10px;
+}
+.album-content .likeView span i {
+  padding-right: 5px;
+}
+
+/* Songs List */
+.songs-list .list-head ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background: rgba(70, 69, 69, 0.845);
+}
+.songs-list .list-head ul li {
+  list-style: none;
+  font-family: "Kanit", sans-serif;
+  width: 20vw;
+  text-align: center;
+}
+.songs {
+  overflow-y: scroll;
+  height: 150px;
+  font-family: sans-serif;
+}
+.song {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 30px;
+  background-color: gray;
+  border: 1px solid rgb(67, 66, 66);
+}
+.song:hover {
+  background-color: rgb(70, 69, 69);
+  border: 1px solid rgb(155, 153, 153);
+  cursor: pointer;
+  box-shadow: 0px 0px 10px rgb(69, 69, 69);
+}
+.song li {
+  list-style: none;
+  width: 20vw;
+  text-align: center;
+}
+.song-url {
+  display: flex;
+  justify-content: space-between;
+}
+.song-details {
+  text-align: left;
+  padding-top: 5px;
+}
+.song-dur i {
+  margin-left: 5px;
+}

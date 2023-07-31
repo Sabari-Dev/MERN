@@ -10,6 +10,7 @@ import {
 } from "firebase/storage";
 import { getDoc, doc, updateDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+
 const Profile = () => {
   const [img, setImg] = useState("");
   const [user, setUser] = useState();
