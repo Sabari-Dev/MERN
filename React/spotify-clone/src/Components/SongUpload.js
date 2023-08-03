@@ -21,16 +21,18 @@ const SongUpload = () => {
     name: "",
     artist: "",
     album: "",
-    audio: "",
-    image: "",
     loading: false,
+    like: false,
   });
   const [audioUrl, setAudioUrl] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+  const [playList, setPlayList] = useState({
+    audioTrack: "",
+    imageLink: "",
+  });
 
   const handleChange = (e) => {
     e.preventDefault();
-
     return setSongAdd((prev) => {
       return {
         ...prev,
@@ -38,108 +40,80 @@ const SongUpload = () => {
       };
     });
   };
-  useEffect(() => {
-    const getUrls = async () => {
-      try {
-        let imgUrl = "";
 
-        const imageRef = ref(
-          storage,
-          `images/${new Date().getTime()}-${imageUrl.name}`
-        );
-        const snap = await uploadBytes(imageRef, imageUrl);
-        let imgeUrl = await getDownloadURL(ref(storage, snap.ref.fullPath));
-        imgUrl = imgeUrl;
-        console.log(imgUrl);
-        // Upload audio file
-        let audUrl = "";
-        const audioRef = ref(
-          storage,
-          `songs/${new Date().getTime()}-${audioUrl.name}`
-        );
-        const snapAud = await uploadBytes(audioRef, audioUrl);
-        let audiUrl = await getDownloadURL(ref(storage, snapAud.ref.fullPath));
-        audUrl = audiUrl;
-        console.log(audUrl);
-        if (!imgUrl == "" && !audUrl == "") {
-          setSongAdd((prev) => ({
-            ...prev,
-            audio: audUrl,
-            image: imgUrl,
-          }));
-        }
-        audUrl = "";
-        imgUrl = "";
-      } catch (error) {
-        console.log(error);
+  const uploadUrls = async (e) => {
+    e.preventDefault();
+    try {
+      //upload image
+      let imgUrl = "";
+      const imageRef = ref(
+        storage,
+        `images/${new Date().getTime()}-${imageUrl.name}`
+      );
+      const snap = await uploadBytes(imageRef, imageUrl);
+      imgUrl = await getDownloadURL(ref(storage, snap.ref.fullPath));
+
+      console.log(imgUrl);
+      // Upload audio file
+      let audUrl = "";
+      const audioRef = ref(
+        storage,
+        `songs/${new Date().getTime()}-${audioUrl.name}`
+      );
+      const snapAud = await uploadBytes(audioRef, audioUrl);
+      audUrl = await getDownloadURL(ref(storage, snapAud.ref.fullPath));
+
+      console.log(audUrl);
+
+      if (!imgUrl == "" && !audUrl == "") {
+        setPlayList((prev) => ({
+          ...prev,
+          audioTrack: audUrl,
+          imageLink: imgUrl,
+        }));
       }
-    };
-    getUrls();
-    return () => {
-      // Cleanup function to delete the files when the component unmounts
-      if (audioUrl && audioUrl.name) {
-        const audioRef = ref(
-          storage,
-          `songs/${new Date().getTime()}-${audioUrl.name}`
-        );
-        deleteObject(audioRef).catch((error) => {
-          console.log(
-            "Error deleting audio file from Firebase Storage:",
-            error
-          );
-        });
-      }
-
-      if (imageUrl && imageUrl.name) {
-        const imageRef = ref(
-          storage,
-          `images/${new Date().getTime()}-${imageUrl.name}`
-        );
-        deleteObject(imageRef).catch((error) => {
-          console.log(
-            "Error deleting image file from Firebase Storage:",
-            error
-          );
-        });
-      }
-    };
-  }, [audioUrl, imageUrl]); // Add audioUrl and imageUrl as dependencies
-
-  // ... (remaining code)
-
-  // Now, when the component is unmounted, the cleanup function will be executed, and it will delete the audio and image files if they exist in the Firebase Storage. This way, you can prevent re-uploading files that were deleted from the storage. Also, note that I have added audioUrl and imageUrl as dependencies to the useEffect hook so that the cleanup function is called whenever these values change (i.e., whenever new audio or image files are selected).
-
+      alert("song uploaded");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const navigate = useNavigate();
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-    setSongAdd({ ...songAdd, loading: true });
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
 
     console.log(songAdd);
+    console.log(playList);
+    setSongAdd({ ...songAdd, loading: true });
+    let songs = { ...songAdd, ...playList };
 
     await addDoc(collection(db, "album"), {
-      ...songAdd,
+      ...songs,
       createdAt: Timestamp.fromDate(new Date()),
     });
-
     setSongAdd({
       name: "",
       artist: "",
       album: "",
-      audio: "",
-      image: "",
       loading: false,
+      like: false,
     });
-    if (!window.confirm("Are you want add another song ?")) {
+    setPlayList({
+      audioTrack: "",
+      imageLink: "",
+    });
+    if (
+      !window.confirm(
+        "Song added successfully.If you want add another song then click 'Yes' ."
+      )
+    ) {
       navigate("/home");
-      setSongAdd({ ...songAdd, loading: false });
-    } else {
-      window.location.reload();
     }
   };
 
   return (
     <div className="song-add">
-      <form onSubmit={handleFormSubmit}>
+      <form>
         <h2>Upload your Song</h2>
         <label htmlFor="name">Song Name:</label>
         <input
@@ -199,9 +173,9 @@ const SongUpload = () => {
         />
         <br />
         <br />
-
-        <button type="submit">
-          {songAdd.loading ? "Uploading..." : "Upload"}
+        <button onClick={uploadUrls}>Upload</button>
+        <button type="submit" onClick={handleFormSubmit}>
+          {songAdd.loading ? "Adding song ..." : "submit"}
         </button>
       </form>
     </div>

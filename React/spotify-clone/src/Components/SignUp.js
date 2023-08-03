@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth, db } from "../Config/Config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc, Timestamp } from "firebase/firestore";
@@ -23,6 +23,7 @@ const SignUp = () => {
       };
     });
   };
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     setUser({ ...user, loading: true });
@@ -51,6 +52,7 @@ const SignUp = () => {
         });
         setErrors({});
         alert("user created successfully");
+        navigate("/");
       } else {
         setErrors(validationErrors);
       }

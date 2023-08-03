@@ -7,10 +7,12 @@ import {
   BsFillTrash3Fill,
 } from "react-icons/bs";
 import { HiHome } from "react-icons/hi";
-import { PiPulseBold } from "react-icons/pi";
+import { FiUpload } from "react-icons/fi";
+
 import { BiSolidPlaylist } from "react-icons/bi";
 import { IoAlbums, IoRadio } from "react-icons/io5";
 import { playList } from "./PlayList";
+import { Link } from "react-router-dom";
 
 const LeftSide = () => {
   useEffect(() => {
@@ -52,10 +54,12 @@ const LeftSide = () => {
         <h4 className="menu-heading">menu</h4>
         <ul className="menus">
           <li className="menu-title">
-            <i>
-              <HiHome />
-            </i>
-            Home
+            <Link to="/home">
+              <i>
+                <HiHome />
+              </i>
+              Home
+            </Link>
           </li>
           <li className="menu-title">
             <i>
@@ -65,9 +69,9 @@ const LeftSide = () => {
           </li>
           <li className="menu-title">
             <i>
-              <PiPulseBold />
+              <FiUpload />
             </i>
-            Discover
+            Upload Song
           </li>
           <li className="menu-title">
             <i>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   BsArrowLeftCircle,
@@ -6,13 +6,49 @@ import {
   BsDownload,
   BsMusicNote,
   BsFillHeartFill,
-  BsHeartFill,
+  BsSuitHeart,
+  BsSuitHeartFill,
+  BsTrash3Fill,
 } from "react-icons/bs";
 import { FaUser } from "react-icons/fa";
 import { BiTime } from "react-icons/bi";
+import { FiUpload } from "react-icons/fi";
 import img from "../images/album.jpg";
+import AudioPlayer from "./AudioPlayer";
+import { collection, doc, getDocs } from "firebase/firestore";
+import { db, auth } from "../Config/Config";
 
 export const Middlepage = () => {
+  const [isLike, setIsLike] = useState(false);
+  const [songs, setSongs] = useState([]);
+  const [songImg, setSongImg] = useState({ song: "", image: "" });
+  const { song, image } = songImg;
+
+  function fileUrls(audio, image) {
+    setSongImg({
+      song: audio,
+      image: image,
+    });
+  }
+
+  useEffect(() => {
+    const getSongs = async () => {
+      const songDetails = await getDocs(collection(db, "album"));
+      const songArr = songDetails.docs.map((doc) => {
+        return {
+          ...doc.data(),
+          id: doc.id,
+        };
+      });
+      setSongs(songArr);
+    };
+    getSongs();
+  }, []);
+  // console.log(songs);
+  const id = auth.currentUser.uid;
+  const onLike = () => {
+    setIsLike(!isLike);
+  };
   return (
     <div className="middle-page">
       <div className="banner">
@@ -36,7 +72,7 @@ export const Middlepage = () => {
                 <BsDownload />
               </i>
             </a>
-            <Link className="profile" to="/profile">
+            <Link className="profile" to={`/profile/${id}`}>
               <FaUser />
             </Link>
           </div>
@@ -71,6 +107,11 @@ export const Middlepage = () => {
                 </i>
                 19 Songs
               </span>
+              <span className="upload-song">
+                <Link to="/upload">
+                  Upload Song <FiUpload />
+                </Link>
+              </span>
             </p>
           </div>
         </div>
@@ -84,150 +125,60 @@ export const Middlepage = () => {
             <li className="title-list">
               <BiTime />
             </li>
+            <li></li>
           </ul>
         </div>
         <div className="songs">
-          <ul className="song">
-            <li className="song-url">
-              <div className="s-no">1</div>
-              <div className="song-img">
-                <img
-                  src={img}
-                  alt="song-img"
-                  style={{ height: "50px", width: "50px" }}
-                />
-              </div>
-              <div className="song-details">
-                <div className="name">Shape of you</div>
-                <div className="singer">shakes</div>
-              </div>
-            </li>
-            <li className="song-album">shape of you</li>
-            <li className="song-date">dec 2,2020</li>
-            <li className="song-dur">
-              03:04{" "}
-              <i>
-                <BsHeartFill />
-              </i>
-            </li>
-          </ul>
-          <ul className="song">
-            <li className="song-url">
-              <div className="s-no">1</div>
-              <div className="song-img">
-                <img
-                  src={img}
-                  alt="song-img"
-                  style={{ height: "50px", width: "50px" }}
-                />
-              </div>
-              <div className="song-details">
-                <div className="name">Shape of you</div>
-                <div className="singer">shakes</div>
-              </div>
-            </li>
-            <li className="song-album">shape of you</li>
-            <li className="song-date">dec 2,2020</li>
-            <li className="song-dur">03:04</li>
-          </ul>
-          <ul className="song">
-            <li className="song-url">
-              <div className="s-no">1</div>
-              <div className="song-img">
-                <img
-                  src={img}
-                  alt="song-img"
-                  style={{ height: "50px", width: "50px" }}
-                />
-              </div>
-              <div className="song-details">
-                <div className="name">Shape of you</div>
-                <div className="singer">shakes</div>
-              </div>
-            </li>
-            <li className="song-album">shape of you</li>
-            <li className="song-date">dec 2,2020</li>
-            <li className="song-dur">03:04</li>
-          </ul>
-          <ul className="song">
-            <li className="song-url">
-              <div className="s-no">1</div>
-              <div className="song-img">
-                <img
-                  src={img}
-                  alt="song-img"
-                  style={{ height: "50px", width: "50px" }}
-                />
-              </div>
-              <div className="song-details">
-                <div className="name">Shape of you</div>
-                <div className="singer">shakes</div>
-              </div>
-            </li>
-            <li className="song-album">shape of you</li>
-            <li className="song-date">dec 2,2020</li>
-            <li className="song-dur">03:04</li>
-          </ul>
-          <ul className="song">
-            <li className="song-url">
-              <div className="s-no">1</div>
-              <div className="song-img">
-                <img
-                  src={img}
-                  alt="song-img"
-                  style={{ height: "50px", width: "50px" }}
-                />
-              </div>
-              <div className="song-details">
-                <div className="name">Shape of you</div>
-                <div className="singer">shakes</div>
-              </div>
-            </li>
-            <li className="song-album">shape of you</li>
-            <li className="song-date">dec 2,2020</li>
-            <li className="song-dur">03:04</li>
-          </ul>
-          <ul className="song">
-            <li className="song-url">
-              <div className="s-no">1</div>
-              <div className="song-img">
-                <img
-                  src={img}
-                  alt="song-img"
-                  style={{ height: "50px", width: "50px" }}
-                />
-              </div>
-              <div className="song-details">
-                <div className="name">Shape of you</div>
-                <div className="singer">shakes</div>
-              </div>
-            </li>
-            <li className="song-album">shape of you</li>
-            <li className="song-date">dec 2,2020</li>
-            <li className="song-dur">03:04</li>
-          </ul>
-          <ul className="song">
-            <li className="song-url">
-              <div className="s-no">1</div>
-              <div className="song-img">
-                <img
-                  src={img}
-                  alt="song-img"
-                  style={{ height: "50px", width: "50px" }}
-                />
-              </div>
-              <div className="song-details">
-                <div className="name">Shape of you</div>
-                <div className="singer">shakes</div>
-              </div>
-            </li>
-            <li className="song-album">shape of you</li>
-            <li className="song-date">dec 2,2020</li>
-            <li className="song-dur">03:04</li>
-          </ul>
+          {songs &&
+            songs.map((song) => {
+              return (
+                <ul
+                  className="song"
+                  key={song.id}
+                  onClick={() => fileUrls(song.audioTrack, song.imageLink)}
+                >
+                  <li className="song-url">
+                    <div className="song-img">
+                      <img
+                        src={song.imageLink}
+                        alt="song-img"
+                        style={{ height: "50px", width: "50px" }}
+                      />
+                    </div>
+                    <div className="song-details">
+                      <div className="name">{song.name}</div>
+                      <div className="singer">{song.artist}</div>
+                    </div>
+                  </li>
+                  <li className="song-album">{song.album}</li>
+                  <li className="song-date">
+                    {song.createdAt.toDate().toDateString()}
+                  </li>
+                  <li className="song-dur">00:00</li>
+                  <li className="likeDel">
+                    <i className="like" onClick={onLike}>
+                      {!song.like ? (
+                        <i>
+                          <BsSuitHeart />
+                        </i>
+                      ) : (
+                        <i>
+                          <BsSuitHeartFill />
+                        </i>
+                      )}
+                    </i>
+                    <i className="delete">
+                      <BsTrash3Fill />
+                    </i>
+                  </li>
+                </ul>
+              );
+            })}
         </div>
       </div>
-      <div className="player-page"></div>
+      <div className="player-page">
+        <AudioPlayer song={song} image={image} />
+      </div>
     </div>
   );
 };

@@ -28,7 +28,7 @@ form h2 {
 }
 form label {
   display: block;
-  color: rgb(24, 217, 91);
+  color: rgb(0, 0, 0);
 }
 form input {
   width: 30vw;
@@ -50,6 +50,7 @@ form button {
   font-size: 16px;
   transition: 0.3s ease-in-out;
   text-align: center;
+  margin: 0 10px;
 }
 form button:hover {
   box-shadow: 0px 0px 10px rgb(40, 236, 109);
