@@ -29,6 +29,7 @@ const SongUpload = () => {
   const [playList, setPlayList] = useState({
     audioTrack: "",
     imageLink: "",
+    loading: false,
   });
 
   const handleChange = (e) => {
@@ -44,35 +45,42 @@ const SongUpload = () => {
   const uploadUrls = async (e) => {
     e.preventDefault();
     try {
+      setPlayList({ ...playList, loading: true });
       //upload image
-      let imgUrl = "";
-      const imageRef = ref(
-        storage,
-        `images/${new Date().getTime()}-${imageUrl.name}`
-      );
-      const snap = await uploadBytes(imageRef, imageUrl);
-      imgUrl = await getDownloadURL(ref(storage, snap.ref.fullPath));
+      if (!audioUrl == "" && !imageUrl == "") {
+        let imgUrl = "";
+        const imageRef = ref(
+          storage,
+          `images/${new Date().getTime()}-${imageUrl.name}`
+        );
+        const snap = await uploadBytes(imageRef, imageUrl);
+        imgUrl = await getDownloadURL(ref(storage, snap.ref.fullPath));
 
-      console.log(imgUrl);
-      // Upload audio file
-      let audUrl = "";
-      const audioRef = ref(
-        storage,
-        `songs/${new Date().getTime()}-${audioUrl.name}`
-      );
-      const snapAud = await uploadBytes(audioRef, audioUrl);
-      audUrl = await getDownloadURL(ref(storage, snapAud.ref.fullPath));
+        console.log(imgUrl);
+        // Upload audio file
+        let audUrl = "";
+        const audioRef = ref(
+          storage,
+          `songs/${new Date().getTime()}-${audioUrl.name}`
+        );
+        const snapAud = await uploadBytes(audioRef, audioUrl);
+        audUrl = await getDownloadURL(ref(storage, snapAud.ref.fullPath));
 
-      console.log(audUrl);
+        console.log(audUrl);
 
-      if (!imgUrl == "" && !audUrl == "") {
-        setPlayList((prev) => ({
-          ...prev,
-          audioTrack: audUrl,
-          imageLink: imgUrl,
-        }));
+        if (!imgUrl == "" && !audUrl == "") {
+          setPlayList((prev) => ({
+            ...prev,
+            audioTrack: audUrl,
+            imageLink: imgUrl,
+            loading: false,
+          }));
+        }
+        alert("song uploaded");
+      } else {
+        alert("Please check the input files . Song or image is not added.");
+        setPlayList({ ...playList, loading: false });
       }
-      alert("song uploaded");
     } catch (error) {
       console.log(error);
     }
@@ -172,8 +180,12 @@ const SongUpload = () => {
           required
         />
         <br />
+
+        <p>First Click the upload.and after that click submit.</p>
         <br />
-        <button onClick={uploadUrls}>Upload</button>
+        <button onClick={uploadUrls}>
+          {playList.loading ? "Please wait..." : "upload"}
+        </button>
         <button type="submit" onClick={handleFormSubmit}>
           {songAdd.loading ? "Adding song ..." : "submit"}
         </button>

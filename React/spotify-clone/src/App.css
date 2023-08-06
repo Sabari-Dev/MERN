@@ -87,3 +87,9 @@
   position: absolute;
   z-index: 2;
 }
+@media screen and (max-width: 430px) {
+  .login input,
+  .register input {
+    width: 60vw;
+  }
+}

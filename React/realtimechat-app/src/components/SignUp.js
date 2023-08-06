@@ -19,6 +19,7 @@ const SignUp = () => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
   let navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setUser({ ...user, loading: true, error: null });

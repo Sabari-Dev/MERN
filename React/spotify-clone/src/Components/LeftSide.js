@@ -1,28 +1,16 @@
-import React, { useEffect } from "react";
-import {
-  BsSpotify,
-  BsThreeDots,
-  BsFillHeartFill,
-  BsPlusLg,
-  BsFillTrash3Fill,
-} from "react-icons/bs";
+import React, { useEffect, useState } from "react";
+
+import { BsSpotify, BsThreeDots, BsDownload } from "react-icons/bs";
 import { HiHome } from "react-icons/hi";
 import { FiUpload } from "react-icons/fi";
+import { FaUser } from "react-icons/fa";
 
-import { BiSolidPlaylist } from "react-icons/bi";
-import { IoAlbums, IoRadio } from "react-icons/io5";
-import { playList } from "./PlayList";
-import { Link } from "react-router-dom";
+import { GrLogout } from "react-icons/gr";
+import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../Config/Config";
 
 const LeftSide = () => {
-  useEffect(() => {
-    const allMenuTitle = document.querySelectorAll(".menu-title");
-    function changeActive() {
-      allMenuTitle.forEach((n) => n.classList.remove("active"));
-      this.classList.add("active");
-    }
-    allMenuTitle.forEach((n) => n.addEventListener("click", changeActive));
-  }, []);
+  const id = auth.currentUser.uid;
   return (
     <div className="left-container">
       {/* title  */}
@@ -39,15 +27,6 @@ const LeftSide = () => {
           </i>
         </div>
       </div>
-      {/* search bar */}
-      <div className="search-bar">
-        <input
-          type="text"
-          name="search"
-          className="searchBox"
-          placeholder="Search songs/albums"
-        />
-      </div>
 
       {/* menu */}
       <div className="menu-page">
@@ -58,37 +37,50 @@ const LeftSide = () => {
               <i>
                 <HiHome />
               </i>
-              Home
+              <span>Home</span>
             </Link>
           </li>
           <li className="menu-title">
-            <i>
-              <BsFillHeartFill />
-            </i>
-            Liked songs
+            <Link to={`/profile/${id}`}>
+              <i>
+                <FaUser />
+              </i>
+              <span>Profile</span>
+            </Link>
           </li>
+          {/* <li className="menu-title">
+            <Link to="/likeSongs">
+              <i>
+                <BsFillHeartFill />
+              </i>
+              Liked songs
+            </Link>
+          </li> */}
           <li className="menu-title">
-            <i>
-              <FiUpload />
-            </i>
-            Upload Song
+            <Link to="/upload">
+              <i>
+                <FiUpload />
+              </i>
+              <span>Upload Song</span>
+            </Link>
           </li>
+
           <li className="menu-title">
-            <i>
-              <IoAlbums />
-            </i>
-            Albums
-          </li>
-          <li className="menu-title">
-            <i>
-              <IoRadio />
-            </i>
-            Radio
+            <a
+              href="https://www.spotify.com/us/download/windows/"
+              target="_blank"
+              className="installApp"
+            >
+              <i>
+                <BsDownload />
+              </i>
+              <span>Install App</span>
+            </a>
           </li>
         </ul>
       </div>
       {/* playList */}
-      <div className="play-list">
+      {/* <div className="play-list">
         <div className="listHead">
           <h4>PlayList</h4>
           <i>
@@ -113,6 +105,14 @@ const LeftSide = () => {
               );
             })}
         </div>
+      </div> */}
+      <div className="logout">
+        <Link to="/" className="logout-btn">
+          <span>Logout</span>
+          <i>
+            <GrLogout />
+          </i>
+        </Link>
       </div>
     </div>
   );

@@ -2,7 +2,6 @@ import React from "react";
 import "../style/home.css";
 import LeftSide from "./LeftSide";
 import { Middlepage } from "./Middlepage";
-import { RightSide } from "./RightSide";
 
 const Home = () => {
   return (
@@ -12,9 +11,6 @@ const Home = () => {
       </div>
       <div className="middle-side">
         <Middlepage />
-      </div>
-      <div className="right-side">
-        <RightSide />
       </div>
     </div>
   );

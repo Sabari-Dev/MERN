@@ -20,7 +20,7 @@ const Nav = () => {
     navigate("/signIn");
   };
   return (
-    <Navbar className="bg-body-tertiary p-0">
+    <Navbar className="bg-body-tertiary p-0 navbar">
       <Container>
         <Navbar.Brand className="p-0">
           <Link to="/">

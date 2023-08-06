@@ -1,36 +1,39 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import {
-  BsArrowLeftCircle,
-  BsArrowRightCircle,
-  BsDownload,
   BsMusicNote,
   BsFillHeartFill,
   BsSuitHeart,
   BsSuitHeartFill,
   BsTrash3Fill,
 } from "react-icons/bs";
-import { FaUser } from "react-icons/fa";
-import { BiTime } from "react-icons/bi";
-import { FiUpload } from "react-icons/fi";
 import img from "../images/album.jpg";
 import AudioPlayer from "./AudioPlayer";
-import { collection, doc, getDocs } from "firebase/firestore";
-import { db, auth } from "../Config/Config";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../Config/Config";
 
 export const Middlepage = () => {
-  const [isLike, setIsLike] = useState(false);
   const [songs, setSongs] = useState([]);
-  const [songImg, setSongImg] = useState({ song: "", image: "" });
-  const { song, image } = songImg;
+  const [songImg, setSongImg] = useState({
+    song: "",
+    image: "",
+    like: false,
+    id: "",
+  });
+  const [isLike, setIsLike] = useState(false);
+  const { song, image, like, id } = songImg;
+  // console.log(songImg);
 
-  function fileUrls(audio, image) {
+  function fileUrls(audio, image, like, id) {
     setSongImg({
       song: audio,
       image: image,
+      like: like,
+      id: id,
     });
   }
-
+  const onLike = () => {
+    setIsLike(!isLike);
+  };
   useEffect(() => {
     const getSongs = async () => {
       const songDetails = await getDocs(collection(db, "album"));
@@ -45,45 +48,14 @@ export const Middlepage = () => {
     getSongs();
   }, []);
   // console.log(songs);
-  const id = auth.currentUser.uid;
-  const onLike = () => {
-    setIsLike(!isLike);
-  };
+  // const id = auth.currentUser.uid;
+
   return (
     <div className="middle-page">
       <div className="banner">
-        <div className="banner-buttons">
-          <div className="arrow-btn">
-            <i>
-              <BsArrowLeftCircle />
-            </i>
-            <i>
-              <BsArrowRightCircle />
-            </i>
-          </div>
-          <div className="redirect-btn">
-            <a
-              href="https://www.spotify.com/us/download/windows/"
-              target="_blank"
-              className="installApp"
-            >
-              Install App
-              <i>
-                <BsDownload />
-              </i>
-            </a>
-            <Link className="profile" to={`/profile/${id}`}>
-              <FaUser />
-            </Link>
-          </div>
-        </div>
         <div className="album-banner">
           <div className="album-img">
-            <img
-              src={img}
-              alt="album-img"
-              style={{ height: "200px", width: "200px" }}
-            />
+            <img src={img} alt="album-img" />
           </div>
           <div className="album-content">
             <h4>PlayList</h4>
@@ -105,12 +77,7 @@ export const Middlepage = () => {
                 <i>
                   <BsMusicNote />
                 </i>
-                19 Songs
-              </span>
-              <span className="upload-song">
-                <Link to="/upload">
-                  Upload Song <FiUpload />
-                </Link>
+                {`${songs.length} Songs`}
               </span>
             </p>
           </div>
@@ -122,10 +89,6 @@ export const Middlepage = () => {
             <li className="title-list">#Title</li>
             <li className="title-list">Album</li>
             <li className="title-list">Date added</li>
-            <li className="title-list">
-              <BiTime />
-            </li>
-            <li></li>
           </ul>
         </div>
         <div className="songs">
@@ -135,7 +98,14 @@ export const Middlepage = () => {
                 <ul
                   className="song"
                   key={song.id}
-                  onClick={() => fileUrls(song.audioTrack, song.imageLink)}
+                  onClick={() =>
+                    fileUrls(
+                      song.audioTrack,
+                      song.imageLink,
+                      song.like,
+                      song.id
+                    )
+                  }
                 >
                   <li className="song-url">
                     <div className="song-img">
@@ -154,10 +124,10 @@ export const Middlepage = () => {
                   <li className="song-date">
                     {song.createdAt.toDate().toDateString()}
                   </li>
-                  <li className="song-dur">00:00</li>
+                  {/* 
                   <li className="likeDel">
                     <i className="like" onClick={onLike}>
-                      {!song.like ? (
+                      {!isLike ? (
                         <i>
                           <BsSuitHeart />
                         </i>
@@ -167,17 +137,14 @@ export const Middlepage = () => {
                         </i>
                       )}
                     </i>
-                    <i className="delete">
-                      <BsTrash3Fill />
-                    </i>
-                  </li>
+                  </li> */}
                 </ul>
               );
             })}
         </div>
       </div>
       <div className="player-page">
-        <AudioPlayer song={song} image={image} />
+        <AudioPlayer song={song} image={image} like={like} id={id} />
       </div>
     </div>
   );

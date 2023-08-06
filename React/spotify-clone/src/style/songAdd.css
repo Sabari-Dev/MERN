@@ -56,3 +56,15 @@ form button:hover {
   box-shadow: 0px 0px 10px rgb(40, 236, 109);
   padding: 12px 34px;
 }
+@media screen and (max-width: 769px) {
+  form input {
+    width: 60vw;
+  }
+  .song-add {
+    left: 10%;
+    top: 50px;
+  }
+  form h2 {
+    margin-bottom: 10px;
+  }
+}

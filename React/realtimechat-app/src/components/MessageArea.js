@@ -15,7 +15,7 @@ const MessageArea = ({ handleSubmit, text, setText, setImg }) => {
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
-        <Button variant="outline-secondary">
+        <Button variant="outline-primary">
           <Form.Label htmlFor="img">
             <HiOutlineUpload />
           </Form.Label>
@@ -29,7 +29,7 @@ const MessageArea = ({ handleSubmit, text, setText, setImg }) => {
           />
         </Button>
 
-        <Button variant="outline-secondary" type="submit">
+        <Button variant="primary" type="submit">
           <AiOutlineSend />
         </Button>
       </InputGroup>

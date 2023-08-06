@@ -9,13 +9,10 @@
   backdrop-filter: blur(5px);
   padding: 10px 5px;
 }
-.right-side {
-  width: 100px;
-  height: 100vh;
-}
+
 .middle-side {
   color: aliceblue;
-  width: calc(100vw - 300px);
+  width: calc(100vw - 200px);
   height: 100vh;
 }
 
@@ -41,7 +38,7 @@
   font-size: 30px;
 }
 /* search bar */
-.search-bar {
+/* .search-bar {
   margin-bottom: 20px;
 }
 .search-bar input {
@@ -51,7 +48,7 @@
   padding-right: 20px;
   border-radius: 10px;
   color: aliceblue;
-}
+} */
 /* menu */
 .menus {
   padding: 10px;
@@ -97,8 +94,8 @@
   padding: 3px;
   transition: 0.3s;
 }
-.menus .menu-title:hover,
-.menus .menu-title.active {
+.menus .menu-title a:hover,
+.menus .menu-title a.active {
   color: aliceblue;
   font-weight: 700;
   transition: 0.3s;
@@ -134,7 +131,25 @@
   color: rgb(255, 32, 32);
   transition: 0.3s;
 }
-
+.logout .logout-btn {
+  position: absolute;
+  bottom: 0;
+  text-decoration: none;
+  color: rgb(86, 86, 86);
+  font-family: "Josefin Sans", sans-serif;
+  padding: 5px 15px;
+  background-color: aliceblue;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+.logout .logout-btn:hover {
+  box-shadow: 0px 0px 8px aliceblue;
+  border: 1px solid rgb(86, 86, 86);
+}
+.logout .logout-btn i {
+  margin-left: 10px;
+}
 /* middle page */
 
 .middle-page {
@@ -150,7 +165,7 @@
 /* banner */
 .banner {
   border: 1px solid gray;
-  height: 300px;
+  height: 250px;
   background: rgb(239, 239, 239);
   background: linear-gradient(
     180deg,
@@ -158,55 +173,7 @@
     rgba(45, 25, 204, 1) 70%
   );
 }
-.banner-buttons {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 30px;
-  margin-top: 20px;
-}
-.banner-buttons .arrow-btn i {
-  margin-right: 5px;
-  font-size: 30px;
-  color: rgb(154, 154, 154);
-  cursor: pointer;
-}
-.banner-buttons .arrow-btn i:hover {
-  color: aliceblue;
-  transition: 0.3s;
-}
-.banner-buttons .redirect-btn a,
-.banner-buttons .redirect-btn Link {
-  text-decoration: none;
-  margin: 10px;
-}
-.banner-buttons .redirect-btn .installApp {
-  background-color: aliceblue;
-  padding: 10px 30px;
-  font-family: "Josefin Sans", sans-serif;
-  color: rgb(75, 72, 72);
-  font-weight: bold;
-  border-radius: 10px;
-}
-.banner-buttons .redirect-btn .installApp i {
-  padding-left: 10px;
-}
-.banner-buttons .redirect-btn .installApp:hover {
-  box-shadow: 0px 0px 10px rgb(191, 189, 189);
-  transition: 0.3s;
-  padding: 12px 32px;
-}
-.banner-buttons .redirect-btn .profile {
-  color: rgb(154, 154, 154);
-  padding: 10px;
-  border-radius: 50%;
-  border: 1px solid rgb(154, 154, 154);
-}
-.banner-buttons .redirect-btn .profile:hover {
-  background-color: aliceblue;
-  border: 1px solid aliceblue;
-  box-shadow: 0px 0px 10px aliceblue;
-  transition: 0.3s;
-}
+
 .album-banner {
   display: flex;
   margin: auto 20px;
@@ -217,6 +184,10 @@
   margin-left: 10px;
   margin-top: 40px;
   font-family: "Kanit", sans-serif;
+}
+.album-banner .album-img img {
+  height: 200px;
+  width: 200px;
 }
 .album-content h4 {
   margin-bottom: 20px;
@@ -233,20 +204,7 @@
 .album-content .likeView span i {
   padding-right: 5px;
 }
-.album-content .likeView .upload-song a {
-  text-decoration: none;
-  color: aliceblue;
-  border: 1px solid aliceblue;
-  border-radius: 10px;
-  padding: 5px 10px;
-  background-color: rgb(154, 154, 154);
-}
-.album-content .likeView .upload-song a:hover {
-  color: rgb(132, 132, 132);
-  background-color: aliceblue;
-  box-shadow: 0px 0px 8px aliceblue;
-  transition: 0.3s;
-}
+
 /* Songs List */
 .songs-list .list-head ul {
   display: flex;
@@ -263,7 +221,7 @@
 }
 .songs {
   overflow-y: scroll;
-  height: 150px;
+  height: 200px;
   font-family: sans-serif;
 }
 .song {
@@ -291,10 +249,16 @@
 .song-details {
   text-align: left;
   padding-top: 5px;
+  width: 13vw;
+  margin-left: 3px;
 }
-.song-dur i {
-  margin-left: 5px;
+.song-details .singer {
+  font-size: 13px;
+  text-decoration: underline;
+  color: rgb(199, 199, 199);
+  padding-top: 3px;
 }
+
 /* player-page */
 .player-page {
   width: 80vw;
@@ -322,4 +286,90 @@
   color: rgb(23, 238, 23);
   cursor: pointer;
   transition: 0.3s;
+}
+@media screen and (max-width: 769px) {
+  /* banner */
+  .banner {
+    height: 150px;
+  }
+  .album-banner .album-img img {
+    height: 100px;
+    width: 100px;
+  }
+  .album-banner {
+    margin: 0px 10px;
+  }
+  .album-banner .album-content {
+    margin-left: 10px;
+    margin-top: 5px;
+  }
+  .album-content h4 {
+    margin-bottom: 5px;
+  }
+  .album-content .likeView {
+    font-size: 14px;
+    padding-top: 0px;
+  }
+  .album-content .likeView span {
+    margin: 0 10px;
+  }
+}
+@media screen and (max-width: 430px) {
+  .left-side {
+    width: 10vw;
+  }
+
+  .middle-side {
+    width: calc(100vw - 10vw);
+  }
+  .menu-title span {
+    display: none;
+  }
+  .left-container .title {
+    margin-left: 2px;
+  }
+  .left-container .title .name,
+  .left-container .title .menu-bar {
+    display: none;
+  }
+  .menu-heading {
+    font-size: 10px;
+  }
+  .logout .logout-btn {
+    position: absolute;
+    bottom: 0;
+    margin-left: 0;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  .logout-btn span {
+    display: none;
+  }
+  .logout .logout-btn i {
+    margin-left: 0;
+  }
+  .banner {
+    height: 100px;
+  }
+  .album-banner .album-img img {
+    height: 80px;
+    width: 80px;
+  }
+  .album-content .content {
+    display: none;
+  }
+  .list-head ul li:nth-child(3),
+  .song li:nth-child(3) {
+    display: none;
+  }
+  .songs {
+    height: 250px;
+  }
+  .list-head ul li,
+  .song li {
+    width: 40vw;
+  }
+  .song .song-details {
+    width: 30vw;
+  }
 }

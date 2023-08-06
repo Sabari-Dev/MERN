@@ -1,78 +1,129 @@
 import React, { useEffect, useState } from "react";
+import image from "../images/profile.jpg";
 import "../style/profile.css";
-import profileImg from "../images/profile.jpg";
-import { useParams } from "react-router-dom";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
-import { db, storage } from "../Config/Config";
+import { BsFillCameraFill, BsFillTrash3Fill } from "react-icons/bs";
+import { storage, auth, db } from "../Config/Config";
+import {
+  ref,
+  getDownloadURL,
+  uploadBytes,
+  deleteObject,
+} from "firebase/storage";
+import { getDoc, doc, updateDoc } from "firebase/firestore";
+import { useNavigate, useParams, Link } from "react-router-dom";
 
 const Profile = () => {
-  const [currentUsers, setCurrentUsers] = useState({});
-  const [profilePhoto, setProfilePhoto] = useState(null);
-
-  const param = useParams();
-  const { id } = param;
-
+  const [img, setImg] = useState("");
+  const [user, setUser] = useState();
+  //   console.log(img);
+  const params = useParams();
+  const { id } = params;
   useEffect(() => {
-    const getUserDetails = async () => {
-      try {
-        const userDoc = await getDoc(doc(db, "users", id));
-        if (userDoc.exists()) {
-          setCurrentUsers({ id: userDoc.id, ...userDoc.data() });
-        } else {
-          console.log("No such document!");
+    getDoc(doc(db, "users", id))
+      .then((docSnap) => {
+        if (docSnap.exists) {
+          setUser(docSnap.data());
+          console.log(user);
         }
-      } catch (error) {
-        console.error("Error fetching user details:", error);
-      }
-    };
-    getUserDetails();
-  }, [id]);
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setProfilePhoto(file);
-  };
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    if (img) {
+      const uploadImg = async () => {
+        const imgRef = ref(
+          storage,
+          `avatar/${new Date().getTime()} - ${img.name}`
+        );
+        try {
+          if (user.avatarPath) {
+            await deleteObject(ref(storage, user.avatarPath));
+          }
+          const snap = await uploadBytes(imgRef, img);
+          const url = await getDownloadURL(ref(storage, snap.ref.fullPath));
+          //   console.log(snap.ref.fullPath);
+          //   console.log(url);
 
-  const handleUpload = async () => {
+          await updateDoc(doc(db, "users", id), {
+            avatar: url,
+            avatarPath: snap.ref.fullPath,
+          });
+          setImg("");
+        } catch (error) {
+          console.log(error.message);
+        }
+      };
+      uploadImg();
+    }
+  }, [img]);
+  const navigate = useNavigate();
+  const deleteProfile = async () => {
     try {
-      if (profilePhoto) {
-        const storageRef = storage.ref();
-        const photoRef = storageRef.child(`profile-photos/${id}`);
-        await photoRef.put(profilePhoto);
+      const confirm = window.confirm("Are you sure to delete avatar?");
+      if (confirm) {
+        await deleteObject(ref(storage, user.avatarPath));
 
-        const downloadURL = await photoRef.getDownloadURL();
-
-        await updateDoc(doc(db, "users", id), { profilePhotoURL: downloadURL });
-
-        console.log("Profile photo uploaded successfully!");
+        await updateDoc(doc(db, "users", id), {
+          avatar: "",
+          avatarPath: "",
+        });
+        navigate("/home");
       }
     } catch (error) {
-      console.error("Error uploading profile photo:", error);
+      console.log(error);
     }
   };
 
-  return (
-    <div className="profile-page">
+  return user ? (
+    <section className="profile-page">
       <div className="profile-area">
-        <div className="profile-img">
+        <div className="img-area">
           <img
-            src={profilePhoto ? URL.createObjectURL(profilePhoto) : profileImg}
-            alt="profile"
-            style={{ height: "100px", width: "100px" }}
+            src={user.avatar || image}
+            alt="avatar"
+            style={{ height: "200px", width: "200px" }}
           />
-        </div>
-        <input type="file" onChange={handleFileChange} />
-        <button onClick={handleUpload}>Upload</button>
-        <div className="details">
-          <div className="name">{currentUsers.name}</div>
-          <div className="email">{currentUsers.email}</div>
-          <hr />
-          <div className="create-time">
-            {`Join in: ${currentUsers.createdAt}`}
+          <div className="over">
+            <div>
+              <label htmlFor="img">
+                <BsFillCameraFill />
+              </label>
+              {user.avatar ? (
+                <BsFillTrash3Fill className="delete" onClick={deleteProfile} />
+              ) : null}
+              <input
+                type="file"
+                accept="image/*"
+                style={{ display: "none" }}
+                id="img"
+                onChange={(e) => setImg(e.target.files[0])}
+              />
+            </div>
           </div>
         </div>
+        <div className="text-area  ">
+          <p>
+            Name :<span>{user.name}</span>
+          </p>
+          <p>
+            Email : <span>{user.email}</span>
+          </p>
+          <p>
+            Date of birth: <span>{user.dateOfBirth}</span>
+          </p>
+          <hr />
+          <small>{`Joined On :${user.createdAt
+            .toDate()
+            .toDateString()}`}</small>
+          <br />
+          <br />
+          <Link to="/home" className="button">
+            Back to home
+          </Link>
+        </div>
       </div>
-    </div>
-  );
+    </section>
+  ) : null;
 };
 
 export default Profile;
