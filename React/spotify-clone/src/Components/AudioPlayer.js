@@ -9,14 +9,15 @@ import {
   BsTrash3Fill,
 } from "react-icons/bs";
 import { AiFillStepForward, AiFillStepBackward } from "react-icons/ai";
-import { deleteDoc, doc, updateDoc } from "firebase/firestore";
+import { deleteDoc, doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../Config/Config";
-const AudioPlayer = ({ song, image, like, id }) => {
-  const [isLike, setIsLike] = useState(false);
+
+const AudioPlayer = ({ song, image, like, id, songs }) => {
+  const [isLike, setIsLike] = useState(like);
   const [play, setPlay] = useState(false);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
-
+  // console.log(songs);
   const audioPlay = useRef();
   const progressBar = useRef();
   const animationRef = useRef();
@@ -52,7 +53,13 @@ const AudioPlayer = ({ song, image, like, id }) => {
     setCurrentTime(progressBar.current.value);
   };
   const onLike = async () => {
-    setIsLike(!isLike);
+    try {
+      const newLikeStatus = !isLike;
+      await updateDoc(doc(db, "album", id), { like: newLikeStatus });
+      setIsLike(newLikeStatus);
+    } catch (error) {
+      console.log(error);
+    }
   };
   const onPlay = () => {
     const prevValue = play;
@@ -80,16 +87,17 @@ const AudioPlayer = ({ song, image, like, id }) => {
         <audio src={song} preload="metadata" ref={audioPlay} />
         <div className="top">
           <div className="left" onClick={onLike}>
-            {!isLike ? (
-              <i>
-                <BsSuitHeart />
-              </i>
-            ) : (
+            {isLike ? (
               <i>
                 <BsSuitHeartFill />
               </i>
+            ) : (
+              <i>
+                <BsSuitHeart />
+              </i>
             )}
           </div>
+
           <div className="middle">
             <div className="previous">
               <i>
@@ -114,9 +122,11 @@ const AudioPlayer = ({ song, image, like, id }) => {
             </div>
           </div>
           <div className="right">
-            <i className="delete" onClick={deleteSong}>
-              <BsTrash3Fill />
-            </i>
+            {song ? (
+              <i className="delete" onClick={deleteSong}>
+                <BsTrash3Fill />
+              </i>
+            ) : null}
           </div>
         </div>
         <div className="bottom">

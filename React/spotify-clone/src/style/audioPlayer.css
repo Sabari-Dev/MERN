@@ -32,6 +32,7 @@
   transition: 0.3s;
 }
 .top .middle {
+  width: 30vw;
   display: flex;
   justify-content: space-between;
 }

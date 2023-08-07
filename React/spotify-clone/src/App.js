@@ -20,7 +20,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/profile/:id" element={<Profile />} />
           <Route path="/upload" element={<SongUpload />} />
-          <Route path="/likeSong" element={<LikedSong />} />
+          <Route path="/likeSongs" element={<LikedSong />} />
           <Route path="/radio" element={<Radio />} />
         </Routes>
       </Router>

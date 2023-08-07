@@ -30,7 +30,9 @@ form label {
   display: block;
   color: rgb(0, 0, 0);
 }
-form input {
+form input,
+#imageUrl,
+#audioUrl {
   width: 30vw;
   padding: 10px 5px;
   border-radius: 5px;
@@ -66,5 +68,27 @@ form button:hover {
   }
   form h2 {
     margin-bottom: 10px;
+  }
+  form {
+    overflow-y: scroll;
+    height: 100vh;
+    margin: 0;
+    padding: 20px;
+  }
+  .song-add {
+    top: 5px;
+  }
+}
+@media screen and(max-width:430px) {
+  form input {
+    width: 70vw;
+  }
+  .song-add {
+    left: 10px;
+    top: 5px;
+  }
+  form button {
+    margin: 0;
+    padding: 5px 10px;
   }
 }

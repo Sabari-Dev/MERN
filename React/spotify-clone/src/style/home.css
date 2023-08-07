@@ -32,6 +32,7 @@
   font-size: 20px;
   font-weight: bold;
   font-family: "Borel", cursive;
+  margin-right: 30px;
 }
 .title .logo i {
   color: rgb(23, 238, 23);
@@ -74,6 +75,7 @@
   text-transform: uppercase;
   letter-spacing: 3px;
   font-family: "Josefin Sans", sans-serif;
+  margin-top: 20px;
 }
 
 .menus .menu-title i {
@@ -221,7 +223,7 @@
 }
 .songs {
   overflow-y: scroll;
-  height: 200px;
+  height: 200px !important;
   font-family: sans-serif;
 }
 .song {

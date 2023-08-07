@@ -44,6 +44,8 @@
   text-align: center;
 }
 .login input,
+.register select,
+.modal-content form select,
 .register input {
   width: 30vw;
   padding: 10px 5px;
@@ -52,6 +54,7 @@
   font-family: "Work Sans", sans-serif;
   margin: 10px 0;
 }
+
 .login p a,
 .register p a {
   text-decoration: none;
@@ -87,9 +90,25 @@
   position: absolute;
   z-index: 2;
 }
+@media screen and (max-width: 769px) {
+  .login input,
+  .register input {
+    width: 60vw;
+  }
+
+  .register form {
+    overflow-y: scroll;
+    height: 100vh;
+  }
+}
 @media screen and (max-width: 430px) {
   .login input,
   .register input {
     width: 60vw;
+  }
+
+  .register form {
+    overflow-y: scroll;
+    height: 100vh;
   }
 }

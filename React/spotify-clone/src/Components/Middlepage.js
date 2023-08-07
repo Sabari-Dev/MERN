@@ -19,7 +19,7 @@ export const Middlepage = () => {
     like: false,
     id: "",
   });
-  const [isLike, setIsLike] = useState(false);
+
   const { song, image, like, id } = songImg;
   // console.log(songImg);
 
@@ -31,9 +31,7 @@ export const Middlepage = () => {
       id: id,
     });
   }
-  const onLike = () => {
-    setIsLike(!isLike);
-  };
+
   useEffect(() => {
     const getSongs = async () => {
       const songDetails = await getDocs(collection(db, "album"));
@@ -124,27 +122,19 @@ export const Middlepage = () => {
                   <li className="song-date">
                     {song.createdAt.toDate().toDateString()}
                   </li>
-                  {/* 
-                  <li className="likeDel">
-                    <i className="like" onClick={onLike}>
-                      {!isLike ? (
-                        <i>
-                          <BsSuitHeart />
-                        </i>
-                      ) : (
-                        <i>
-                          <BsSuitHeartFill />
-                        </i>
-                      )}
-                    </i>
-                  </li> */}
                 </ul>
               );
             })}
         </div>
       </div>
       <div className="player-page">
-        <AudioPlayer song={song} image={image} like={like} id={id} />
+        <AudioPlayer
+          song={song}
+          image={image}
+          like={like}
+          id={id}
+          songs={songs}
+        />
       </div>
     </div>
   );

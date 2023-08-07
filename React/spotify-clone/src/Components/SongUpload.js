@@ -1,18 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { storage, auth, db } from "../Config/Config";
-import {
-  ref,
-  getDownloadURL,
-  uploadBytes,
-  deleteObject,
-} from "firebase/storage";
-import {
-  getDoc,
-  updateDoc,
-  Timestamp,
-  addDoc,
-  collection,
-} from "firebase/firestore";
+import React, { useState } from "react";
+import { storage, db } from "../Config/Config";
+import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
+import { Timestamp, addDoc, collection } from "firebase/firestore";
 import "../style/songAdd.css";
 import { useNavigate } from "react-router-dom";
 
@@ -47,7 +36,7 @@ const SongUpload = () => {
     try {
       setPlayList({ ...playList, loading: true });
       //upload image
-      if (!audioUrl == "" && !imageUrl == "") {
+      if (!audioUrl === "" && !imageUrl === "") {
         let imgUrl = "";
         const imageRef = ref(
           storage,
@@ -68,7 +57,7 @@ const SongUpload = () => {
 
         console.log(audUrl);
 
-        if (!imgUrl == "" && !audUrl == "") {
+        if (!imgUrl === "" && !audUrl === "") {
           setPlayList((prev) => ({
             ...prev,
             audioTrack: audUrl,

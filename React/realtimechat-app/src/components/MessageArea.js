@@ -11,7 +11,7 @@ const MessageArea = ({ handleSubmit, text, setText, setImg }) => {
       <InputGroup>
         <Form.Control
           placeholder="Enter Message"
-          aria-label="mesage"
+          aria-label="message"
           value={text}
           onChange={(e) => setText(e.target.value)}
         />

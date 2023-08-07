@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { BsSpotify, BsThreeDots, BsDownload } from "react-icons/bs";
+import { BsSpotify, BsDownload, BsFillHeartFill } from "react-icons/bs";
 import { HiHome } from "react-icons/hi";
 import { FiUpload } from "react-icons/fi";
 import { FaUser } from "react-icons/fa";
@@ -11,6 +11,9 @@ import { auth } from "../Config/Config";
 
 const LeftSide = () => {
   const id = auth.currentUser.uid;
+  const signOut = () => {
+    auth.signOut();
+  };
   return (
     <div className="left-container">
       {/* title  */}
@@ -21,11 +24,6 @@ const LeftSide = () => {
           </i>
         </div>
         <div className="name">Spotify</div>
-        <div className="menu-bar">
-          <i>
-            <BsThreeDots />
-          </i>
-        </div>
       </div>
 
       {/* menu */}
@@ -48,14 +46,14 @@ const LeftSide = () => {
               <span>Profile</span>
             </Link>
           </li>
-          {/* <li className="menu-title">
+          <li className="menu-title">
             <Link to="/likeSongs">
               <i>
                 <BsFillHeartFill />
               </i>
               Liked songs
             </Link>
-          </li> */}
+          </li>
           <li className="menu-title">
             <Link to="/upload">
               <i>
@@ -106,7 +104,7 @@ const LeftSide = () => {
             })}
         </div>
       </div> */}
-      <div className="logout">
+      <div className="logout" onClick={signOut}>
         <Link to="/" className="logout-btn">
           <span>Logout</span>
           <i>
