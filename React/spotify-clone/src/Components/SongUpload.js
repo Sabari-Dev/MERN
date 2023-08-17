@@ -36,7 +36,7 @@ const SongUpload = () => {
     try {
       setPlayList({ ...playList, loading: true });
       //upload image
-      if (!audioUrl === "" && !imageUrl === "") {
+      if (!audioUrl == "" && !imageUrl == "") {
         let imgUrl = "";
         const imageRef = ref(
           storage,
@@ -57,7 +57,7 @@ const SongUpload = () => {
 
         console.log(audUrl);
 
-        if (!imgUrl === "" && !audUrl === "") {
+        if (imgUrl && audUrl) {
           setPlayList((prev) => ({
             ...prev,
             audioTrack: audUrl,

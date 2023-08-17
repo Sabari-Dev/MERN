@@ -100,13 +100,18 @@
     overflow-y: scroll;
     height: 100vh;
   }
+  .login form {
+    height: 50vh;
+  }
 }
 @media screen and (max-width: 430px) {
   .login input,
   .register input {
     width: 60vw;
   }
-
+  .login form {
+    height: 60vh;
+  }
   .register form {
     overflow-y: scroll;
     height: 100vh;

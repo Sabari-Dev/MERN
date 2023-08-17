@@ -44,15 +44,30 @@ const LikedSong = () => {
       id: id,
     });
   }
+  // const onLike = async () => {
+  //   try {
+  //     const newLikeStatus = !isLike;
+  //     await updateDoc(doc(db, "album", id), { like: newLikeStatus });
+  //     setIsLike(newLikeStatus);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   const onLike = async () => {
     try {
-      const newLikeStatus = !isLike;
+      const newLikeStatus = !song.like;
       await updateDoc(doc(db, "album", id), { like: newLikeStatus });
-      setIsLike(newLikeStatus);
+      setLikeSongs((prevSongs) =>
+        prevSongs.map((prevSong) =>
+          prevSong.id === id ? { ...prevSong, like: newLikeStatus } : prevSong
+        )
+      );
+      setSongImg((prevImg) => ({ ...prevImg, like: newLikeStatus }));
     } catch (error) {
       console.log(error);
     }
   };
+
   return (
     <div className="likedSongs">
       <h2 className="heading">Liked Song</h2>

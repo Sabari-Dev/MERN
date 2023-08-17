@@ -292,7 +292,7 @@
 @media screen and (max-width: 769px) {
   /* banner */
   .banner {
-    height: 150px;
+    height: 30vh;
   }
   .album-banner .album-img img {
     height: 100px;
@@ -315,12 +315,24 @@
   .album-content .likeView span {
     margin: 0 10px;
   }
+  .songs {
+    height: 45vh !important;
+  }
 }
 @media screen and (max-width: 430px) {
   .left-side {
     width: 10vw;
   }
-
+  .banner {
+    height: 30vh;
+  }
+  .songs {
+    height: 50vh;
+  }
+  .player-page {
+    width: 90vw;
+    height: 20vh;
+  }
   .middle-side {
     width: calc(100vw - 10vw);
   }

@@ -51,7 +51,7 @@ const LeftSide = () => {
               <i>
                 <BsFillHeartFill />
               </i>
-              Liked songs
+              <span>Liked songs</span>
             </Link>
           </li>
           <li className="menu-title">

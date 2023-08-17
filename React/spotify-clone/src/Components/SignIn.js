@@ -64,10 +64,14 @@ const SignIn = () => {
       validationErrors.email = `Email is invalid *`;
     }
     if (!checkUser.password) {
-      validationErrors.password = `PassWord required`;
+      validationErrors.password = `PassWord required*`;
+    }
+    if (checkUser.error) {
+      validationErrors.authVal = `${auth.error.code}`;
     }
     return validationErrors;
   };
+
 
   return (
     <div className="login">
@@ -95,13 +99,12 @@ const SignIn = () => {
           />
         </p>
         {errors.password && <p className="message">{errors.password}</p>}
+        {errors.authVal && <p className="message">{errors.authVal}</p>}
         <p className="routeLink">
           Don't have account .click to
           <Link to="/register"> create new account</Link>{" "}
         </p>
-        {checkUser.error !== null ? (
-          <p className="message">{checkUser.error}</p>
-        ) : null}
+
         <button type="submit">
           {checkUser.loading ? "Logging in..." : "Login"}
         </button>
