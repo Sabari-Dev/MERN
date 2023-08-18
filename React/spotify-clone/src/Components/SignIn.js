@@ -11,6 +11,7 @@ const SignIn = () => {
     error: null,
   });
   const [errors, setErrors] = useState({});
+  const [authError, setAuthError] = useState(null);
   const { email, password } = checkUser;
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -42,7 +43,7 @@ const SignIn = () => {
           })
           .catch((error) => {
             console.log(error);
-            setCheckUser({ ...checkUser, error: `${error}` });
+            setAuthError(error.message);
           });
         setErrors({});
       } else {
@@ -66,12 +67,8 @@ const SignIn = () => {
     if (!checkUser.password) {
       validationErrors.password = `PassWord required*`;
     }
-    if (checkUser.error) {
-      validationErrors.authVal = `${auth.error.code}`;
-    }
     return validationErrors;
   };
-
 
   return (
     <div className="login">
@@ -99,7 +96,7 @@ const SignIn = () => {
           />
         </p>
         {errors.password && <p className="message">{errors.password}</p>}
-        {errors.authVal && <p className="message">{errors.authVal}</p>}
+        {authError ? <p className="message">{authError}</p> : null}
         <p className="routeLink">
           Don't have account .click to
           <Link to="/register"> create new account</Link>{" "}

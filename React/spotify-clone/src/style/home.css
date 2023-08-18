@@ -377,7 +377,7 @@
     display: none;
   }
   .songs {
-    height: 250px;
+    height: calc(100vh - 200px);
   }
   .list-head ul li,
   .song li {
@@ -385,5 +385,8 @@
   }
   .song .song-details {
     width: 30vw;
+  }
+  .player-page {
+    height: 100px;
   }
 }

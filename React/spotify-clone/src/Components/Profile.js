@@ -11,6 +11,7 @@ import {
   deleteObject,
 } from "firebase/storage";
 import { getDoc, doc, updateDoc, deleteDoc } from "firebase/firestore";
+import { deleteUser } from "firebase/auth";
 import { useNavigate, useParams, Link } from "react-router-dom";
 
 const Profile = () => {
@@ -19,8 +20,10 @@ const Profile = () => {
   const [showModal, setShowModal] = useState(false);
   const [editUser, SetEditUser] = useState({});
   //   console.log(img);
+  const navigate = useNavigate();
   const params = useParams();
   const { id } = params;
+  const userAuth = auth.currentUser;
   useEffect(() => {
     getDoc(doc(db, "users", id))
       .then((docSnap) => {
@@ -76,15 +79,16 @@ const Profile = () => {
           await deleteObject(ref(storage, user.avatarPath));
         }
         const userAuth = auth.currentUser;
-        await userAuth.delete();
-        navigate("/");
+        await deleteUser(userAuth).then(() => {
+          console.log("user deleted");
+        });
+        navigate("/register");
       } catch (error) {
         console.log(error);
       }
     }
   };
 
-  const navigate = useNavigate();
   const deleteProfile = async () => {
     try {
       const confirm = window.confirm("Are you sure to delete avatar?");
@@ -110,6 +114,7 @@ const Profile = () => {
       await updateDoc(doc(db, "users", id), editUser);
       setShowModal(false);
       alert("User details edited successfully!!");
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -281,7 +286,7 @@ const Profile = () => {
               </p>
 
               <button type="submit" className="edit-btn" onClick={handleSubmit}>
-                {user.loading ? "please wait..." : "Edit"}
+                {user.loading ? "please wait..." : "Save Edit"}
               </button>
               <button className="delete-btn" onClick={handleDeleteClick}>
                 Delete Account

@@ -44,7 +44,7 @@ export const Middlepage = () => {
       setSongs(songArr);
     };
     getSongs();
-  }, []);
+  }, [songs]);
   // console.log(songs);
   // const id = auth.currentUser.uid;
 
@@ -57,11 +57,11 @@ export const Middlepage = () => {
           </div>
           <div className="album-content">
             <h4>PlayList</h4>
-            <h3 className="album-heading">Gaming Music 2023.</h3>
+            <h3 className="album-heading">Happy hours playLists.</h3>
             <p className="content">
-              It's Gaming Time. Best of EDM and Epic songs playlist to listen to
-              while playing video games like LOL, FNAF, GTA, Valorant, Fortnite,
-              Apex Legends, Minecraft...
+              It's your playList add what songs you want and play it. In this
+              song all are listening with free.And also you like the songs, add
+              new songs , delete the song.
             </p>
             <p className="likeView">
               <span className="likes">

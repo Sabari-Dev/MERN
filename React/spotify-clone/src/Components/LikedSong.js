@@ -14,7 +14,7 @@ import { BsSuitHeart, BsSuitHeartFill } from "react-icons/bs";
 
 const LikedSong = () => {
   const [likeSongs, setLikeSongs] = useState([]);
-  const [isLike, setIsLike] = useState(true);
+
   const [songImg, setSongImg] = useState({
     song: "",
     image: "",
@@ -22,20 +22,6 @@ const LikedSong = () => {
     id: "",
   });
   const { song, image, like, id } = songImg;
-  useEffect(() => {
-    const getLikedSong = async () => {
-      const q = query(collection(db, "album"), where("like", "==", true));
-      const querySnapshot = await getDocs(q);
-      let likeValues = [];
-      querySnapshot.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
-        likeValues.push(doc.data());
-      });
-      setLikeSongs(likeValues);
-    };
-    getLikedSong();
-  }, []);
-  console.log(likeSongs);
   function fileUrls(audio, image, like, id) {
     setSongImg({
       song: audio,
@@ -44,39 +30,52 @@ const LikedSong = () => {
       id: id,
     });
   }
-  // const onLike = async () => {
-  //   try {
-  //     const newLikeStatus = !isLike;
-  //     await updateDoc(doc(db, "album", id), { like: newLikeStatus });
-  //     setIsLike(newLikeStatus);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const [isLike, setIsLike] = useState(like);
+  useEffect(() => {
+    const getLikedSong = async () => {
+      const q = query(collection(db, "album"), where("like", "==", true));
+      const querySnapshot = await getDocs(q);
+      let likeValues = [];
+      querySnapshot.forEach((doc) => {
+        likeValues.push(doc.data());
+      });
+      setLikeSongs(likeValues);
+    };
+    getLikedSong();
+  }, []);
+  useEffect(() => {
+    setIsLike(like);
+  }, [like]);
+  // console.log(likeSongs);
+
   const onLike = async () => {
     try {
-      const newLikeStatus = !song.like;
-      await updateDoc(doc(db, "album", id), { like: newLikeStatus });
-      setLikeSongs((prevSongs) =>
-        prevSongs.map((prevSong) =>
-          prevSong.id === id ? { ...prevSong, like: newLikeStatus } : prevSong
-        )
-      );
-      setSongImg((prevImg) => ({ ...prevImg, like: newLikeStatus }));
-    } catch (error) {
-      console.log(error);
+      const likeRef = doc(db, "album", id);
+      await updateDoc(likeRef, {
+        like: false,
+      });
+    } catch (err) {
+      console.log(err);
     }
   };
 
   return (
     <div className="likedSongs">
-      <h2 className="heading">Liked Song</h2>
+      <h2 className="heading">Liked Songs</h2>
       <div className="list-head">
-        <ul>
-          <li className="title-list">#Title</li>
-          <li className="title-list">Album</li>
-          <li className="title-list">Date added</li>
-          <li className="title-list">Like</li>
+        <ul key="123">
+          <li className="title-list" key="1">
+            #Title
+          </li>
+          <li className="title-list" key="2">
+            Album
+          </li>
+          <li className="title-list" key="3">
+            Date added
+          </li>
+          <li className="title-list" key="4">
+            Like
+          </li>
         </ul>
       </div>
       <div className="songs-page">

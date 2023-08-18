@@ -10,9 +10,10 @@ import {
 } from "react-icons/bs";
 import { AiFillStepForward, AiFillStepBackward } from "react-icons/ai";
 import { deleteDoc, doc, getDoc, updateDoc } from "firebase/firestore";
-import { db } from "../Config/Config";
+import { db, storage } from "../Config/Config";
+import { deleteObject, ref } from "firebase/storage";
 
-const AudioPlayer = ({ song, image, like, id, songs }) => {
+const AudioPlayer = ({ song, image, like, id }) => {
   const [isLike, setIsLike] = useState(like);
   const [play, setPlay] = useState(false);
   const [duration, setDuration] = useState(0);
@@ -25,7 +26,12 @@ const AudioPlayer = ({ song, image, like, id, songs }) => {
     const seconds = Math.floor(audioPlay.current.duration);
     setDuration(seconds);
     progressBar.current.max = seconds;
-  }, [audioPlay?.current?.loadedmetadata, audioPlay?.current?.readyState]);
+  }, [
+    audioPlay?.current?.loadedmetadata,
+    audioPlay?.current?.readyState,
+    song,
+    image,
+  ]);
 
   const calculateMin = (sec) => {
     const minutes = Math.floor(sec / 60);
@@ -73,11 +79,43 @@ const AudioPlayer = ({ song, image, like, id, songs }) => {
     setPlay(!prevValue);
   };
 
+  // const deleteSong = async () => {
+  //   if (window.confirm("Are sure to delete this song")) {
+  //     await deleteDoc(doc(db, "album", id));
+  //     image = null;
+  //     song = null;
+  //   }
+  // };
+
   const deleteSong = async () => {
-    if (window.confirm("Are sure to delete this song")) {
-      await deleteDoc(doc(db, "album", id));
+    if (window.confirm("Are you sure you want to delete this song?")) {
+      try {
+        // Get the document data to retrieve the image URL
+        const songDoc = await getDoc(doc(db, "album", id));
+        const songData = songDoc.data();
+
+        // Delete the song document from Firestore
+        await deleteDoc(doc(db, "album", id));
+
+        // Delete the song file from Firebase Storage
+        const songStorageRef = ref(storage, `songs/${song}`);
+        await deleteObject(songStorageRef);
+
+        // Delete the image file from Firebase Storage (assuming the image URL is stored in songData.image)
+        if (songData.image) {
+          const imageStorageRef = ref(storage, `images/${image}`);
+          await deleteObject(imageStorageRef);
+        }
+
+        // Clear the song and image URLs
+        image = null;
+        song = null;
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
+
   return (
     <div className="audio-player">
       <div className="audio-img">
