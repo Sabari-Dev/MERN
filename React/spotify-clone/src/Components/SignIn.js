@@ -32,7 +32,7 @@ const SignIn = () => {
         await signInWithEmailAndPassword(auth, email, password)
           .then((userCredential) => {
             let userId = userCredential.user.uid;
-            console.log(userId);
+            // console.log(userId);
             setCheckUser({
               email: "",
               password: "",
@@ -42,7 +42,7 @@ const SignIn = () => {
             navigate("/home");
           })
           .catch((error) => {
-            console.log(error);
+            // console.log(error);
             setAuthError(error.message);
           });
         setErrors({});
@@ -105,6 +105,16 @@ const SignIn = () => {
         <button type="submit">
           {checkUser.loading ? "Logging in..." : "Login"}
         </button>
+
+        <div className="test-acc">
+          <h4>Use this account to explore website.</h4>
+          <p>
+            Email: <span> test@gmail.com</span>
+          </p>
+          <p>
+            Password: <span> Test@1234</span>
+          </p>
+        </div>
       </form>
     </div>
   );

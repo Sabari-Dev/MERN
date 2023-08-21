@@ -30,7 +30,7 @@ const LikedSong = () => {
       id: id,
     });
   }
-  const [isLike, setIsLike] = useState(like);
+  const [isLike, setIsLike] = useState(true);
   useEffect(() => {
     const getLikedSong = async () => {
       const q = query(collection(db, "album"), where("like", "==", true));
@@ -47,18 +47,9 @@ const LikedSong = () => {
     setIsLike(like);
   }, [like]);
   // console.log(likeSongs);
-
-  const onLike = async () => {
-    try {
-      const likeRef = doc(db, "album", id);
-      await updateDoc(likeRef, {
-        like: false,
-      });
-    } catch (err) {
-      console.log(err);
-    }
+  const onLike = () => {
+    setIsLike(false);
   };
-
   return (
     <div className="likedSongs">
       <h2 className="heading">Liked Songs</h2>
@@ -82,14 +73,18 @@ const LikedSong = () => {
         {likeSongs &&
           likeSongs.map((song) => {
             return (
-              <ul
-                className="song"
-                key={song.id}
-                onClick={() =>
-                  fileUrls(song.audioTrack, song.imageLink, song.like, song.id)
-                }
-              >
-                <li className="song-url">
+              <ul className="song" key={song.id}>
+                <li
+                  className="song-url"
+                  onClick={() =>
+                    fileUrls(
+                      song.audioTrack,
+                      song.imageLink,
+                      song.like,
+                      song.id
+                    )
+                  }
+                >
                   <div className="song-img">
                     <img
                       src={song.imageLink}
@@ -106,14 +101,14 @@ const LikedSong = () => {
                 <li className="song-date">
                   {song.createdAt.toDate().toDateString()}
                 </li>
-                <li className="like" onClick={onLike}>
+                <li className="like">
                   {isLike ? (
-                    <i>
-                      <BsSuitHeartFill />
+                    <i onClick={onLike}>
+                      <BsSuitHeart />
                     </i>
                   ) : (
                     <i>
-                      <BsSuitHeart />
+                      <BsSuitHeartFill />
                     </i>
                   )}
                 </li>

@@ -90,6 +90,26 @@
   position: absolute;
   z-index: 2;
 }
+.test-acc {
+  padding: 5px;
+  margin-top: 10px;
+  line-height: 30px;
+  background-color: rgb(229, 246, 255);
+  border-radius: 10px;
+}
+.test-acc h4 {
+  text-decoration: underline;
+  font-family: "Comfortaa", cursive;
+  color: rgb(24, 217, 91);
+  text-align: center;
+}
+.test-acc p {
+  letter-spacing: 3px;
+  color: rgb(24, 217, 91);
+}
+.test-acc p span {
+  color: black;
+}
 @media screen and (max-width: 769px) {
   .login input,
   .register input {

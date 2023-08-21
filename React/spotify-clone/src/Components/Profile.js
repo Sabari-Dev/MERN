@@ -80,9 +80,9 @@ const Profile = () => {
         }
         const userAuth = auth.currentUser;
         await deleteUser(userAuth).then(() => {
-          console.log("user deleted");
+          // console.log("user deleted");
+          navigate("/register");
         });
-        navigate("/register");
       } catch (error) {
         console.log(error);
       }
@@ -167,6 +167,9 @@ const Profile = () => {
           </Link>
           <button className="edit-btn" onClick={handleEditClick}>
             Edit
+          </button>
+          <button className="delete-btn" onClick={handleDeleteClick}>
+            Delete Account
           </button>
         </div>
       </div>
@@ -287,9 +290,6 @@ const Profile = () => {
 
               <button type="submit" className="edit-btn" onClick={handleSubmit}>
                 {user.loading ? "please wait..." : "Save Edit"}
-              </button>
-              <button className="delete-btn" onClick={handleDeleteClick}>
-                Delete Account
               </button>
             </form>
           </div>
