@@ -24,12 +24,13 @@ export const getAllUsers = (req, res) => {
 //getUser
 export const getUser = (req, res) => {
   const { id } = req.params;
-  User.findById(id).then((user) => {
-    res
-      .status(201)
-      .json({ success: true, message: "search success!!" })
-      .catch((err) => res.status(400).json({ success: false, message: err }));
-  });
+  User.findById(id)
+    .then((user) => {
+      res
+        .status(201)
+        .json({ success: true, message: "search success!!", user: user });
+    })
+    .catch((err) => res.status(400).json({ success: false, message: err }));
 };
 
 //delete User

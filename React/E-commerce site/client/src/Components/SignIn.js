@@ -33,21 +33,28 @@ const SignIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validateForm();
-    if (Object.keys(validationErrors).length === 0) {
-      let getUserEmail = users.find(
-        (user) =>
-          user.email === checkUser.email && user.password === checkUser.password
-      );
-      // console.log(getUserEmail);
-      const { _id } = getUserEmail;
-      navigate(`/home/${_id}`);
+    try {
+      if (Object.keys(validationErrors).length === 0) {
+        let getUserEmail = users.find(
+          (user) =>
+            user.email === checkUser.email &&
+            user.password === checkUser.password
+        );
+        // console.log(getUserEmail);
+        const { _id } = getUserEmail;
+        navigate(`/home/${_id}`);
 
-      alert("login successfully!!");
-    } else {
-      setErrors(validationErrors);
-      setTimeout(() => {
-        setErrors({});
-      }, 3000);
+        alert("login successfully!!");
+      } else {
+        alert("invalid email/password");
+        setErrors(validationErrors);
+        setTimeout(() => {
+          setErrors({});
+        }, 3000);
+      }
+    } catch (error) {
+      alert("invalid email/password");
+      // console.log(error);
     }
   };
   const validateForm = () => {
