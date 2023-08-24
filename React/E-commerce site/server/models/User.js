@@ -41,6 +41,7 @@ Allows special characters`,
       type: String,
       required: true,
     },
+    avatar: String,
   },
   { timestamps: true }
 );

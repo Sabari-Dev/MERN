@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
 const Products = ({ product }) => {
-  //   console.log(products);
+  const navigate = useNavigate();
+
+  const getId = (id) => {
+    navigate(`/product/${id}`);
+  };
   return (
     <Card
       style={{ width: "18rem" }}
-      key={product.id}
+      key={product._id}
       className="p-2 text-center"
+      onClick={() => getId(product._id)}
     >
       <Card.Img
         variant="top"

@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import userRoutes from "./routes/userRoutes.js";
+import productRoutes from "./routes/productRoute.js";
 dotenv.config();
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/s1/users", userRoutes);
+app.use("/api/s1/products", productRoutes);
 
 app.get("/", (req, res) => {
   res.status(200).send("<h2>site</h2>");

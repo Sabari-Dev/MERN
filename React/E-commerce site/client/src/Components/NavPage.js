@@ -9,6 +9,8 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Modal from "react-bootstrap/Modal";
 import logo from "../images/logoE.png";
+import FileBase64 from "react-file-base64";
+import { BsFillCameraFill } from "react-icons/bs";
 
 const NavPage = () => {
   const [show, setShow] = useState(false);
@@ -35,7 +37,8 @@ const NavPage = () => {
       })
       .catch((err) => console.log(err));
   };
-  console.log(user);
+  // console.log(user);
+  // console.log(user.fileUpload);
   const onEdit = () => {
     setEditing(!editing);
   };
@@ -43,7 +46,7 @@ const NavPage = () => {
     <Navbar expand="lg" className="bg-body-tertiary" style={{ height: "15vh" }}>
       <Container fluid>
         <Navbar.Brand href="#">
-          <img src={logo} alt="" style={{ height: "150px", width: "150px" }} />
+          <img src={logo} alt="" style={{ height: "150px", width: "170px" }} />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
@@ -65,6 +68,18 @@ const NavPage = () => {
               onClick={handleShow}
               className="my-3 mx-3 h-25"
             >
+              {/* {user.avatar ? (
+                <img
+                  src={user.avatar}
+                  alt="img"
+                  style={{
+                    height: "30px",
+                    width: "30px",
+                    borderRadius: "50%",
+                  }}
+                  className="me-2"
+                />
+              ) : null} */}
               profile
             </Button>
 
@@ -82,6 +97,39 @@ const NavPage = () => {
                   <p>loading...</p>
                 ) : (
                   <Form className="text-start p-2 ">
+                    <Form.Group
+                      controlId="formFile"
+                      className="mb-3 w-100 d-flex justify-content-between"
+                    >
+                      <div className="img-page ">
+                        <img
+                          src={user.avatar}
+                          alt="avatar"
+                          style={{
+                            height: "150px",
+                            width: "150px",
+                            borderRadius: "50%",
+                          }}
+                        />
+                      </div>
+                      <div className="upload my-auto ms-3">
+                        <Form.Label htmlFor="img">Upload Profile:</Form.Label>
+                        <br />
+                        <FileBase64
+                          type="file"
+                          name="avatar"
+                          accept="image/*"
+                          id="img"
+                          style={{ display: "none" }}
+                          value={user.avatar}
+                          onDone={({ base64 }) =>
+                            setUser((prevVal) => {
+                              return { ...prevVal, avatar: base64 };
+                            })
+                          }
+                        />
+                      </div>
+                    </Form.Group>
                     <Form.Group
                       className="mb-3 w-100"
                       controlId="formGroupName"

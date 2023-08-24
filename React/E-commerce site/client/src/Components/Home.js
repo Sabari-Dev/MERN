@@ -1,19 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import NavPage from "./NavPage";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import products from "./data.js";
 import Products from "./Products";
 
 const Home = () => {
-  // console.log(products);
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/api/s1/products")
+      .then((res) => {
+        // console.log(res.data);
+        setProducts(res.data.products);
+      })
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <>
       <div className="home-page">
         <NavPage />
       </div>
       <div className="products d-flex flex-wrap gap-2 mt-3 container-fluid">
-        {products[0].map((product) => {
+        {products.map((product) => {
           return <Products product={product} />;
         })}
       </div>
