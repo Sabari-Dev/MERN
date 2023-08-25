@@ -21,7 +21,7 @@ const Home = () => {
       </div>
       <div className="products d-flex flex-wrap gap-3 mt-3 container-fluid">
         {products.map((product) => {
-          return <Products product={product} />;
+          return <Products product={product} key={product.id} />;
         })}
       </div>
     </>

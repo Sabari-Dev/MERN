@@ -43,8 +43,7 @@ const NavPage = () => {
       })
       .catch((err) => console.log(err));
   };
-  // console.log(user);
-  // console.log(user.fileUpload);
+
   const onEdit = () => {
     setEditing(false);
     setEditedUser(user);
@@ -59,10 +58,11 @@ const NavPage = () => {
 
   const onSave = async () => {
     try {
-      console.log(editedUser);
+      // console.log(editedUser);
       await axios.put(`http://localhost:5000/api/s1/users/${id}`, editedUser);
       setUser(editedUser);
       setEditing(true);
+      alert("user edited successfully!!");
       handleClose();
     } catch (error) {
       console.log(error);
@@ -79,6 +79,9 @@ const NavPage = () => {
           });
       }
     } catch (error) {}
+  };
+  const getCart = () => {
+    navigate(`/cart/${id}`);
   };
   return (
     <Navbar expand="lg" className="bg-body-tertiary" style={{ height: "15vh" }}>
@@ -216,7 +219,7 @@ const NavPage = () => {
                 </Button>
               </Modal.Footer>
             </Modal>
-            <Button variant="warning h-50 my-auto">
+            <Button variant="warning h-50 my-auto" onClick={getCart}>
               Cart <Badge bg="secondary">3</Badge>
             </Button>
           </Nav>
