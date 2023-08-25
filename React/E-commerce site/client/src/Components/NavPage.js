@@ -1,26 +1,32 @@
 import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
+import Badge from "react-bootstrap/Badge";
 import Modal from "react-bootstrap/Modal";
 import logo from "../images/logoE.png";
 import FileBase64 from "react-file-base64";
-import { BsFillCameraFill } from "react-icons/bs";
 
 const NavPage = () => {
   const [show, setShow] = useState(false);
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(true);
-  const [editUser, setEditUser] = useState();
+  const [editedUser, setEditedUser] = useState({
+    name: "",
+    email: "",
+    password: "",
+    gender: "",
+    dateOfBirth: "",
+  });
+  const navigate = useNavigate();
   const handleClose = () => {
     setShow(false);
-    setEditing(false);
+    setEditing(true);
   };
   const handleShow = () => {
     setShow(true);
@@ -40,7 +46,39 @@ const NavPage = () => {
   // console.log(user);
   // console.log(user.fileUpload);
   const onEdit = () => {
-    setEditing(!editing);
+    setEditing(false);
+    setEditedUser(user);
+  };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setEditedUser((prevEditedUser) => ({
+      ...prevEditedUser,
+      [name]: value,
+    }));
+  };
+
+  const onSave = async () => {
+    try {
+      console.log(editedUser);
+      await axios.put(`http://localhost:5000/api/s1/users/${id}`, editedUser);
+      setUser(editedUser);
+      setEditing(true);
+      handleClose();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const onDelete = async () => {
+    try {
+      if (window.confirm("Are you sure to delete the Account ? ")) {
+        await axios
+          .delete(`http://localhost:5000/api/s1/users/${id}`)
+          .then(() => {
+            alert("user deleted !!");
+            navigate("/");
+          });
+      }
+    } catch (error) {}
   };
   return (
     <Navbar expand="lg" className="bg-body-tertiary" style={{ height: "15vh" }}>
@@ -64,22 +102,10 @@ const NavPage = () => {
             navbarScroll
           >
             <Button
-              variant="primary"
+              variant="warning"
               onClick={handleShow}
               className="my-3 mx-3 h-25"
             >
-              {/* {user.avatar ? (
-                <img
-                  src={user.avatar}
-                  alt="img"
-                  style={{
-                    height: "30px",
-                    width: "30px",
-                    borderRadius: "50%",
-                  }}
-                  className="me-2"
-                />
-              ) : null} */}
               profile
             </Button>
 
@@ -98,39 +124,6 @@ const NavPage = () => {
                 ) : (
                   <Form className="text-start p-2 ">
                     <Form.Group
-                      controlId="formFile"
-                      className="mb-3 w-100 d-flex justify-content-between"
-                    >
-                      <div className="img-page ">
-                        <img
-                          src={user.avatar}
-                          alt="avatar"
-                          style={{
-                            height: "150px",
-                            width: "150px",
-                            borderRadius: "50%",
-                          }}
-                        />
-                      </div>
-                      <div className="upload my-auto ms-3">
-                        <Form.Label htmlFor="img">Upload Profile:</Form.Label>
-                        <br />
-                        <FileBase64
-                          type="file"
-                          name="avatar"
-                          accept="image/*"
-                          id="img"
-                          style={{ display: "none" }}
-                          value={user.avatar}
-                          onDone={({ base64 }) =>
-                            setUser((prevVal) => {
-                              return { ...prevVal, avatar: base64 };
-                            })
-                          }
-                        />
-                      </div>
-                    </Form.Group>
-                    <Form.Group
                       className="mb-3 w-100"
                       controlId="formGroupName"
                     >
@@ -138,8 +131,9 @@ const NavPage = () => {
                       <Form.Control
                         type="text"
                         placeholder="Enter name"
-                        value={user.name}
+                        value={editing ? user.name : editedUser.name}
                         disabled={editing}
+                        onChange={handleChange}
                       />
                     </Form.Group>
                     <Form.Group
@@ -150,8 +144,9 @@ const NavPage = () => {
                       <Form.Control
                         type="email"
                         placeholder="Enter email"
-                        value={user.email}
+                        value={editing ? user.email : editedUser.email}
                         disabled={editing}
+                        onChange={handleChange}
                       />
                     </Form.Group>
                     <Form.Group
@@ -162,8 +157,9 @@ const NavPage = () => {
                       <Form.Control
                         type="password"
                         placeholder="Password"
-                        value={user.password}
+                        value={editing ? user.password : editedUser.password}
                         disabled={editing}
+                        onChange={handleChange}
                       />
                     </Form.Group>
 
@@ -176,8 +172,9 @@ const NavPage = () => {
                         aria-label="Default select example"
                         className="w-75 mb-3"
                         name="gender"
-                        value={user.gender}
+                        value={editing ? user.gender : editedUser.gender}
                         disabled={editing}
+                        onChange={handleChange}
                       >
                         <option value="">Select Gender</option>
                         <option value="male">Male</option>
@@ -191,8 +188,11 @@ const NavPage = () => {
                         type="date"
                         placeholder="02-02-2000"
                         name="dateOfBirth"
-                        value={user.dateOfBirth}
+                        value={
+                          editing ? user.dateOfBirth : editedUser.dateOfBirth
+                        }
                         disabled={editing}
+                        onChange={handleChange}
                       />
                     </Form.Group>
                   </Form>
@@ -207,23 +207,18 @@ const NavPage = () => {
                     Edit
                   </Button>
                 ) : (
-                  <Button variant="success" onClick={onEdit}>
+                  <Button variant="success" onClick={onSave}>
                     save
                   </Button>
                 )}
+                <Button variant="danger" onClick={onDelete}>
+                  Delete Accout
+                </Button>
               </Modal.Footer>
             </Modal>
-            <NavDropdown
-              title="Cart"
-              id="navbarScrollingDropdown"
-              className="me-2"
-            >
-              <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Something else here
-              </NavDropdown.Item>
-            </NavDropdown>
+            <Button variant="warning h-50 my-auto">
+              Cart <Badge bg="secondary">3</Badge>
+            </Button>
           </Nav>
         </Navbar.Collapse>
       </Container>

@@ -19,7 +19,7 @@ const Home = () => {
       <div className="home-page">
         <NavPage />
       </div>
-      <div className="products d-flex flex-wrap gap-2 mt-3 container-fluid">
+      <div className="products d-flex flex-wrap gap-3 mt-3 container-fluid">
         {products.map((product) => {
           return <Products product={product} />;
         })}

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import Rating from "./Rating";
 
 const Products = ({ product }) => {
   const navigate = useNavigate();
@@ -14,19 +15,26 @@ const Products = ({ product }) => {
       style={{ width: "18rem" }}
       key={product._id}
       className="p-2 text-center"
-      onClick={() => getId(product._id)}
     >
       <Card.Img
         variant="top"
         src={product.image}
-        style={{ height: "200px", width: "200px" }}
+        style={{ height: "150px", width: "150px" }}
         className="m-auto"
       />
-      <Card.Body>
-        <Card.Title>{product.title.substring(0, 15)}...</Card.Title>
-        <Card.Text className="py-3">{`$ ${product.price}`}</Card.Text>
-        <Button variant="primary" className="m-auto">
-          Add to Cart
+      <hr />
+      <Card.Body className="pt-1">
+        <Card.Title>{product.title.substring(0, 20)}...</Card.Title>
+        <Card.Text className=" mb-1 text-success">{`$ . ${product.price}`}</Card.Text>
+        <Card.Text className=" mb-2">
+          <Rating rate={product.rating.rate} id={product._id} />
+        </Card.Text>
+        <Button
+          variant="warning"
+          className="m-auto px-4"
+          onClick={() => getId(product._id)}
+        >
+          View
         </Button>
       </Card.Body>
     </Card>
