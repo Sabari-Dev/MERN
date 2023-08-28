@@ -4,11 +4,11 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Rating from "./Rating";
 
-const Products = ({ product }) => {
+const Products = ({ product, userId }) => {
   const navigate = useNavigate();
 
   const getId = (id) => {
-    navigate(`/product/${id}`);
+    navigate(`/${userId}/product/${id}`);
   };
   return (
     <Card
@@ -27,7 +27,11 @@ const Products = ({ product }) => {
         <Card.Title>{product.title.substring(0, 20)}...</Card.Title>
         <Card.Text className=" mb-1 text-success">{`$ . ${product.price}`}</Card.Text>
         <Card.Text className=" mb-2">
-          <Rating rate={product.rating.rate} id={product._id} />
+          <Rating
+            rate={product.rating.rate}
+            id={product._id}
+            key={product._id}
+          />
         </Card.Text>
         <Button
           variant="warning"

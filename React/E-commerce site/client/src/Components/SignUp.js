@@ -3,6 +3,7 @@ import axios from "axios";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import Spinner from "react-bootstrap/Spinner";
+import toast, { Toaster } from "react-hot-toast";
 
 const SignUp = () => {
   const [user, setUser] = useState({
@@ -66,13 +67,17 @@ Allows special characters`;
         dateOfBirth: user.dateOfBirth,
       };
       await axios
-        .post("http://localhost:5000/api/s1/users/create", newUser)
+        .post(
+          "https://hilarious-skirt-moth.cyclic.cloud/api/s1/users/create",
+          newUser
+        )
         .then((res) => {
-          alert(res.data.message);
+          toast.success(res.data.message);
           // console.log(res.data);
         })
         .catch((error) => {
           console.log(error);
+          toast.error("error to signUp");
         });
       // console.log(user);
       setErrors({});
@@ -83,6 +88,7 @@ Allows special characters`;
         gender: "",
         dateOfBirth: "",
       });
+      window.location.reload();
     } else {
       setErrors(validationErrors);
       setTimeout(() => {
@@ -92,6 +98,7 @@ Allows special characters`;
   };
   return (
     <form action="#" onSubmit={handleSubmit}>
+      <Toaster />
       <h3>Create Account</h3>
       <FloatingLabel
         controlId="floatingInput"

@@ -10,3 +10,9 @@ body {
   flex-direction: initial;
   height: 100vh;
 }
+.filter {
+  display: none;
+}
+.active {
+  display: contents;
+}

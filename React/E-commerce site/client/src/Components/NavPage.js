@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
@@ -9,13 +9,20 @@ import Navbar from "react-bootstrap/Navbar";
 import Badge from "react-bootstrap/Badge";
 import Modal from "react-bootstrap/Modal";
 import logo from "../images/logoE.png";
-import FileBase64 from "react-file-base64";
+import Loading from "./Loading";
+import { toast } from "react-hot-toast";
+import { FcFilledFilter } from "react-icons/fc";
+import { GrLogout } from "react-icons/gr";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 
 const NavPage = () => {
   const [show, setShow] = useState(false);
   const [user, setUser] = useState();
+
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(true);
+  const [cartLength, setCartLength] = useState(0);
   const [editedUser, setEditedUser] = useState({
     name: "",
     email: "",
@@ -36,13 +43,28 @@ const NavPage = () => {
   // console.log(id);
   const viewProfile = async () => {
     await axios
-      .get(`http://localhost:5000/api/s1/users/${id}`)
+      .get(`https://hilarious-skirt-moth.cyclic.cloud/api/s1/users/${id}`)
       .then((users) => {
         setUser(users.data.user);
         setLoading(false);
       })
       .catch((err) => console.log(err));
   };
+  const renderTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      Filter
+    </Tooltip>
+  );
+  useEffect(() => {
+    axios
+      .get(`https://hilarious-skirt-moth.cyclic.cloud/api/s1/cart/${id}`)
+      .then((res) => {
+        const cartData = res.data;
+        const itemsLength = cartData.items.length;
+        setCartLength(itemsLength);
+      })
+      .catch((err) => console.log(err));
+  }, [id]);
 
   const onEdit = () => {
     setEditing(false);
@@ -58,12 +80,18 @@ const NavPage = () => {
 
   const onSave = async () => {
     try {
-      // console.log(editedUser);
-      await axios.put(`http://localhost:5000/api/s1/users/${id}`, editedUser);
-      setUser(editedUser);
-      setEditing(true);
-      alert("user edited successfully!!");
-      handleClose();
+      await axios
+        .put(
+          `https://hilarious-skirt-moth.cyclic.cloud/api/s1/users/${id}`,
+          editedUser
+        )
+        .then((users) => {
+          setUser(editedUser);
+          setEditing(true);
+          toast.success(users.data.message);
+          handleClose();
+        })
+        .catch((err) => console.log(err));
     } catch (error) {
       console.log(error);
     }
@@ -72,9 +100,11 @@ const NavPage = () => {
     try {
       if (window.confirm("Are you sure to delete the Account ? ")) {
         await axios
-          .delete(`http://localhost:5000/api/s1/users/${id}`)
-          .then(() => {
-            alert("user deleted !!");
+          .delete(
+            `https://hilarious-skirt-moth.cyclic.cloud/api/s1/users/${id}`
+          )
+          .then((users) => {
+            toast(users.data.message);
             navigate("/");
           });
       }
@@ -82,6 +112,9 @@ const NavPage = () => {
   };
   const getCart = () => {
     navigate(`/cart/${id}`);
+  };
+  const onActive = () => {
+    document.querySelector(".filter").classList.toggle("active");
   };
   return (
     <Navbar expand="lg" className="bg-body-tertiary" style={{ height: "15vh" }}>
@@ -91,19 +124,24 @@ const NavPage = () => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
-          <Form.Control
-            type="search"
-            placeholder="Search products"
-            className="me-2 ms-3 w-50"
-            aria-label="Search"
-          />
-
-          <Button variant="outline-success">Search</Button>
           <Nav
             className="ms-auto my-2"
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
+            <OverlayTrigger
+              placement="bottom"
+              delay={{ show: 250, hide: 400 }}
+              overlay={renderTooltip}
+            >
+              <Button
+                onClick={onActive}
+                variant="outline-warning"
+                className="my-auto"
+              >
+                <FcFilledFilter />
+              </Button>
+            </OverlayTrigger>
             <Button
               variant="warning"
               onClick={handleShow}
@@ -111,7 +149,6 @@ const NavPage = () => {
             >
               profile
             </Button>
-
             <Modal
               show={show}
               onHide={handleClose}
@@ -123,7 +160,7 @@ const NavPage = () => {
               </Modal.Header>
               <Modal.Body>
                 {loading ? (
-                  <p>loading...</p>
+                  <Loading />
                 ) : (
                   <Form className="text-start p-2 ">
                     <Form.Group
@@ -202,6 +239,9 @@ const NavPage = () => {
                 )}
               </Modal.Body>
               <Modal.Footer className="p-1">
+                <Link to="/" className="btn btn-outline-secondary">
+                  Logout <GrLogout />
+                </Link>
                 <Button variant="secondary" onClick={handleClose}>
                   Close
                 </Button>
@@ -220,7 +260,7 @@ const NavPage = () => {
               </Modal.Footer>
             </Modal>
             <Button variant="warning h-50 my-auto" onClick={getCart}>
-              Cart <Badge bg="secondary">3</Badge>
+              Cart <Badge bg="secondary">{cartLength}</Badge>
             </Button>
           </Nav>
         </Navbar.Collapse>

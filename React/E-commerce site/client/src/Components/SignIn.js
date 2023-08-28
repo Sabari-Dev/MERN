@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
+import { toast } from "react-hot-toast";
 const SignIn = () => {
   const [users, setUsers] = useState([]);
   const [checkUser, setCheckUser] = useState({
@@ -14,7 +15,7 @@ const SignIn = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/s1/users")
+      .get("https://hilarious-skirt-moth.cyclic.cloud/api/s1/users")
       .then((res) => {
         setUsers(res.data.users);
       })
@@ -44,16 +45,16 @@ const SignIn = () => {
         const { _id } = getUserEmail;
         navigate(`/home/${_id}`);
 
-        alert("login successfully!!");
+        toast.success("login successfully!!");
       } else {
-        alert("invalid email/password");
+        toast.error("invalid email/password");
         setErrors(validationErrors);
         setTimeout(() => {
           setErrors({});
         }, 3000);
       }
     } catch (error) {
-      alert("invalid email/password");
+      toast.error("invalid email/password");
       // console.log(error);
     }
   };
