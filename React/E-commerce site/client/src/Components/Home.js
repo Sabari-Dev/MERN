@@ -57,10 +57,6 @@ const Home = () => {
     return filteredProducts;
   };
 
-  const getSearch = () => {
-    setProducts(applyFilters());
-  };
-
   const clearFilters = () => {
     setSearch("");
     setRatingFilter(false);
@@ -94,9 +90,7 @@ const Home = () => {
                 aria-label="Search"
                 onChange={(e) => setSearch(e.target.value)}
               />
-              <Button variant="outline-success" onClick={getSearch}>
-                Search
-              </Button>
+
               <Form.Check
                 name="filters"
                 label="Rating"
