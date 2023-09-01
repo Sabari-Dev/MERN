@@ -42,25 +42,27 @@ const LikedSong = () => {
       setLikeSongs(likeValues);
     };
     getLikedSong();
-  }, []);
+  }, [likeSongs]);
 
-  const onUnLike = async (songId) => {
-    console.log(songId);
-    try {
-      const songDocRef = doc(db, "album", songId);
-      await updateDoc(songDocRef, { like: false });
-      alert("song Unliked");
-      setLikeSongs(likeSongs.filter((song) => song.id !== songId));
-      if (id === songId) {
-        setSongImg({
-          song: "",
-          image: "",
-          like: false,
-          id: "",
-        });
-      }
-    } catch (error) {
-      console.error(error);
+  const onUnLike = async (song) => {
+    const q = query(
+      collection(db, "album"),
+      where("name", "==", song.name),
+      where("artist", "==", song.artist),
+      where("album", "==", song.album)
+    );
+    const querySnapshot = await getDocs(q);
+    if (!querySnapshot.empty) {
+      const docToUpdate = querySnapshot.docs[0];
+      await updateDoc(docToUpdate.ref, { like: false });
+      setLikeSongs((prevSongs) =>
+        prevSongs.map((s) =>
+          s.id === docToUpdate.id ? { ...s, like: false } : s
+        )
+      );
+      alert("song unliked");
+    } else {
+      console.warn("Document not found for unlike action.");
     }
   };
   return (
@@ -115,7 +117,7 @@ const LikedSong = () => {
                   {song.createdAt.toDate().toDateString()}
                 </li>
                 <li className="like">
-                  <i onClick={() => onUnLike(song.id)}>
+                  <i onClick={() => onUnLike(song)}>
                     <BsFillHeartbreakFill />
                   </i>
                 </li>
