@@ -15,6 +15,7 @@ import { FcFilledFilter } from "react-icons/fc";
 import { GrLogout } from "react-icons/gr";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
+import FileBase64 from "react-filebase64";
 
 const NavPage = () => {
   const [show, setShow] = useState(false);
@@ -29,6 +30,7 @@ const NavPage = () => {
     password: "",
     gender: "",
     dateOfBirth: "",
+    profileImage: "",
   });
   const navigate = useNavigate();
   const handleClose = () => {
@@ -37,19 +39,22 @@ const NavPage = () => {
   };
   const handleShow = () => {
     setShow(true);
-    viewProfile();
   };
   const { id } = useParams();
   // console.log(id);
-  const viewProfile = async () => {
-    await axios
-      .get(`https://hilarious-skirt-moth.cyclic.cloud/api/s1/users/${id}`)
-      .then((users) => {
-        setUser(users.data.user);
-        setLoading(false);
-      })
-      .catch((err) => console.log(err));
-  };
+  useEffect(() => {
+    const viewProfile = async () => {
+      await axios
+        .get(`https://hilarious-skirt-moth.cyclic.cloud/api/s1/users/${id}`)
+        .then((users) => {
+          setUser(users.data.user);
+          setLoading(false);
+        })
+        .catch((err) => console.log(err));
+    };
+    viewProfile();
+  }, [id]);
+
   const renderTooltip = (props) => (
     <Tooltip id="button-tooltip" {...props}>
       Filter
@@ -76,6 +81,11 @@ const NavPage = () => {
       ...prevEditedUser,
       [name]: value,
     }));
+  };
+  const handleFileUpload = (file) => {
+    setEditedUser((prev) => {
+      return { ...prev, profileImage: file.base64 };
+    });
   };
 
   const onSave = async () => {
@@ -110,6 +120,7 @@ const NavPage = () => {
       }
     } catch (error) {}
   };
+  console.log(user);
   const getCart = () => {
     navigate(`/cart/${id}`);
   };
@@ -147,6 +158,14 @@ const NavPage = () => {
               onClick={handleShow}
               className="my-3 mx-3 h-25"
             >
+              {user && (
+                <img
+                  className="me-2"
+                  src={user.profileImage}
+                  alt="img"
+                  style={{ height: "25px", width: "25px", borderRadius: "50%" }}
+                />
+              )}
               profile
             </Button>
             <Modal
@@ -234,6 +253,18 @@ const NavPage = () => {
                         disabled={editing}
                         onChange={handleChange}
                       />
+                    </Form.Group>
+                    <Form.Group className="mb-1 w-75 d-flex">
+                      <Form.Label>Upload profile:</Form.Label>
+                      <FileBase64 multiple={false} onDone={handleFileUpload} />
+                      {editedUser.profileImage && (
+                        <img
+                          src={editedUser.profileImage}
+                          alt="Profile Preview"
+                          className="mb-3"
+                          style={{ height: "60px", width: "60px" }}
+                        />
+                      )}
                     </Form.Group>
                   </Form>
                 )}

@@ -10,6 +10,7 @@ import { FaFilter } from "react-icons/fa";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
+import Footer from "./Footer";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -131,6 +132,9 @@ const Home = () => {
             <Products product={product} key={index} userId={id} />
           ))
         )}
+      </div>
+      <div className="footers">
+        <Footer />
       </div>
     </>
   );

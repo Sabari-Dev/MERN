@@ -36,11 +36,11 @@ const ProductDetails = () => {
   const handleAddToCart = () => {
     let productId = id;
     const data = { userId, productId, quantity };
-    console.log(data);
+    // console.log(data);
     axios
       .post("https://hilarious-skirt-moth.cyclic.cloud/api/s1/cart/add", data)
       .then((response) => {
-        console.log("Item added to cart:", response.data);
+        // console.log("Item added to cart:", response.data);
         toast.success("product add to cart");
         navigate(`/home/${userId}`);
       })

@@ -77,7 +77,7 @@ const SignIn = () => {
       <h3>Sign in</h3>
 
       <FloatingLabel
-        controlId="floatingInput"
+        controlId="floatingInputSignIn"
         label="Email address"
         className="mb-3 w-75"
       >
@@ -91,7 +91,7 @@ const SignIn = () => {
       </FloatingLabel>
       {errors.email && <p className="message">{errors.email}</p>}
       <FloatingLabel
-        controlId="floatingPassword"
+        controlId="floatingPasswordSignIn"
         label="Password"
         className="mb-3 w-75"
       >

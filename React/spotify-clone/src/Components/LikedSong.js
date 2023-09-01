@@ -10,7 +10,7 @@ import {
 import { db } from "../Config/Config";
 import AudioPlayer from "./AudioPlayer";
 import "../style/likedSong.css";
-import { BsSuitHeart, BsSuitHeartFill } from "react-icons/bs";
+import { BsFillHeartbreakFill } from "react-icons/bs";
 
 const LikedSong = () => {
   const [likeSongs, setLikeSongs] = useState([]);
@@ -30,7 +30,7 @@ const LikedSong = () => {
       id: id,
     });
   }
-  const [isLike, setIsLike] = useState(true);
+
   useEffect(() => {
     const getLikedSong = async () => {
       const q = query(collection(db, "album"), where("like", "==", true));
@@ -43,12 +43,25 @@ const LikedSong = () => {
     };
     getLikedSong();
   }, []);
-  useEffect(() => {
-    setIsLike(like);
-  }, [like]);
-  // console.log(likeSongs);
-  const onLike = () => {
-    setIsLike(false);
+
+  const onUnLike = async (songId) => {
+    console.log(songId);
+    try {
+      const songDocRef = doc(db, "album", songId);
+      await updateDoc(songDocRef, { like: false });
+      alert("song Unliked");
+      setLikeSongs(likeSongs.filter((song) => song.id !== songId));
+      if (id === songId) {
+        setSongImg({
+          song: "",
+          image: "",
+          like: false,
+          id: "",
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
   return (
     <div className="likedSongs">
@@ -65,15 +78,15 @@ const LikedSong = () => {
             Date added
           </li>
           <li className="title-list" key="4">
-            Like
+            UnLike
           </li>
         </ul>
       </div>
       <div className="songs-page">
         {likeSongs &&
-          likeSongs.map((song) => {
+          likeSongs.map((song, index) => {
             return (
-              <ul className="song" key={song.id}>
+              <ul className="song" key={index}>
                 <li
                   className="song-url"
                   onClick={() =>
@@ -102,15 +115,9 @@ const LikedSong = () => {
                   {song.createdAt.toDate().toDateString()}
                 </li>
                 <li className="like">
-                  {isLike ? (
-                    <i onClick={onLike}>
-                      <BsSuitHeart />
-                    </i>
-                  ) : (
-                    <i>
-                      <BsSuitHeartFill />
-                    </i>
-                  )}
+                  <i onClick={() => onUnLike(song.id)}>
+                    <BsFillHeartbreakFill />
+                  </i>
                 </li>
               </ul>
             );

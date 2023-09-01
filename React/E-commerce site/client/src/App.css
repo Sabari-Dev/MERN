@@ -11,8 +11,21 @@ body {
   height: 100vh;
 }
 .filter {
-  display: none;
+  position: relative;
+  z-index: -1;
+  transform: translateY(-100%);
+  transition: 0.3s;
 }
 .active {
-  display: contents;
+  transform: translateY(0%);
+}
+footer .social-icons {
+  margin-left: 20px;
+}
+footer .social-icons a i {
+  font-size: 25px;
+  margin-left: 10px;
+}
+footer ul li a:hover {
+  color: #f6f5f7;
 }
