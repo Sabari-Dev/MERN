@@ -161,7 +161,7 @@ const Cart = () => {
 
   return (
     <div>
-      {loading ? (
+      {loading || !cart.length ? (
         <div className="w-100 text-center">
           <Loading />
           <h3>Cart is Empty</h3>

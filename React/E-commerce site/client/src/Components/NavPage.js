@@ -95,10 +95,10 @@ const NavPage = () => {
           `https://hilarious-skirt-moth.cyclic.cloud/api/s1/users/${id}`,
           editedUser
         )
-        .then((users) => {
+        .then((response) => {
           setUser(editedUser);
           setEditing(true);
-          toast.success(users.data.message);
+          toast.success(response.data.message);
           handleClose();
         })
         .catch((err) => console.log(err));
@@ -120,7 +120,7 @@ const NavPage = () => {
       }
     } catch (error) {}
   };
-  console.log(user);
+  // console.log(user);
   const getCart = () => {
     navigate(`/cart/${id}`);
   };
@@ -131,7 +131,7 @@ const NavPage = () => {
     <Navbar expand="lg" className="bg-body-tertiary" style={{ height: "15vh" }}>
       <Container fluid>
         <Navbar.Brand href="#">
-          <img src={logo} alt="" style={{ height: "150px", width: "170px" }} />
+          <img src={logo} alt="" style={{ height: "40px", width: "140px" }} />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
@@ -184,12 +184,13 @@ const NavPage = () => {
                   <Form className="text-start p-2 ">
                     <Form.Group
                       className="mb-3 w-100"
-                      controlId="formGroupName"
+                      controlId="formGroupNameProfile"
                     >
                       <Form.Label>Name :</Form.Label>
                       <Form.Control
                         type="text"
                         placeholder="Enter name"
+                        name="name"
                         value={editing ? user.name : editedUser.name}
                         disabled={editing}
                         onChange={handleChange}
@@ -197,12 +198,13 @@ const NavPage = () => {
                     </Form.Group>
                     <Form.Group
                       className="mb-3 w-100"
-                      controlId="formGroupEmail"
+                      controlId="formGroupEmailProfile"
                     >
                       <Form.Label>Email :</Form.Label>
                       <Form.Control
                         type="email"
                         placeholder="Enter email"
+                        name="email"
                         value={editing ? user.email : editedUser.email}
                         disabled={editing}
                         onChange={handleChange}
@@ -210,12 +212,13 @@ const NavPage = () => {
                     </Form.Group>
                     <Form.Group
                       className="mb-3 w-100"
-                      controlId="formGroupPassword"
+                      controlId="formGroupPasswordProfile"
                     >
                       <Form.Label>Password :</Form.Label>
                       <Form.Control
                         type="password"
                         placeholder="Password"
+                        name="password"
                         value={editing ? user.password : editedUser.password}
                         disabled={editing}
                         onChange={handleChange}
@@ -224,7 +227,7 @@ const NavPage = () => {
 
                     <Form.Group
                       className="mb-3 w-100"
-                      controlId="formGroupGender"
+                      controlId="formGroupGenderProfile"
                     >
                       <Form.Label>Gender :</Form.Label>
                       <Form.Select
@@ -241,7 +244,10 @@ const NavPage = () => {
                         <option value="other">Other</option>
                       </Form.Select>
                     </Form.Group>
-                    <Form.Group className="mb-3 w-100" controlId="formGroupDob">
+                    <Form.Group
+                      className="mb-3 w-100"
+                      controlId="formGroupDobProfile"
+                    >
                       <Form.Label>Date Of Birth :</Form.Label>
                       <Form.Control
                         type="date"

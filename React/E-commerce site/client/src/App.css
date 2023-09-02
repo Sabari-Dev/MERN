@@ -11,13 +11,10 @@ body {
   height: 100vh;
 }
 .filter {
-  position: relative;
-  z-index: -1;
-  transform: translateY(-100%);
-  transition: 0.3s;
+  display: none;
 }
 .active {
-  transform: translateY(0%);
+  display: contents;
 }
 footer .social-icons {
   margin-left: 20px;
