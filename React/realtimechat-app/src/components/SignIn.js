@@ -14,7 +14,7 @@ const SignIn = () => {
     loading: false,
     error: null,
   });
-  const { email, password, error, loading } = logUser;
+  const { email, password, loading } = logUser;
   const handleChange = (e) => {
     setLogUser({ ...logUser, [e.target.name]: e.target.value });
   };

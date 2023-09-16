@@ -43,7 +43,7 @@ const Home = () => {
       setUsers(users);
     });
     return () => unsub();
-  }, []);
+  }, [user1]);
   // console.log(users);
   const selectUser = async (user) => {
     setChat(user);
