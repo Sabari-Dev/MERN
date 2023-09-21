@@ -3,7 +3,7 @@ import axios from "axios";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import Spinner from "react-bootstrap/Spinner";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import FileBase64 from "react-filebase64";
 
 const SignUp = () => {
@@ -85,6 +85,7 @@ Allows special characters`;
         .then((res) => {
           toast.success(res.data.message);
           // console.log(res.data);
+          window.location.reload();
         })
         .catch((error) => {
           console.log(error);
@@ -100,8 +101,6 @@ Allows special characters`;
         dateOfBirth: "",
         profileImage: "",
       });
-
-      window.location.reload();
     } else {
       setErrors(validationErrors);
       setTimeout(() => {
@@ -111,7 +110,6 @@ Allows special characters`;
   };
   return (
     <form action="#" onSubmit={handleSubmit}>
-      <Toaster />
       <h3>Create Account</h3>
       <FloatingLabel
         controlId="floatingInput"

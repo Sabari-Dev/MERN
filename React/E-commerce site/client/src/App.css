@@ -10,6 +10,7 @@ body {
   flex-direction: initial;
   height: 100vh;
 }
+
 .filter {
   display: none;
 }

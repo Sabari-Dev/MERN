@@ -15,7 +15,7 @@ import { FcFilledFilter } from "react-icons/fc";
 import { GrLogout } from "react-icons/gr";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
-import FileBase64 from "react-filebase64";
+import FileBase64 from "react-file-base64";
 
 const NavPage = () => {
   const [show, setShow] = useState(false);
@@ -128,7 +128,7 @@ const NavPage = () => {
     document.querySelector(".filter").classList.toggle("active");
   };
   return (
-    <Navbar expand="lg" className="bg-body-tertiary" style={{ height: "15vh" }}>
+    <Navbar expand="lg" className="bg-light" style={{ minHeight: "15vh" }}>
       <Container fluid>
         <Navbar.Brand href="#">
           <img src={logo} alt="" style={{ height: "40px", width: "140px" }} />
@@ -163,7 +163,11 @@ const NavPage = () => {
                   className="me-2"
                   src={user.profileImage}
                   alt="img"
-                  style={{ height: "25px", width: "25px", borderRadius: "50%" }}
+                  style={{
+                    height: "25px",
+                    width: "25px",
+                    borderRadius: "50%",
+                  }}
                 />
               )}
               profile

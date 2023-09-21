@@ -20,16 +20,16 @@ const Footer = () => {
             <h5>Customer Service</h5>
             <ul className="list-unstyled">
               <li>
-                <a href="#">FAQs</a>
+                <a href="#home">FAQs</a>
               </li>
               <li>
-                <a href="#">Shipping & Returns</a>
+                <a href="#home">Shipping & Returns</a>
               </li>
               <li>
-                <a href="#">Privacy Policy</a>
+                <a href="#home">Privacy Policy</a>
               </li>
               <li>
-                <a href="#">Terms of Service</a>
+                <a href="#home">Terms of Service</a>
               </li>
             </ul>
           </Col>
@@ -37,33 +37,33 @@ const Footer = () => {
             <h5>Categories</h5>
             <ul className="list-unstyled">
               <li>
-                <a href="#">Electronics</a>
+                <a href="#home">Electronics</a>
               </li>
               <li>
-                <a href="#">Clothing</a>
+                <a href="#home">Clothing</a>
               </li>
               <li>
-                <a href="#">Accessories </a>
+                <a href="#home">Accessories </a>
               </li>
               <li>
-                <a href="#">Jewels</a>
+                <a href="#home">Jewels</a>
               </li>
             </ul>
           </Col>
           <Col md={3}>
             <h5>Connect With Us</h5>
             <div className="social-icons">
-              <a href="#" className="text-light">
+              <a href="#home" className="text-light">
                 <i className="">
                   <BiLogoFacebookSquare />
                 </i>
               </a>
-              <a href="#" className="text-light">
+              <a href="#home" className="text-light">
                 <i className="">
                   <BiLogoTwitter />
                 </i>
               </a>
-              <a href="#" className="text-light">
+              <a href="#home" className="text-light">
                 <i className="">
                   <BiLogoInstagram />
                 </i>

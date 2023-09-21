@@ -11,6 +11,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import Footer from "./Footer";
+import { Row, Col } from "react-bootstrap";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -68,68 +69,73 @@ const Home = () => {
 
   return (
     <>
-      <div className="home-page">
-        <NavPage
-          key={"1"}
-          handleProduct={applyFilters}
-          search={search}
-          setSearch={setSearch}
-        />
+      <div className="home-page" id="home">
+        <NavPage />
       </div>
-      <div className="filter" style={{ height: "10vh" }}>
-        <Navbar className="bg-body-tertiary" style={{ height: "10vh" }}>
-          <Container fluid>
-            <Navbar.Brand href="#home">
-              Filter <FaFilter />
-            </Navbar.Brand>
-            <Navbar.Toggle />
-            <Navbar.Collapse className="justify-content-end gap-3">
-              <Form.Control
-                type="search"
-                placeholder="Search products"
-                className="me-2 ms-3 w-25"
-                aria-label="Search"
-                onChange={(e) => setSearch(e.target.value)}
-              />
-
-              <Form.Check
-                name="filters"
-                label="Rating"
-                onChange={(e) => setRatingFilter(e.target.checked)}
-              />
-              <Form.Check
-                name="filters"
-                label="Price"
-                onChange={(e) => setPriceFilter(e.target.checked)}
-              />
-              <Form.Select
-                aria-label="Default select example"
-                className="border border-warning border-2"
-                style={{ width: "150px" }}
-                onChange={(e) => {
-                  setCategoryFilter(e.target.value);
-                }}
-                value={categoryFilter}
+      <div className="filter" style={{ minHeight: "10vh" }}>
+        <Navbar className="bg-body-tertiary" style={{ minHeight: "10vh" }}>
+          <Row>
+            <Col xs={10} lg={4}>
+              <Navbar.Brand href="#home">
+                Filter <FaFilter />
+              </Navbar.Brand>
+            </Col>
+            <Col xs={10} lg={4}>
+              <Navbar.Collapse>
+                <Form.Control
+                  type="search"
+                  placeholder="Search products"
+                  className="me-2 ms-3 my-2 w-100"
+                  style={{ width: "400px" }}
+                  aria-label="Search"
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+              </Navbar.Collapse>
+            </Col>
+            <Col xs={10} lg={4}>
+              <Navbar.Collapse
+                className="justify-content-end gap-3"
+                style={{ width: "400px" }}
               >
-                <option value="All">Category</option>
-                <option value="men's clothing">men's clothing</option>
-                <option value="women's clothing">women's clothing</option>
-                <option value="jewelery">jewelery</option>
-                <option value="electronics">electronics</option>
-              </Form.Select>
-              <Button variant="outline-danger" onClick={clearFilters}>
-                Clear Filter
-              </Button>
-            </Navbar.Collapse>
-          </Container>
+                <Form.Check
+                  name="filters"
+                  label="Rating"
+                  onChange={(e) => setRatingFilter(e.target.checked)}
+                />
+                <Form.Check
+                  name="filters"
+                  label="Price"
+                  onChange={(e) => setPriceFilter(e.target.checked)}
+                />
+                <Form.Select
+                  aria-label="Default select example"
+                  className="border border-warning border-2"
+                  style={{ width: "150px" }}
+                  onChange={(e) => {
+                    setCategoryFilter(e.target.value);
+                  }}
+                  value={categoryFilter}
+                >
+                  <option value="All">Category</option>
+                  <option value="men's clothing">men's clothing</option>
+                  <option value="women's clothing">women's clothing</option>
+                  <option value="jewelery">jewelery</option>
+                  <option value="electronics">electronics</option>
+                </Form.Select>
+                <Button variant="outline-danger" onClick={clearFilters}>
+                  Clear
+                </Button>
+              </Navbar.Collapse>
+            </Col>
+          </Row>
         </Navbar>
       </div>
-      <div className="products d-flex flex-wrap gap-3 mt-3 container-fluid">
+      <div className="products d-flex flex-wrap gap-3 mt-3 ">
         {loading ? (
           <Loading />
         ) : (
           applyFilters().map((product, index) => (
-            <Products product={product} key={index} userId={id} />
+            <Products product={product} index={index} userId={id} />
           ))
         )}
       </div>
