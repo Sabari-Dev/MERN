@@ -1,0 +1,22 @@
+{
+    "code": 200,
+    "data": {
+        "user": {
+            "email": "pandiyan@propwiser.com",
+            "id": 322,
+            "mobile_no": "8220402007",
+            "user_type": "agent",
+            "name": "Pandiyan",
+            "invoice_processing": true,
+            "b2b_user_id": 855,
+            "verified": true,
+            "access_token": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhbmRpeWFuQHByb3B3aXNlci5jb20iLCJpZCI6MzIyLCJtb2JpbGVfbm8iOiI4MjIwNDAyMDA3IiwidXNlcl90eXBlIjoiYWdlbnQiLCJuYW1lIjoiUGFuZGl5YW4iLCJpbnZvaWNlX3Byb2Nlc3NpbmciOnRydWUsImIyYl91c2VyX2lkIjo4NTUsImlhdCI6MTcwMzc2MTgwNCwiZXhwIjoxNzAzODQ4MjA0fQ.kP0wO0E8BgIUzK9iUGT0SRSPoK5c1tyWF-hcRQ8G4iaVOKdIzvjsriwfai_16O3hyIXYCjPZSH4HhLIg9OUd2g",
+            "refresh_token": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhbmRpeWFuQHByb3B3aXNlci5jb20iLCJpZCI6MzIyLCJtb2JpbGVfbm8iOiI4MjIwNDAyMDA3IiwidXNlcl90eXBlIjoiYWdlbnQiLCJuYW1lIjoiUGFuZGl5YW4iLCJpbnZvaWNlX3Byb2Nlc3NpbmciOnRydWUsImIyYl91c2VyX2lkIjo4NTUsImlhdCI6MTcwMzc2MTgwNCwiZXhwIjoxNzM1Mjk3ODA0fQ.oSTEyhnAUDpQ9HFMbGh42TPetsw0WGOk18o90_T5njALBWlfDpeyP4kYfciT8lOCIrWa3WrxutVV4GcqYzvPvw",
+            "password_reset_required": false,
+            "post_access": 1,
+            "role_id": 1,
+            "kiosk_id": 51
+        }
+    },
+    "success": true
+}

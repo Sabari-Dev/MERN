@@ -12,6 +12,7 @@ body {
   width: 200px;
   height: 190px;
   border-radius: 50%;
+  rotate: 90;
 }
 .emp-page {
   display: flex;
